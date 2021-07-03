@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
+import model.Admin;
 import model.User;
 import java.io.IOException;
 import java.sql.*;
@@ -35,7 +36,7 @@ public class Database {
         }
     }
 
-    public static void makeConnection() throws ClassNotFoundException, SQLException {
+    public static void makeConnection() throws  SQLException {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Library" , "root" , "1234");
             statement = connection.createStatement();
@@ -118,6 +119,28 @@ public class Database {
             throwables.printStackTrace();
         }
         closeConnection();
+    }
+
+
+    // گرفتن اطلاعات مدیران کتابخانه از جدول ادمین موجود در دیتابیس
+    public static List<Admin> getInfoAdmin() throws SQLException {
+        List<Admin> admins = new ArrayList<>();
+        makeConnection();
+        ResultSet resultSet = Database.getStatement().executeQuery("SELECT * FROM admin");
+        Admin admin;
+        while (resultSet.next()) {
+            admin = new Admin();
+            admin.setID(resultSet.getString("admID"));
+            admin.setUserName(resultSet.getString("admUserName"));
+            admin.setPassword(resultSet.getString("admPass"));
+            admin.setFirstName(resultSet.getString("admFName"));
+            admin.setLastName(resultSet.getString("admLName"));
+            admin.setCodeMeli(resultSet.getString("admCodeMeli"));
+            admins.add(admin);
+        }
+        Database.closeConnection();
+        return admins;
+
     }
 
 }

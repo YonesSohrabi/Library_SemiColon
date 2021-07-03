@@ -38,7 +38,7 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <Label fx:id="btn_ForgetPassword" alignment="CENTER" layoutX="201.0" layoutY="361.0" prefHeight="24.0" prefWidth="144.0" styleClass="forget_btn" stylesheets="@../styles/style.css" text="Are you admin ?" textFill="#a3a3a3">
+            <Label fx:id="openAdmLoginPage" alignment="CENTER" layoutX="201.0" layoutY="361.0" onMouseClicked="#openAdmLoginPage" prefHeight="24.0" prefWidth="144.0" styleClass="forget_btn" stylesheets="@../styles/style.css" text="Are you admin ?" textFill="#a3a3a3">
                <font>
                   <Font name="Ebrima Bold" size="16.0" />
                </font>
