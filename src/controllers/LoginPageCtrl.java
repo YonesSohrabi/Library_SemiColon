@@ -1,34 +1,19 @@
 package controllers;
 
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.User;
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.Random;
 
 public class  LoginPageCtrl {
-
-    @FXML
-    private Label lbl_fullname;
 
     @FXML
     private JFXButton exit_btn;
@@ -36,79 +21,21 @@ public class  LoginPageCtrl {
     @FXML
     private JFXButton btn_Login;
 
-    @FXML
-    private JFXPasswordField txt_Field_Password_R;
-
-    @FXML
-    private JFXPasswordField txt_Field_ConfirmPassword;
-
-    @FXML
-    private JFXButton btn_Register;
-
-    @FXML
-    private Label btn_SignUp;
-
-    @FXML
-    private Label btn_ForgetPassword;
-
-    @FXML
-    private JFXTextField txt_Field_ID;
-
-    @FXML
-    private JFXTextField txt_Field_LastName;
 
     @FXML
     private JFXTextField txtfield_UserName;
 
-    @FXML
-    private JFXTextField txt_Field_FirstName;
 
     @FXML
     private JFXPasswordField txtfield_Password;
 
-    @FXML
-    private JFXButton btn_Back;
 
-    @FXML
-    private Pane pane1;
-
-    @FXML
-    private Pane pane2;
-    @FXML
-    private JFXTextField txt_Field_UserName_R;
-
-    @FXML
-    private JFXButton exit_btn_regis;
 
     @FXML
     void press_Exit_btn(ActionEvent event) {
         Stage stage = (Stage) exit_btn.getScene().getWindow();
         stage.close();
     }
-
-    public void press_ExitRegis_btn(ActionEvent actionEvent) {
-        Stage stage2 = (Stage) exit_btn_regis.getScene().getWindow();
-        stage2.close();
-    }
-
-    @FXML
-    void exiteRegis_clicked(ActionEvent event) {
-        Stage stage2 = (Stage) exit_btn_regis.getScene().getWindow();
-        stage2.close();
-    }
-
-    public void exit_clicked(ActionEvent actionEvent) {
-        Stage stage = (Stage) btn_Login.getScene().getWindow();
-        stage.close();
-    }
-
-    public void press_Back_btn(ActionEvent actionEvent) {
-        pane2.setVisible(false);
-        pane1.setVisible(true);
-    }
-
-    User librarian1 = new User();
-    //انجام ثبت نام
 
     public void press_ForgetPassword(MouseEvent mouseEvent) {
 
@@ -120,7 +47,6 @@ public class  LoginPageCtrl {
     }
 
     static String id;
-    User librarian2 = new User();
     private double x, y;
     public void press_Login_btn(ActionEvent actionEvent)  {
         //چک کردن پر بودن فیلد های مورد نیاز
@@ -160,7 +86,6 @@ public class  LoginPageCtrl {
                 //مشکل و ارور در لاگین
             }catch(Exception e) {
                 alert.login_error();
-
             }
         }
     }

@@ -1,0 +1,86 @@
+.box-login{
+
+    -fx-background-color: #108FFE;
+}
+
+. forget_btn{
+    -fx-text-fill: #a3a3a3;
+}
+
+. forget_btn:hover{
+    -fx-text-fill: #108FFE;
+    -fx-underline: true;
+}
+
+.loginBtn {
+    -fx-background-color: #108ffe;
+    -fx-text-fill: #FFF;
+    -fx-background-radius: 10px;
+}
+.loginBtn:hover {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #108ffe;
+    -fx-border-color: #108ffe;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-radius: 10px;
+}
+
+
+.button_Home
+{
+    -fx-background-color : #05071F;
+    -fx-text-fill : #e7e5e5;
+}
+.button_Home:hover{
+    -fx-background-color : #10165F;
+}
+.button_home:pressed
+{
+    -fx-background-color : #1620A1;
+}
+
+.scroll-pane {
+    -fx-background-color: #02030A;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #10165F;
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+.button_addbook
+{
+    -fx-background-color : #108FFE;
+    -fx-text-fill : #e7e5e5;
+}
+
+.button_addbook:hover{
+    -fx-background-color : #10165F;
+}
+.button_addbook:pressed
+{
+    -fx-background-color : #1620A1;
+}
+

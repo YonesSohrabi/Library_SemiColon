@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import model.User;
-
 import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
