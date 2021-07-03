@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -20,6 +21,9 @@ public class  LoginPageCtrl {
 
     @FXML
     private JFXButton btn_Login;
+
+    @FXML
+    private Label btn_SignUp;
 
 
     @FXML
@@ -43,7 +47,13 @@ public class  LoginPageCtrl {
 
     //باز کردن صفحه ی ثبت نام
     public void open_registration(MouseEvent mouseEvent) {
-
+        Stage stage = (Stage) btn_SignUp.getScene().getWindow();
+        switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+        try {
+            switchSenceCtrl.sceneSwitchLogin("register");
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
     static String id;

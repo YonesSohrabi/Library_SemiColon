@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterPageCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterPageCtrl">
    <children>
-      <Pane fx:id="pane2" layoutX="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="400.0">
+      <Pane fx:id="registerPage" layoutX="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="400.0">
          <children>
-            <JFXButton fx:id="btn_Back" buttonType="RAISED" layoutX="142.0" layoutY="551.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#press_Back_btn" prefHeight="43.0" prefWidth="94.0" styleClass="loginBtn" stylesheets="@../../../../java1/javafx_LoginPage/src/styles/style.css" text="Back">
+            <JFXButton fx:id="btn_Back" buttonType="RAISED" layoutX="142.0" layoutY="551.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#press_Back_btn" prefHeight="43.0" prefWidth="94.0" styleClass="loginBtn" stylesheets="@../styles/style.css" text="Back">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btn_Register" buttonType="RAISED" layoutX="43.0" layoutY="482.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#press_Registration_btn" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../../../../java1/javafx_LoginPage/src/styles/style.css" text="Register">
+            <JFXButton fx:id="btn_Register" buttonType="RAISED" layoutX="43.0" layoutY="482.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#press_Registration_btn" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../styles/style.css" text="Register">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </JFXButton>
-            <JFXPasswordField fx:id="txt_Field_ConfirmPassword" focusColor="#108ffe" labelFloat="true" layoutX="43.0" layoutY="412.0" prefHeight="40.0" prefWidth="300.0" promptText="Confirm Password" stylesheets="@../../../../java1/javafx_LoginPage/src/styles/style.css" unFocusColor="#108ffe" />
+            <JFXPasswordField fx:id="txt_Field_ConfirmPassword" focusColor="#108ffe" labelFloat="true" layoutX="43.0" layoutY="412.0" prefHeight="40.0" prefWidth="300.0" promptText="Confirm Password" stylesheets="@../styles/style.css" unFocusColor="#108ffe" />
             <JFXTextField fx:id="txt_Field_FirstName" focusColor="#108ffe" labelFloat="true" layoutX="43.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="144.0" promptText="First Name" unFocusColor="#108ffe">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="txt_Field_Password_R" focusColor="#108ffe" labelFloat="true" layoutX="43.0" layoutY="347.0" prefHeight="40.0" prefWidth="300.0" promptText="Password" stylesheets="@../../../../java1/javafx_LoginPage/src/styles/style.css" unFocusColor="#108ffe" />
+            <JFXPasswordField fx:id="txt_Field_Password_R" focusColor="#108ffe" labelFloat="true" layoutX="43.0" layoutY="347.0" prefHeight="40.0" prefWidth="300.0" promptText="Password" stylesheets="@../styles/style.css" unFocusColor="#108ffe" />
             <ImageView fitHeight="105.0" fitWidth="85.0" layoutX="22.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../java1/javafx_LoginPage/src/images/images__2_-removebg-preview.png" />
+                  <Image url="@../images/Logo.png" />
                </image>
             </ImageView>
             <Label layoutX="22.0" layoutY="118.0" text="registration form" textFill="#108ffe">
@@ -57,7 +61,7 @@
                   <Cursor fx:constant="NONE" />
                </cursor>
                <image>
-                  <Image url="@../../../../java1/javafx_LoginPage/src/images/x.png" />
+                  <Image url="@../images/x.png" />
                </image>
             </ImageView>
             <JFXButton fx:id="exit_btn1" layoutX="377.0" layoutY="-4.0" onAction="#press_Exit_btn" prefHeight="24.0" prefWidth="24.0" text=" ">
@@ -67,11 +71,11 @@
             </JFXButton>
          </children>
       </Pane>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="box-login" stylesheets="@../../../../java1/javafx_LoginPage/src/styles/style.css">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="box-login" stylesheets="@../styles/style.css">
          <children>
             <ImageView fitHeight="220.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../java1/javafx_LoginPage/src/images/images%20(1).png" />
+                  <Image url="@../images/cover-login-logo.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" prefHeight="35.0" prefWidth="167.0" text="Welcome To" textFill="WHITE">

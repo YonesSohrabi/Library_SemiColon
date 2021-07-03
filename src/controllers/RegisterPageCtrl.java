@@ -5,12 +5,16 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
+import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import model.User;
-import java.util.Random;
 
-public class  RegisterPageCtrl {
+import java.io.IOException;
+import java.net.URL;
+import java.util.Random;
+import java.util.ResourceBundle;
+
+public class  RegisterPageCtrl implements Initializable {
 
     @FXML
     private JFXPasswordField txt_Field_Password_R;
@@ -30,6 +34,9 @@ public class  RegisterPageCtrl {
 
     @FXML
     private JFXButton exit_btn_regis;
+
+    @FXML
+    private JFXButton btn_Back;
 
     public void press_Back_btn(ActionEvent actionEvent) {
 
@@ -86,6 +93,19 @@ public class  RegisterPageCtrl {
     public void press_Exit_btn(ActionEvent actionEvent) {
         Stage stage2 = (Stage) exit_btn_regis.getScene().getWindow();
         stage2.close();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        btn_Back.setOnAction(e -> {
+            Stage stage = (Stage) btn_Back.getScene().getWindow();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchLogin("loginPage");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
     }
 }
 

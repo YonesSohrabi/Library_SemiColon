@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageCtrl">
    <children>
-      <Pane fx:id="pane1" layoutX="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
+      <Pane fx:id="loginPage" layoutX="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
          <children>
             <ImageView fitHeight="105.0" fitWidth="85.0" layoutX="27.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/images__2_-removebg-preview.png" />
+                  <Image url="@../images/Logo.png" />
                </image>
             </ImageView>
             <Label layoutX="27.0" layoutY="127.0" text="Wellcome Back" textFill="#108ffe">
@@ -34,7 +38,7 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <Label fx:id="btn_ForgetPassword" alignment="CENTER" layoutX="201.0" layoutY="361.0" onMouseClicked="#press_ForgetPassword" prefHeight="24.0" prefWidth="144.0" styleClass="forget_btn" stylesheets="@../styles/style.css" text="Forget Password?" textFill="#a3a3a3">
+            <Label fx:id="btn_ForgetPassword" alignment="CENTER" layoutX="201.0" layoutY="361.0" prefHeight="24.0" prefWidth="144.0" styleClass="forget_btn" stylesheets="@../styles/style.css" text="Forget Password?" textFill="#a3a3a3">
                <font>
                   <Font name="Ebrima Bold" size="16.0" />
                </font>
@@ -54,18 +58,20 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <ImageView fitHeight="24.0" fitWidth="34.0" layoutX="380.0" pickOnBounds="true" preserveRatio="true">
-               <cursor>
-                  <Cursor fx:constant="NONE" />
-               </cursor>
-               <image>
-                  <Image url="@../images/x.png" />
-               </image>
-            </ImageView>
-            <JFXButton fx:id="exit_btn" layoutX="377.0" layoutY="-5.0" onAction="#press_Exit_btn" prefHeight="24.0" prefWidth="24.0" text=" ">
+            <JFXButton fx:id="exit_btn" layoutX="356.0" layoutY="14.0" onAction="#press_Exit_btn" prefHeight="24.0" prefWidth="24.0" text=" ">
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="NONE" />
+                     </cursor>
+                     <image>
+                        <Image url="@../images/x.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
          </children>
       </Pane>
@@ -73,7 +79,7 @@
          <children>
             <ImageView fitHeight="220.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/images%20(1).png" />
+                  <Image url="@../images/cover-login-logo.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" prefHeight="35.0" prefWidth="167.0" text="Welcome To" textFill="WHITE">
