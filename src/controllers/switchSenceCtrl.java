@@ -22,12 +22,32 @@ public class switchSenceCtrl {
             case "loginPage":
                 root = FXMLLoader.load(getClass().getResource("../view/fxmls/LoginPage.fxml"));
                 break;
-
+            case "home":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/Home.fxml"));
+                break;
         }
-
         Scene scene = new Scene(root,800,600);
         stage.setScene(scene);
         stage.show();
-
     }
+
+
+    public void sceneSwitchUserPage(String sceneName) throws IOException {
+        Parent root = null;
+        switch (sceneName){
+            case "home":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/Home.fxml"));
+                break;
+            case "userinfo":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/UserInfo.fxml"));
+                break;
+            case "BookList":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/BookList.fxml"));
+                break;
+        }
+        Scene scene = new Scene(root,800,600);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
