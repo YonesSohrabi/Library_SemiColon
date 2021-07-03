@@ -24,7 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomePageCtrl">
    <children>
       <StackPane fx:id="leftPane" layoutX="8.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
          <children>
@@ -92,7 +92,7 @@
                      </image>
                   </ImageView>
                   <JFXButton fx:id="btn_search" layoutX="53.0" layoutY="28.0" onAction="#btn_search_clicked" prefHeight="16.0" prefWidth="24.0" text=" " />
-                  <Button fx:id="btn_odatBook" layoutX="128.0" layoutY="103.0" mnemonicParsing="false" onAction="#btn_addBoock_clicked" prefHeight="33.0" prefWidth="76.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" styleClass="button_Home" stylesheets="@../styles/style.css" text="عودت">
+                  <Button fx:id="btn_odatBook" layoutX="128.0" layoutY="103.0" mnemonicParsing="false" onAction="#btn_odatBoock_clicked" prefHeight="33.0" prefWidth="76.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" styleClass="button_Home" stylesheets="@../styles/style.css" text="عودت">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

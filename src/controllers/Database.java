@@ -100,9 +100,6 @@ public class Database {
             alert2.showAndWait();
         }
         //ارسال اطلاعات ثبت نام به دیتابیس
-        Random rnd = new Random();
-        String id = String.valueOf(rnd.nextInt(9000)+1000);
-        System.out.println("id = " + id);
         String setinfo = "INSERT INTO user (usrID ,usrFName, usrLName , usrName , usrPass)  values ('%s','%s','%s','%s','%s')";
         setinfo = String.format(setinfo, p.getID(), p.getFirstName(), p.getLastName(), p.getUserName(), p.getPassword());
         System.out.println(setinfo);
@@ -112,13 +109,41 @@ public class Database {
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
             alert2.setTitle("Registration");
             alert2.setHeaderText(null);
-            alert2.setContentText("Successfully Registration!\nyour id is : " + id);
+            alert2.setContentText("Successfully Registration!\nyour id is : " + p.getID());
             alert2.showAndWait();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         closeConnection();
     }
+
+    public static User set_home_items() {
+        String id = LoginPageCtrl.get_id();
+        System.out.println("id in dabase class = " + id);
+        User user = new User();
+        try {
+            String mysql = "SELECT usrName, usrLName , usrName , usrPass FROM user WHERE usrID =" + id;
+            System.out.println("mysql=" + mysql);
+            ResultSet result = Database.statement.executeQuery(mysql);
+            result.next();
+            //   String ID = result.getString("id");
+            String username = result.getString("usrName");
+            String password = result.getString("usrPass");
+            String name = result.getString("usrName");
+            String family = result.getString("usrLName");
+            String fullname = (name + " " + family);
+            System.out.println("fullname =" + fullname);
+            user.setFirstName(name);
+            user.setLastName(family );
+            user.setID( id);
+            user.setUserName(username);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return user;
+    }
+
 
 }
 

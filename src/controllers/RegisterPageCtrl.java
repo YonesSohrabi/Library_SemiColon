@@ -47,14 +47,6 @@ public class  RegisterPageCtrl implements Initializable {
     //انجام ثبت نام
     public void press_Registration_btn(ActionEvent actionEvent) {
 
-        Stage stage = (Stage) btn_Back.getScene().getWindow();
-        switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
-        try {
-            switchSenceCtrl.sceneSwitchLogin("loginPage");
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
-
         //چک کردن خالی نبودن فیلد های مورد نیاز برای ثبت نام
         if (txt_Field_FirstName.getText().compareTo("") == 0 || txt_Field_LastName.getText().compareTo("") == 0 ||
                 txt_Field_Password_R.getText().compareTo("") == 0 ||
@@ -72,7 +64,7 @@ public class  RegisterPageCtrl implements Initializable {
             librarian1.setUserName(txt_Field_UserName_R.getText());
             System.out.println("Password =" + librarian1.getPassword());
             Random rnd = new Random();
-            String id = String.valueOf(rnd.nextInt(1000));
+            String id = String.valueOf(rnd.nextInt(9000)+1000);
             System.out.println("id = " + id);
             librarian1.setID(id);
         }
@@ -88,8 +80,13 @@ public class  RegisterPageCtrl implements Initializable {
             txt_Field_Password_R.setText("");
             txt_Field_ConfirmPassword.setText("");
 
-//
-
+            Stage stage = (Stage) btn_Back.getScene().getWindow();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchLogin("loginPage");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
             // مشکل در ثبت نام
         } catch (Exception e) {
             System.out.println(e);
@@ -97,7 +94,6 @@ public class  RegisterPageCtrl implements Initializable {
             alert.regis_Faild();
         }
     }
-
 
     public void press_Exit_btn(ActionEvent actionEvent) {
         Stage stage2 = (Stage) exit_btn_regis.getScene().getWindow();
