@@ -38,10 +38,6 @@ public class  RegisterPageCtrl implements Initializable {
     @FXML
     private JFXButton btn_Back;
 
-    public void press_Back_btn(ActionEvent actionEvent) {
-
-    }
-
     User librarian1 = new User();
 
     //انجام ثبت نام
@@ -89,12 +85,6 @@ public class  RegisterPageCtrl implements Initializable {
         }
     }
 
-
-    public void press_Exit_btn(ActionEvent actionEvent) {
-        Stage stage2 = (Stage) exit_btn_regis.getScene().getWindow();
-        stage2.close();
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         btn_Back.setOnAction(e -> {
@@ -105,6 +95,11 @@ public class  RegisterPageCtrl implements Initializable {
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
+        });
+
+        exit_btn_regis.setOnAction(e -> {
+            Stage stage2 = (Stage) exit_btn_regis.getScene().getWindow();
+            stage2.close();
         });
     }
 }

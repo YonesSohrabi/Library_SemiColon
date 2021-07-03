@@ -18,7 +18,7 @@
    <children>
       <Pane fx:id="registerPage" layoutX="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="400.0">
          <children>
-            <JFXButton fx:id="btn_Back" buttonType="RAISED" layoutX="142.0" layoutY="551.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#press_Back_btn" prefHeight="43.0" prefWidth="94.0" styleClass="loginBtn" stylesheets="@../styles/style.css" text="Back">
+            <JFXButton fx:id="btn_Back" buttonType="RAISED" layoutX="142.0" layoutY="551.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="94.0" styleClass="loginBtn" stylesheets="@../styles/style.css" text="Back">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -56,7 +56,7 @@
                </font>
             </JFXTextField>
             <JFXTextField fx:id="txt_Field_UserName_R" focusColor="#108ffe" labelFloat="true" layoutX="43.0" layoutY="277.0" prefHeight="40.0" prefWidth="300.0" promptText="User Name" unFocusColor="#108ffe" />
-            <JFXButton fx:id="exit_btn1" layoutX="356.0" layoutY="14.0" onAction="#press_Exit_btn" prefHeight="32.0" prefWidth="42.0" text=" ">
+            <JFXButton fx:id="exit_btn_regis" layoutX="356.0" layoutY="14.0" prefHeight="32.0" prefWidth="42.0" text=" ">
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor>

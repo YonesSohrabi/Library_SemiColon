@@ -14,16 +14,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageCtrl">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="loginPage" layoutX="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
+      <Pane fx:id="loginPage" layoutX="398.0" layoutY="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
          <children>
             <ImageView fitHeight="105.0" fitWidth="85.0" layoutX="27.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="27.0" layoutY="127.0" text="Wellcome Back" textFill="#108ffe">
+            <Label layoutX="39.0" layoutY="127.0" text="Admin Login Page" textFill="#108ffe">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -33,31 +34,17 @@
                   <Font name="Ebrima Bold" size="16.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtfield_UserName" focusColor="#108ffe" labelFloat="true" layoutX="47.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="User Name" unFocusColor="#108ffe">
+            <JFXTextField fx:id="usrNameAdmTXT" focusColor="#108ffe" labelFloat="true" layoutX="47.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="User Name" unFocusColor="#108ffe">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <Label fx:id="btn_ForgetPassword" alignment="CENTER" layoutX="201.0" layoutY="361.0" prefHeight="24.0" prefWidth="144.0" styleClass="forget_btn" stylesheets="@../styles/style.css" text="Are you admin ?" textFill="#a3a3a3">
-               <font>
-                  <Font name="Ebrima Bold" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <JFXPasswordField fx:id="txtfield_Password" focusColor="#108ffe" labelFloat="true" layoutX="45.0" layoutY="309.0" prefHeight="40.0" prefWidth="300.0" promptText="Password" stylesheets="@../styles/style.css" unFocusColor="#108ffe" />
-            <JFXButton fx:id="btn_Login" buttonType="RAISED" layoutX="47.0" layoutY="425.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#press_Login_btn" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../styles/style.css" text="Login">
+            <JFXPasswordField fx:id="passAdmTXT" focusColor="#108ffe" labelFloat="true" layoutX="45.0" layoutY="309.0" prefHeight="40.0" prefWidth="300.0" promptText="Password" stylesheets="@../styles/style.css" unFocusColor="#108ffe" />
+            <JFXButton fx:id="loginAdmBTN" buttonType="RAISED" layoutX="47.0" layoutY="425.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../styles/style.css" text="Login">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </JFXButton>
-            <Label layoutX="139.0" layoutY="501.0" text="New User?" textFill="#a3a3a3" />
-            <Label fx:id="btn_SignUp" layoutX="212.0" layoutY="501.0" onMouseClicked="#open_registration" text="SignUp" textFill="#108ffe">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
             <JFXButton fx:id="exit_btn" layoutX="356.0" layoutY="14.0" onAction="#press_Exit_btn" prefHeight="24.0" prefWidth="24.0" text=" ">
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
@@ -73,9 +60,14 @@
                   </ImageView>
                </graphic>
             </JFXButton>
+            <JFXButton fx:id="backAdmBTN" buttonType="RAISED" layoutX="46.0" layoutY="485.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../styles/style.css" text="back">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="box-login" stylesheets="@../styles/style.css">
+      <VBox alignment="CENTER" layoutY="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="box-login" stylesheets="@../styles/style.css">
          <children>
             <ImageView fitHeight="220.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                <image>
