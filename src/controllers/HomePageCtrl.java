@@ -45,7 +45,7 @@ public class HomePageCtrl implements Initializable {
 
     final ObservableList<String> bookInfo = FXCollections.observableArrayList();
 
-    public void set_user_info() {
+    public void setInfo() {
         User user = new User();
 
         try {
@@ -60,13 +60,12 @@ public class HomePageCtrl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        set_user_info();
-        //
+        setInfo();
         //      homeList();
     }
 
     public void btn_Home_clicked(ActionEvent actionEvent) {
-        
+
 //            homeList();
     }
 
@@ -138,11 +137,10 @@ public class HomePageCtrl implements Initializable {
         Stage stage = (Stage) btn_info.getScene().getWindow();
         switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
         try {
-            switchSenceCtrl.sceneSwitchLogin("UserInfo");
+            switchSenceCtrl.sceneSwitchUserPage("UserInfo");
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
-        set_user_info();
     }
 
     public void btn_Signout_clicked(ActionEvent actionEvent) throws IOException {
@@ -155,11 +153,6 @@ public class HomePageCtrl implements Initializable {
             ioException.printStackTrace();
         }
     }
-
-    public void setlbl_fullname(String a) {
-        this.lbl_fullname.setText(a);
-    }
-
 
     public void btn_search_clicked(ActionEvent actionEvent) {
     }

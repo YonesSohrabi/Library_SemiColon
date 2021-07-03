@@ -35,19 +35,19 @@ public class switchSenceCtrl {
         Parent root = null;
         switch (sceneName){
             case "Home":
-     //           root = FXMLLoader.load(getClass().getResource("../view/fxmls/Home.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/Home.fxml"));
                 break;
             case "UserInfo":
-   //             root = FXMLLoader.load(getClass().getResource("../view/fxmls/UserInfo.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/UserInfo.fxml"));
                 break;
             case "BookList":
-    //            root = FXMLLoader.load(getClass().getResource("../view/fxmls/BookList.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/BookList.fxml"));
                 break;
             case "loginPage":
                 root = FXMLLoader.load(getClass().getResource("../view/fxmls/LoginPage.fxml"));
                 break;
         }
-        Scene scene = new Scene(root,800,600);
+        Scene scene = new Scene(root,1050,576);
         stage.setScene(scene);
         stage.show();
     }
