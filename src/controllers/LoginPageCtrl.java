@@ -47,7 +47,6 @@ public class  LoginPageCtrl {
     }
 
     static String id;
-    private double x, y;
     public void press_Login_btn(ActionEvent actionEvent)  {
         //چک کردن پر بودن فیلد های مورد نیاز
         boolean login = false;

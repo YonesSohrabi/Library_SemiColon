@@ -85,6 +85,41 @@ public class Database {
         return login;
     }
 
+    public static void registerUser(User p) {
+        try {
+            //ساختن تیبل مورد نیاز در دیتابیس
+            String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL , `usrLName` varchar(80) NOT NULL , `usrName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT , PRIMARY KEY (`usrID`) ,UNIQUE (`usrName`))";
+            getStatement().execute(crtbl);
+            //مشکل(ارور) در ثبت نام
+        } catch (Exception ex) {
+            System.out.println(ex);
+            Alert alert2 = new Alert(Alert.AlertType.WARNING);
+            alert2.setTitle("ERROR");
+            alert2.setHeaderText(null);
+            alert2.setContentText("Registration Failed pleaes TryAgain");
+            alert2.showAndWait();
+        }
+        //ارسال اطلاعات ثبت نام به دیتابیس
+        Random rnd = new Random();
+        String id = String.valueOf(rnd.nextInt(9000)+1000);
+        System.out.println("id = " + id);
+        String setinfo = "INSERT INTO user (usrID ,usrFName, usrLName , usrName , usrPass)  values ('%s','%s','%s','%s','%s')";
+        setinfo = String.format(setinfo, p.getID(), p.getFirstName(), p.getLastName(), p.getUserName(), p.getPassword());
+        System.out.println(setinfo);
+
+        try {
+            getStatement().execute(setinfo);
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+            alert2.setTitle("Registration");
+            alert2.setHeaderText(null);
+            alert2.setContentText("Successfully Registration!\nyour id is : " + id);
+            alert2.showAndWait();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        closeConnection();
+    }
+
 }
 
 

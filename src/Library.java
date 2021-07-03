@@ -14,10 +14,7 @@ public class Library extends Application {
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
-
     }
-
-
     public static void main(String[] args) {
         launch(args);
     }
