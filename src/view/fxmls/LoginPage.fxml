@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPage2_Controller">
+   <children>
+      <Pane fx:id="pane1" layoutX="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
+         <children>
+            <ImageView fitHeight="105.0" fitWidth="85.0" layoutX="27.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/images__2_-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="27.0" layoutY="127.0" text="Wellcome Back" textFill="#108ffe">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="29.0" layoutY="162.0" prefHeight="24.0" prefWidth="167.0" text="Sign in to continue" textFill="#a3a3a3">
+               <font>
+                  <Font name="Ebrima Bold" size="16.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtfield_UserName" focusColor="#108ffe" labelFloat="true" layoutX="47.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="User Name" unFocusColor="#108ffe">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <Label fx:id="btn_ForgetPassword" alignment="CENTER" layoutX="201.0" layoutY="361.0" onMouseClicked="#press_ForgetPassword" prefHeight="24.0" prefWidth="144.0" styleClass="forget_btn" stylesheets="@../styles/style.css" text="Forget Password?" textFill="#a3a3a3">
+               <font>
+                  <Font name="Ebrima Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <JFXPasswordField fx:id="txtfield_Password" focusColor="#108ffe" labelFloat="true" layoutX="45.0" layoutY="309.0" prefHeight="40.0" prefWidth="300.0" promptText="Password" stylesheets="@../styles/style.css" unFocusColor="#108ffe" />
+            <JFXButton fx:id="btn_Login" buttonType="RAISED" layoutX="47.0" layoutY="425.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#press_Login_btn" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../styles/style.css" text="Login">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="139.0" layoutY="501.0" text="New User?" textFill="#a3a3a3" />
+            <Label fx:id="btn_SignUp" layoutX="212.0" layoutY="501.0" onMouseClicked="#open_registration" text="SignUp" textFill="#108ffe">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <ImageView fitHeight="24.0" fitWidth="34.0" layoutX="380.0" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="NONE" />
+               </cursor>
+               <image>
+                  <Image url="@../images/x.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="exit_btn" layoutX="377.0" layoutY="-5.0" onAction="#press_Exit_btn" prefHeight="24.0" prefWidth="24.0" text=" ">
+               <cursor>
+                  <Cursor fx:constant="CLOSED_HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </Pane>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="box-login" stylesheets="@../styles/style.css">
+         <children>
+            <ImageView fitHeight="220.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/images%20(1).png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" prefHeight="35.0" prefWidth="167.0" text="Welcome To" textFill="WHITE">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <font>
+                  <Font name="Ebrima Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="35.0" prefWidth="112.0" text="YAR" textFill="WHITE">
+               <effect>
+                  <Glow />
+               </effect>
+               <font>
+                  <Font name="Impact" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
