@@ -124,14 +124,14 @@ public class Database {
         System.out.println("id in dabase class = " + id);
         User user = new User();
         try {
-            String mysql = "SELECT usrName, usrLName , usrName , usrPass FROM user WHERE usrID =" + id;
+            String mysql = "SELECT usrFName, usrLName , usrName , usrPass FROM user WHERE usrID =" + id;
             System.out.println("mysql=" + mysql);
             ResultSet result = Database.statement.executeQuery(mysql);
             result.next();
             //   String ID = result.getString("id");
             String username = result.getString("usrName");
             String password = result.getString("usrPass");
-            String name = result.getString("usrName");
+            String name = result.getString("usrFName");
             String family = result.getString("usrLName");
             String fullname = (name + " " + family);
             System.out.println("fullname =" + fullname);
