@@ -4,9 +4,12 @@ package controllers;
 import controllers.login.LoginPageCtrl;
 import javafx.scene.control.Alert;
 import model.Admin;
+import javafx.scene.layout.VBox;
+import model.Book;
 import model.User;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -33,7 +36,7 @@ public class Database {
 
     public static void makeConnection() throws  SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Library" , "root" , "1380Ys1388?");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library" , "root" , "1380Ys1388?");
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.out.println(e);
@@ -56,7 +59,8 @@ public class Database {
     public static boolean login_user(String txtusername, String txtpassword) {
         boolean login = false;
         try {
-            String mysql = "SELECT usrID ,usrFName, usrLName ,userName ,usrPass FROM user";
+            makeConnection();
+            String mysql = "SELECT * FROM user";
 
             ResultSet result = Database.getStatement().executeQuery(mysql);
             while (result.next()) {
@@ -84,7 +88,8 @@ public class Database {
     public static void registerUser(User p) {
         try {
             //ساختن تیبل مورد نیاز در دیتابیس
-            String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL , `usrLName` varchar(80) NOT NULL , `usrName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT , PRIMARY KEY (`usrID`) ,UNIQUE (`usrName`))";
+            String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL ," +
+                    " `usrLName` varchar(80) NOT NULL , `usrName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT , PRIMARY KEY (`usrID`) ,UNIQUE (`usrName`))";
             getStatement().execute(crtbl);
             //مشکل(ارور) در ثبت نام
         } catch (Exception ex) {
@@ -96,10 +101,12 @@ public class Database {
             alert2.showAndWait();
         }
         //ارسال اطلاعات ثبت نام به دیتابیس
+
         Random rnd = new Random();
         String id = String.valueOf(rnd.nextInt(9000)+1000);
         System.out.println("id = " + id);
         String setinfo = "INSERT INTO user (usrID ,usrFName, usrLName , userName , usrPass)  values ('%s','%s','%s','%s','%s')";
+
         setinfo = String.format(setinfo, p.getID(), p.getFirstName(), p.getLastName(), p.getUserName(), p.getPassword());
         System.out.println(setinfo);
 
@@ -108,8 +115,9 @@ public class Database {
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
             alert2.setTitle("Registration");
             alert2.setHeaderText(null);
-            alert2.setContentText("Successfully Registration!\nyour id is : " + id);
+            alert2.setContentText("Successfully Registration!\nyour id is : " + p.getID());
             alert2.showAndWait();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -136,6 +144,64 @@ public class Database {
         Database.closeConnection();
         return admins;
 
+    }
+
+
+    public static User set_home_items() {
+        String id = LoginPageCtrl.get_id();
+        System.out.println("id in dabase class = " + id);
+        User user = new User();
+        try {
+            String mysql = "SELECT usrFName, usrLName , usrName , usrPass FROM user WHERE usrID =" + id;
+            System.out.println("mysql=" + mysql);
+            ResultSet result = Database.statement.executeQuery(mysql);
+            result.next();
+            //   String ID = result.getString("id");
+            String username = result.getString("usrName");
+            String password = result.getString("usrPass");
+            String name = result.getString("usrFName");
+            String family = result.getString("usrLName");
+            String fullname = (name + " " + family);
+            System.out.println("fullname =" + fullname);
+            user.setFirstName(name);
+            user.setLastName(family );
+            user.setID( id);
+            user.setUserName(username);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return user;
+    }
+
+    ///////////////////////////////////<<BOOK>>/////////////////////////////////////
+
+    public static void create_book_table() {
+        try {
+            //ساختن تیبل مورد نیاز در دیتابیس
+            String crtbl = "CREATE TABLE  IF NOT EXISTS `book` ( `ktbID` INT NOT NULL , `ktbEhdaKonande` varchar(80) NOT NULL , `ktbName` varchar(80) NOT NULL ,  `ktbNevisandeh` varchar(80) NOT NULL ,  `ktbTedad` int NOT NULL ,  `ktbVazeiat` varchar(10) NOT NULL , `amtTarakoneshID` varchar(11) , `ktbEhdaDate` TEXT NOT NULL , PRIMARY KEY (`ktbID`))";
+            Database.statement.execute(crtbl);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public static void add_book(Book book) throws SQLException {
+        Date date = new Date();
+        SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
+        String dateformat = fr.format(date);
+
+        //delete date_ms later if dont use
+        String addbook= "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonande , ktbEhdaDate, ktbVazeiat ,ktbTedad , ktbID)  values ('%s','%s','%s','%s','%s','%s','%d')";
+
+        Random rnd = new Random();
+        int book_id = rnd.nextInt(9000)+1000;
+        System.out.println("bookid = "+book_id);
+        System.out.println("namebook = " + book.getKtbName() );
+        //int book_id = Integer.parseInt(String.valueOf(state.executeQuery(getid)));
+        addbook = String.format(addbook, book.getKtbName() , book.getKtbNevisande() , book.getKtbEhdaKonandeh() , dateformat , "موجود" , 1 , book_id );
+        System.out.println(addbook);
+        Database.getStatement().execute(addbook);
+        Database.closeConnection();
     }
 
 }

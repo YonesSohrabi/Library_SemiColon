@@ -34,7 +34,9 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
+
             <JFXPasswordField fx:id="txt_Field_Password_R" focusColor="#108ffe" labelFloat="true" layoutX="43.0" layoutY="347.0" prefHeight="40.0" prefWidth="300.0" promptText="Password" stylesheets="@../../styles/style.css" unFocusColor="#108ffe" />
+
             <ImageView fitHeight="105.0" fitWidth="85.0" layoutX="5.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/Logo.png" />
@@ -56,7 +58,9 @@
                </font>
             </JFXTextField>
             <JFXTextField fx:id="txt_Field_UserName_R" focusColor="#108ffe" labelFloat="true" layoutX="43.0" layoutY="277.0" prefHeight="40.0" prefWidth="300.0" promptText="User Name" unFocusColor="#108ffe" />
+
             <JFXButton fx:id="exit_btn_regis" layoutX="356.0" layoutY="14.0" prefHeight="32.0" prefWidth="42.0" text=" ">
+
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor>
@@ -66,7 +70,9 @@
                         <Cursor fx:constant="NONE" />
                      </cursor>
                      <image>
+
                         <Image url="@../../images/x.png" />
+
                      </image>
                   </ImageView>
                </graphic>

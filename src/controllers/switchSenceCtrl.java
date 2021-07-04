@@ -25,13 +25,34 @@ public class switchSenceCtrl {
             case "admLogin":
                 root = FXMLLoader.load(getClass().getResource("../view/fxmls/login/admLoginPage.fxml"));
                 break;
-
+            case "home":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/Home.fxml"));
+                break;
         }
-
         Scene scene = new Scene(root,800,600);
         stage.setScene(scene);
         stage.show();
+    }
 
+    public void sceneSwitchUserPage(String sceneName) throws IOException {
+        Parent root = null;
+        switch (sceneName){
+            case "Home":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/Home.fxml"));
+                break;
+            case "UserInfo":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/UserInfo.fxml"));
+                break;
+            case "BookList":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/BookList.fxml"));
+                break;
+            case "loginPage":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/LoginPage.fxml"));
+                break;
+        }
+        Scene scene = new Scene(root,1050,576);
+        stage.setScene(scene);
+        stage.show();
     }
 
     // کنترل صفحات ادمین و ارتباط دادن آن ها به هم
@@ -48,4 +69,5 @@ public class switchSenceCtrl {
         stage.show();
 
     }
+
 }
