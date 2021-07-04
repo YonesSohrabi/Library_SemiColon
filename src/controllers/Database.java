@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
+import model.Book;
 import model.User;
 import java.io.IOException;
 import java.sql.*;
@@ -100,9 +101,6 @@ public class Database {
             alert2.showAndWait();
         }
         //ارسال اطلاعات ثبت نام به دیتابیس
-        Random rnd = new Random();
-        String id = String.valueOf(rnd.nextInt(9000)+1000);
-        System.out.println("id = " + id);
         String setinfo = "INSERT INTO user (usrID ,usrFName, usrLName , usrName , usrPass)  values ('%s','%s','%s','%s','%s')";
         setinfo = String.format(setinfo, p.getID(), p.getFirstName(), p.getLastName(), p.getUserName(), p.getPassword());
         System.out.println(setinfo);
@@ -112,14 +110,71 @@ public class Database {
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
             alert2.setTitle("Registration");
             alert2.setHeaderText(null);
-            alert2.setContentText("Successfully Registration!\nyour id is : " + id);
+            alert2.setContentText("Successfully Registration!\nyour id is : " + p.getID());
             alert2.showAndWait();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         closeConnection();
     }
 
+    public static User set_home_items() {
+        String id = LoginPageCtrl.get_id();
+        System.out.println("id in dabase class = " + id);
+        User user = new User();
+        try {
+            String mysql = "SELECT usrFName, usrLName , usrName , usrPass FROM user WHERE usrID =" + id;
+            System.out.println("mysql=" + mysql);
+            ResultSet result = Database.statement.executeQuery(mysql);
+            result.next();
+            //   String ID = result.getString("id");
+            String username = result.getString("usrName");
+            String password = result.getString("usrPass");
+            String name = result.getString("usrFName");
+            String family = result.getString("usrLName");
+            String fullname = (name + " " + family);
+            System.out.println("fullname =" + fullname);
+            user.setFirstName(name);
+            user.setLastName(family );
+            user.setID( id);
+            user.setUserName(username);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return user;
+    }
+
+    ///////////////////////////////////<<BOOK>>/////////////////////////////////////
+
+    public static void create_book_table() {
+        try {
+            //ساختن تیبل مورد نیاز در دیتابیس
+            String crtbl = "CREATE TABLE  IF NOT EXISTS `book` ( `ktbID` INT NOT NULL , `ktbEhdaKonande` varchar(80) NOT NULL , `ktbName` varchar(80) NOT NULL ,  `ktbNevisandeh` varchar(80) NOT NULL ,  `ktbTedad` int NOT NULL ,  `ktbVazeiat` varchar(10) NOT NULL , `amtTarakoneshID` varchar(11) , `ktbEhdaDate` TEXT NOT NULL , PRIMARY KEY (`ktbID`))";
+            Database.statement.execute(crtbl);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public static void add_book(Book book) throws SQLException {
+        Date date = new Date();
+        SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
+        String dateformat = fr.format(date);
+
+        //delete date_ms later if dont use
+        String addbook= "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonande , ktbEhdaDate, ktbVazeiat ,ktbTedad , ktbID)  values ('%s','%s','%s','%s','%s','%s','%d')";
+
+        Random rnd = new Random();
+        int book_id = rnd.nextInt(9000)+1000;
+        System.out.println("bookid = "+book_id);
+        System.out.println("namebook = " + book.getKtbName() );
+        //int book_id = Integer.parseInt(String.valueOf(state.executeQuery(getid)));
+        addbook = String.format(addbook, book.getKtbName() , book.getKtbNevisande() , book.getKtbEhdaKonandeh() , dateformat , "موجود" , 1 , book_id );
+        System.out.println(addbook);
+        Database.getStatement().execute(addbook);
+        Database.closeConnection();
+    }
 }
 
 

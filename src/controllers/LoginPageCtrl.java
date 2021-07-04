@@ -76,8 +76,9 @@ public class  LoginPageCtrl {
                     Database.closeConnection();
                     Stage primaryStage = new Stage();
                     AnchorPane root = null;
+
                     try {
-                        root = (AnchorPane) FXMLLoader.load(getClass().getResource("../fxml/Home.fxml"));
+                        root = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxmls/Home.fxml"));
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
