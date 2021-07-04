@@ -31,174 +31,19 @@ public class BookListPageCtrl implements Initializable {
     static String id;
 
     @FXML
-    private Pane pane_vorod;
-
-    @FXML
-    private Pane rightPane;
-
-    @FXML
-    private StackPane leftPane;
-
-    @FXML
-    private JFXButton btn_vorod;
-
-    @FXML
-    public VBox pnItems = null;
-
-    @FXML
     private VBox pnItems_booklist = null;
-
-    @FXML
-    private Button btnOverview;
-
-    @FXML
-    private Button btnOrders;
-
-    @FXML
-    private Button btnCustomers;
-
-    @FXML
-    private Button btnMenus;
-
-    @FXML
-    private Button btnPackages;
-
-    @FXML
-    private Button btnSettings;
-
-    @FXML
-    private Button btnSignout;
-
-    @FXML
-    private Pane pnlCustomer;
-
-    @FXML
-    private Pane pnlOrders;
-
-    @FXML
-    private Pane pnlOverview;
-
-    @FXML
-    private Pane pnlMenus;
-    ////////////////
-    @FXML
-    private Button btn_home;
-
-    @FXML
-    private Label lbl_N_A_B;
-
-    @FXML
-    private Label lbl_FullName;
-
-    @FXML
-    private Pane pane_Home;
 
     @FXML
     private Button btn_Signout;
 
     @FXML
-    private Label lbl_N_G_B;
-
-    @FXML
     private Button btn_info;
-
-    @FXML
-    private Pane pane_BooksList;
-
-    @FXML
-    private VBox pnItems1;
-
-    @FXML
-    private Button btn_addBoock;
-
-    @FXML
-    private JFXButton btn_search;
-
-    @FXML
-    private Pane pane_Info;
 
     @FXML
     private Button btn_BookList;
 
     @FXML
-    private Label lbl_ID;
-
-    @FXML
-    private Label lbl_UserName;
-
-    @FXML
-    private TextField search_Bklist_txtfield;
-
-    @FXML
-    private TextField name_writer;
-
-    @FXML
-    private Label lbl_AccessLevel;
-
-    @FXML
-    private Label lbl_name;
-
-    @FXML
-    private JFXButton btn_search_BkList;
-
-    @FXML
-    private Label lbl_family;
-
-    @FXML
-    private TextField nameBook_field;
-
-    @FXML
-    private Label lbl_DateofRegis;
-
-    @FXML
-    private TextField search_field;
-    /////////
-    @FXML
-    private Label lbl_list;
-
-    @FXML
     private Label lbl_fullname;
-
-    @FXML
-    private TextField bookid_foramanatgiri;
-
-    @FXML
-    private JFXButton search_bookID_btn;
-
-
-    @FXML
-    private JFXTextField ktbIDtxt_search;
-
-    @FXML
-    private JFXButton search_bookname_btn;
-
-
-    @FXML
-    private Pane searchwith_bookid_pane;
-
-    @FXML
-    private JFXTextField ktbNametxt_search;
-
-    @FXML
-    private JFXRadioButton nameBookRB;
-
-    @FXML
-    private ToggleGroup jostejoRadio;
-
-    @FXML
-    private JFXRadioButton vazeiatBookRB;
-
-
-    @FXML
-    private ToggleGroup vaziyat_radiobtn;
-
-    @FXML
-    private Pane searchwith_bookvaziyat_pane;
-
-    @FXML
-    private Pane searchwith_bookname_pane;
-
-
 
     final ObservableList<String> bookInfo = FXCollections.observableArrayList();
 
@@ -316,9 +161,8 @@ public class BookListPageCtrl implements Initializable {
     }
     //add book
     public void btn_addBoock_clicked(ActionEvent actionEvent) throws ClassNotFoundException, IOException {
-//        addBookPage addBookPage = new addBookPage();
-//        addBookPage.showpage(lbl_fullname.getText());
-//
+        addBookPage addBookPage = new addBookPage();
+        addBookPage.showAddBookPage(lbl_fullname.getText());
 //        booklists();
     }
 
@@ -346,8 +190,6 @@ public class BookListPageCtrl implements Initializable {
 //            System.out.println(e);
 //        }
     }
-
-
 //
     public void searchwith_showallbooks(ActionEvent actionEvent) throws ClassNotFoundException {
 //        searchwith_bookvaziyat_pane.setVisible(false);
@@ -416,7 +258,7 @@ public class BookListPageCtrl implements Initializable {
     }
 
     public void show_mojod_books(ActionEvent actionEvent) {
-        
+
     }
 }
 

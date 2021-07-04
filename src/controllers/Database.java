@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
+import model.Book;
 import model.User;
 import java.io.IOException;
 import java.sql.*;
@@ -144,7 +145,36 @@ public class Database {
         return user;
     }
 
+    ///////////////////////////////////<<BOOK>>/////////////////////////////////////
 
+    public static void create_book_table() {
+        try {
+            //ساختن تیبل مورد نیاز در دیتابیس
+            String crtbl = "CREATE TABLE  IF NOT EXISTS `book` ( `ktbID` INT NOT NULL , `ktbEhdaKonande` varchar(80) NOT NULL , `ktbName` varchar(80) NOT NULL ,  `ktbNevisandeh` varchar(80) NOT NULL ,  `ktbTedad` int NOT NULL ,  `ktbVazeiat` varchar(10) NOT NULL , `amtTarakoneshID` varchar(11) , `ktbEhdaDate` TEXT NOT NULL , PRIMARY KEY (`ktbID`))";
+            Database.statement.execute(crtbl);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public static void add_book(Book book) throws SQLException {
+        Date date = new Date();
+        SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
+        String dateformat = fr.format(date);
+
+        //delete date_ms later if dont use
+        String addbook= "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonande , ktbEhdaDate, ktbVazeiat ,ktbTedad , ktbID)  values ('%s','%s','%s','%s','%s','%s','%d')";
+
+        Random rnd = new Random();
+        int book_id = rnd.nextInt(9000)+1000;
+        System.out.println("bookid = "+book_id);
+        System.out.println("namebook = " + book.getKtbName() );
+        //int book_id = Integer.parseInt(String.valueOf(state.executeQuery(getid)));
+        addbook = String.format(addbook, book.getKtbName() , book.getKtbNevisande() , book.getKtbEhdaKonandeh() , dateformat , "موجود" , 1 , book_id );
+        System.out.println(addbook);
+        Database.getStatement().execute(addbook);
+        Database.closeConnection();
+    }
 }
 
 
