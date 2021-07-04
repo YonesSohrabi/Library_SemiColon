@@ -24,7 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserInfoPageCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.user.UserInfoPageCtrl">
    <children>
       <StackPane fx:id="leftPane" layoutX="8.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
          <children>
@@ -52,7 +52,7 @@
                   </Label>
                   <ImageView fitHeight="179.0" fitWidth="173.0" layoutX="310.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_user_100px.png" />
+                        <Image url="@../../images/icons8_user_100px.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="lbl_AccessLevel" alignment="CENTER_RIGHT" layoutX="260.0" layoutY="398.0" prefHeight="35.0" prefWidth="240.0" text="سطح دسترسی : کتابدار" textFill="#e7e5e5">
@@ -60,7 +60,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="editperson_btn" layoutX="333.0" layoutY="463.0" mnemonicParsing="false" onAction="#editperson_btn_clicked" prefHeight="55.0" prefWidth="153.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" styleClass="button_Home" stylesheets="@../styles/style.css" text="ویرایش اطلاعات">
+                  <Button fx:id="editperson_btn" layoutX="333.0" layoutY="463.0" mnemonicParsing="false" onAction="#editperson_btn_clicked" prefHeight="55.0" prefWidth="153.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" styleClass="button_Home" stylesheets="@../../styles/style.css" text="ویرایش اطلاعات">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -76,10 +76,10 @@
          <children>
             <ImageView fitHeight="108.0" fitWidth="97.0" layoutX="78.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/profile-icon2.png" />
+                  <Image url="@../../images/profile-icon2.png" />
                </image>
             </ImageView>
-            <Button fx:id="btn_home" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" layoutY="229.0" mnemonicParsing="false" onAction="#btn_Home_clicked" prefHeight="55.0" prefWidth="256.0" styleClass="button_Home" stylesheets="@../styles/style.css" text="                     خانه                     " textFill="#e7e5e5">
+            <Button fx:id="btn_home" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" layoutY="229.0" mnemonicParsing="false" onAction="#btn_Home_clicked" prefHeight="55.0" prefWidth="256.0" styleClass="button_Home" stylesheets="@../../styles/style.css" text="                     خانه                     " textFill="#e7e5e5">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -87,39 +87,39 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btn_info" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" layoutY="290.0" mnemonicParsing="false" onAction="#btn_info_clicked" prefHeight="55.0" prefWidth="256.0" styleClass="button_Home" stylesheets="@../styles/style.css" text="                    اطلاعات کاربر       ">
+            <Button fx:id="btn_info" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" layoutY="290.0" mnemonicParsing="false" onAction="#btn_info_clicked" prefHeight="55.0" prefWidth="256.0" styleClass="button_Home" stylesheets="@../../styles/style.css" text="                    اطلاعات کاربر       ">
                <padding>
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btn_BookList" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" layoutY="345.0" mnemonicParsing="false" onAction="#btn_BookList_clicked" prefHeight="55.0" prefWidth="256.0" styleClass="button_Home" stylesheets="@../styles/style.css" text="                  لیست کتاب ها   ">
+            <Button fx:id="btn_BookList" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" layoutY="345.0" mnemonicParsing="false" onAction="#btn_BookList_clicked" prefHeight="55.0" prefWidth="256.0" styleClass="button_Home" stylesheets="@../../styles/style.css" text="                  لیست کتاب ها   ">
                <padding>
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btn_Signout" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" layoutY="398.0" mnemonicParsing="false" onAction="#btn_Signout_clicked" prefHeight="55.0" prefWidth="256.0" styleClass="button_Home" stylesheets="@../styles/style.css" text="                    خروج                    ">
+            <Button fx:id="btn_Signout" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" layoutY="398.0" mnemonicParsing="false" onAction="#btn_Signout_clicked" prefHeight="55.0" prefWidth="256.0" styleClass="button_Home" stylesheets="@../../styles/style.css" text="                    خروج                    ">
                <padding>
                   <Insets left="50.0" />
                </padding>
             </Button>
             <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="197.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/icons8_Home_32px.png" />
+                  <Image url="@../../images/icons8_Home_32px.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="198.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/icons8_Person_32px.png" />
+                  <Image url="@../../images/icons8_Person_32px.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="199.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/icons8_Xbox_Menu_32px.png" />
+                  <Image url="@../../images/icons8_Xbox_Menu_32px.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="199.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/icons8_Sign_Out_32px.png" />
+                  <Image url="@../../images/icons8_Sign_Out_32px.png" />
                </image>
             </ImageView>
             <Label fx:id="lbl_fullname" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="149.0" prefHeight="27.0" prefWidth="232.0" text="Reza Mahmoudian" textFill="WHITE">

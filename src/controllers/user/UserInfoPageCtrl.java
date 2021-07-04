@@ -1,5 +1,7 @@
-package controllers;
+package controllers.user;
 
+import controllers.Database;
+import controllers.switchSenceCtrl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
