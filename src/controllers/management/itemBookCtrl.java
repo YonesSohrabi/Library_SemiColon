@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -87,7 +86,7 @@ public class itemBookCtrl implements Initializable {
 
     private void openEditBookPage() throws IOException {
         if (editBookPage == null) {
-            Pane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/itemBook.fxml"));
+            Pane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/editBookPage.fxml"));
             editBookPage = new Stage();
             editBookPage.initStyle(StageStyle.UNDECORATED);
             editBookPage.setScene(new Scene(root));

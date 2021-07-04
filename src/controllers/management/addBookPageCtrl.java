@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Book;
-
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Random;
@@ -41,7 +40,9 @@ public class addBookPageCtrl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         ktbIDTXT.setText(String.valueOf(bookIdRandom()));
+
         exitBTN.setOnAction(e -> {
             closeBTN();
         });

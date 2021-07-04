@@ -296,6 +296,33 @@ public class Database {
         closeConnection();
     }
 
+    public static Book getItemBookDB(String bookID) throws SQLException {
+        makeConnection();
+        String sql = String.format("Select * FROM book WHERE ktbID = '%s' ", bookID);
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        Book book = new Book();
+        resultSet.next();
+        book.setKtbID(resultSet.getString("ktbID"));
+        book.setKtbName(resultSet.getString("ktbName"));
+        book.setKtbNevisande(resultSet.getString("ktbNevisandeh"));
+        book.setKtbEhdaKonandeh(resultSet.getString("KtbEhdaKonandeh"));
+        book.setKtbTedad(resultSet.getString("ktbTedad"));
+        book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
+        book.setAmtTarakoneshID(resultSet.getString("amtTarakoneshID"));
+        closeConnection();
+
+        return book;
+    }
+
+    public static void updateBook(Book book, String ktbIDTXT) throws SQLException {
+        makeConnection();
+        String sql = String.format("UPDATE book SET ktbName = '%s', ktbTedad = '%s', ktbNevisandeh = '%s'," +
+                        " ktbEhdaKonandeh = '%s' WHERE ktbID = '%s'", book.getKtbName(), book.getKtbTedad(), book.getKtbNevisande(),
+                book.getKtbEhdaKonandeh(), ktbIDTXT);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
+
 
 }
 

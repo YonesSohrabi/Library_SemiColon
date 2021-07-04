@@ -182,8 +182,6 @@ public class mngBookCtrl extends mngStage implements Initializable {
             }
         });
 
-
-
     }
 
     private void openAddBookPage() throws IOException {
