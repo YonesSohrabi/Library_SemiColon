@@ -33,7 +33,7 @@ public class Database {
 
     public static void makeConnection() throws  SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Library" , "root" , "1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Library" , "root" , "1380Ys1388?");
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.out.println(e);
@@ -56,7 +56,7 @@ public class Database {
     public static boolean login_user(String txtusername, String txtpassword) {
         boolean login = false;
         try {
-            String mysql = "SELECT usrID ,usrFName, usrLName ,usrName ,usrPass FROM user";
+            String mysql = "SELECT usrID ,usrFName, usrLName ,userName ,usrPass FROM user";
 
             ResultSet result = Database.getStatement().executeQuery(mysql);
             while (result.next()) {
@@ -99,7 +99,7 @@ public class Database {
         Random rnd = new Random();
         String id = String.valueOf(rnd.nextInt(9000)+1000);
         System.out.println("id = " + id);
-        String setinfo = "INSERT INTO user (usrID ,usrFName, usrLName , usrName , usrPass)  values ('%s','%s','%s','%s','%s')";
+        String setinfo = "INSERT INTO user (usrID ,usrFName, usrLName , userName , usrPass)  values ('%s','%s','%s','%s','%s')";
         setinfo = String.format(setinfo, p.getID(), p.getFirstName(), p.getLastName(), p.getUserName(), p.getPassword());
         System.out.println(setinfo);
 
