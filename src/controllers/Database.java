@@ -285,6 +285,18 @@ public class Database {
         return bookList;
     }
 
+    public static void deleteBook(String id) throws SQLException {
+        makeConnection();
+        String sql = String.format("DELETE FROM book WHERE ktbID = %s", id);
+        try {
+            getStatement().execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
+
+
 }
 
 

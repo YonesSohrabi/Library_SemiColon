@@ -72,12 +72,12 @@ public class itemBookCtrl implements Initializable {
 
         deleteBTN.setOnAction(e -> {
             System.out.println(bookNameLBL.getText());
-            Database.deleteBook(bookNumLBL.getText());
-            Stage stage = (Stage) deleteBTN.getScene().getWindow();
-            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
+                Database.deleteBook(bookNumLBL.getText());
+                Stage stage = (Stage) deleteBTN.getScene().getWindow();
+                switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
                 switchSenceCtrl.sceneSwitchManagement("book");
-            } catch (IOException ioException) {
+            } catch (IOException | SQLException ioException) {
                 ioException.printStackTrace();
             }
         });

@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import controllers.Database;
-import controllers.itemBookCtrl;
 import controllers.switchSenceCtrl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -222,7 +221,7 @@ public class mngBookCtrl extends mngStage implements Initializable {
         int rows = 0;
         for (Book book : books) {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/views/itemBook.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("../../view/fxmls/management/itemBook.fxml"));
             HBox bookBox = fxmlLoader.load();
             itemBookCtrl itemBookCtrl = fxmlLoader.getController();
             itemBookCtrl.setItemBook(book);
