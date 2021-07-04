@@ -55,7 +55,7 @@ public class BookListPageCtrl implements Initializable {
             user = Database.set_home_items();
             Database.closeConnection();
             lbl_fullname.setText(user.getFirstName() + " " + user.getLastName());
-        } catch (ClassNotFoundException | SQLException classNotFoundException) {
+        } catch (SQLException classNotFoundException) {
             classNotFoundException.printStackTrace();
         }
     }

@@ -94,7 +94,7 @@ public class  LoginPageCtrl {
                     AnchorPane root = null;
 
                     try {
-                        root = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxmls/Home.fxml"));
+                        root = (AnchorPane) FXMLLoader.load(getClass().getResource("../../view/fxmls/Home.fxml"));
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }

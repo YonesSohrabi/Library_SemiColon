@@ -50,7 +50,7 @@ public class UserInfoPageCtrl implements Initializable {
             lbl_ID.setText("آی دی : " + user.getID());
             lbl_AccessLevel.setText("سطح دسترسی : کتابدار");
             lbl_UserName.setText(user.getUserName() + " : نام کاربری");
-        } catch (ClassNotFoundException | SQLException classNotFoundException) {
+        } catch (SQLException classNotFoundException) {
             classNotFoundException.printStackTrace();
         }
     }

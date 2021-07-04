@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class mngDashboardCtrl extends mngStage{
+public class mngDashboardCtrl extends mngStage {
 
     @FXML
     private Label numKolAmanatLBL;

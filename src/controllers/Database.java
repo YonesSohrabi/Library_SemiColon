@@ -4,7 +4,6 @@ package controllers;
 import controllers.login.LoginPageCtrl;
 import javafx.scene.control.Alert;
 import model.Admin;
-import javafx.scene.layout.VBox;
 import model.Book;
 import model.User;
 
@@ -13,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Date;
 
 public class Database {
     private static Connection connection = null;
@@ -36,7 +36,8 @@ public class Database {
 
     public static void makeConnection() throws  SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library" , "root" , "1380Ys1388?");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library" ,
+                    "root" , "1380Ys1388?");
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.out.println(e);
@@ -55,7 +56,6 @@ public class Database {
     }
 
 
-
     public static boolean login_user(String txtusername, String txtpassword) {
         boolean login = false;
         try {
@@ -65,7 +65,7 @@ public class Database {
             ResultSet result = Database.getStatement().executeQuery(mysql);
             while (result.next()) {
                 //   String ID = result.getString("id");
-                String username = result.getString("usrName");
+                String username = result.getString("userName");
                 String password = result.getString("usrPass");
                 String name = result.getString("usrFName");
                 String family = result.getString("usrLName");
@@ -89,7 +89,7 @@ public class Database {
         try {
             //ساختن تیبل مورد نیاز در دیتابیس
             String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL ," +
-                    " `usrLName` varchar(80) NOT NULL , `usrName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT , PRIMARY KEY (`usrID`) ,UNIQUE (`usrName`))";
+                    " `usrLName` varchar(80) NOT NULL , `userName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT , PRIMARY KEY (`usrID`) ,UNIQUE (`userName`))";
             getStatement().execute(crtbl);
             //مشکل(ارور) در ثبت نام
         } catch (Exception ex) {
@@ -152,12 +152,12 @@ public class Database {
         System.out.println("id in dabase class = " + id);
         User user = new User();
         try {
-            String mysql = "SELECT usrFName, usrLName , usrName , usrPass FROM user WHERE usrID =" + id;
+            String mysql = "SELECT usrFName, usrLName , userName , usrPass FROM user WHERE usrID =" + id;
             System.out.println("mysql=" + mysql);
             ResultSet result = Database.statement.executeQuery(mysql);
             result.next();
             //   String ID = result.getString("id");
-            String username = result.getString("usrName");
+            String username = result.getString("userName");
             String password = result.getString("usrPass");
             String name = result.getString("usrFName");
             String family = result.getString("usrLName");
@@ -191,7 +191,7 @@ public class Database {
         String dateformat = fr.format(date);
 
         //delete date_ms later if dont use
-        String addbook= "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonande , ktbEhdaDate, ktbVazeiat ,ktbTedad , ktbID)  values ('%s','%s','%s','%s','%s','%s','%d')";
+        String addbook= "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonandeh , ktbVazeiat ,ktbTedad , ktbID)  values ('%s','%s','%s','%s','%s','%d')";
 
         Random rnd = new Random();
         int book_id = rnd.nextInt(9000)+1000;
