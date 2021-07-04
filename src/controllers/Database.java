@@ -204,6 +204,19 @@ public class Database {
         Database.closeConnection();
     }
 
+    public static void createBook(Book book) throws SQLException {
+        makeConnection();
+        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s')", book.getKtbID(), book.getKtbName(),
+                book.getKtbNevisande(), book.getKtbEhdaKonandeh(), Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(),
+                book.getAmtTarakoneshID());
+        try {
+            getStatement().execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
+
 }
 
 

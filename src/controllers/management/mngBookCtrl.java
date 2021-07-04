@@ -5,8 +5,11 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import controllers.switchSenceCtrl;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -88,7 +91,24 @@ public class mngBookCtrl extends mngStage implements Initializable {
             stage.close();
         });
 
+        addBookbtn.setOnAction(e -> {
+            try {
+                openAddBookPage();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
 
+
+    }
+
+    private void openAddBookPage() throws IOException {
+        if (addBookPage == null) {
+            AnchorPane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/addBookPage.fxml"));
+            addBookPage = new Stage();
+            addBookPage.setScene(new Scene(root));
+            addBookPage.show();
+        }
     }
 
 
