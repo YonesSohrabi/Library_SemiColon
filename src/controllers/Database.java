@@ -217,6 +217,74 @@ public class Database {
         closeConnection();
     }
 
+    public static List<Book> readBooksDB() throws SQLException {
+        List<Book> bookList = new ArrayList<>();
+        Database.makeConnection();
+        ResultSet resultSet = Database.getStatement().executeQuery("SELECT * FROM book");
+        Book book;
+        while (resultSet.next()) {
+            book = new Book();
+            book.setKtbID(String.valueOf(resultSet.getInt("ktbID")));
+            book.setKtbName(resultSet.getString("ktbName"));
+            book.setKtbNevisande(resultSet.getString("ktbNevisandeh"));
+            book.setKtbTedad(resultSet.getString("ktbTedad"));
+            book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
+            bookList.add(book);
+        }
+
+        Database.closeConnection();
+        return bookList;
+    }
+
+
+    public static List<Book> readBooksDB(String txet, String lable) throws SQLException {
+        List<Book> bookList = new ArrayList<>();
+        Database.makeConnection();
+        String sql;
+        if (lable.equals("name")) {
+            sql = String.format("SELECT * FROM book WHERE ktbName = '%s'", txet);
+        } else {
+            sql = String.format("SELECT * FROM book WHERE ktbID = '%s'", txet);
+        }
+
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        Book book;
+        while (resultSet.next()) {
+            book = new Book();
+            book.setKtbID(String.valueOf(resultSet.getInt("ktbID")));
+            book.setKtbName(resultSet.getString("ktbName"));
+            book.setKtbNevisande(resultSet.getString("ktbNevisandeh"));
+            book.setKtbTedad(resultSet.getString("ktbTedad"));
+            book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
+            bookList.add(book);
+        }
+        return bookList;
+    }
+
+    public static List<Book> readBooksDB(int vazeiat) throws SQLException {
+        List<Book> bookList = new ArrayList<>();
+        Database.makeConnection();
+        String vaz;
+        if (vazeiat == 1) {
+            vaz = "موجود";
+        } else {
+            vaz = "ناموجود";
+        }
+        String sql = String.format("SELECT * FROM book WHERE ktbVazeiat = '%s'", vaz);
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        Book book;
+        while (resultSet.next()) {
+            book = new Book();
+            book.setKtbID(String.valueOf(resultSet.getInt("ktbID")));
+            book.setKtbName(resultSet.getString("ktbName"));
+            book.setKtbNevisande(resultSet.getString("ktbNevisandeh"));
+            book.setKtbTedad(resultSet.getString("ktbTedad"));
+            book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
+            bookList.add(book);
+        }
+        return bookList;
+    }
+
 }
 
 
