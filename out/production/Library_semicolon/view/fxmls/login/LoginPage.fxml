@@ -20,7 +20,7 @@
          <children>
             <ImageView fitHeight="105.0" fitWidth="85.0" layoutX="27.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/Logo.png" />
+                  <Image url="@../../images/Logo.png" />
                </image>
             </ImageView>
             <Label layoutX="27.0" layoutY="127.0" text="Wellcome Back" textFill="#108ffe">
@@ -38,7 +38,7 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <Label fx:id="openAdmLoginPage" alignment="CENTER" layoutX="201.0" layoutY="361.0" onMouseClicked="#openAdmLoginPage" prefHeight="24.0" prefWidth="144.0" styleClass="forget_btn" stylesheets="@../styles/style.css" text="Are you admin ?" textFill="#a3a3a3">
+            <Label fx:id="openAdmLoginPage" alignment="CENTER" layoutX="201.0" layoutY="361.0" onMouseClicked="#openAdmLoginPage" prefHeight="24.0" prefWidth="144.0" styleClass="forget_btn" stylesheets="@../../styles/style.css" text="Are you admin ?" textFill="#a3a3a3">
                <font>
                   <Font name="Ebrima Bold" size="16.0" />
                </font>
@@ -46,8 +46,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <JFXPasswordField fx:id="txtfield_Password" focusColor="#108ffe" labelFloat="true" layoutX="45.0" layoutY="309.0" prefHeight="40.0" prefWidth="300.0" promptText="Password" stylesheets="@../styles/style.css" unFocusColor="#108ffe" />
-            <JFXButton fx:id="btn_Login" buttonType="RAISED" layoutX="47.0" layoutY="425.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#press_Login_btn" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../styles/style.css" text="Login">
+            <JFXPasswordField fx:id="txtfield_Password" focusColor="#108ffe" labelFloat="true" layoutX="45.0" layoutY="309.0" prefHeight="40.0" prefWidth="300.0" promptText="Password" stylesheets="@../../styles/style.css" unFocusColor="#108ffe" />
+            <JFXButton fx:id="btn_Login" buttonType="RAISED" layoutX="47.0" layoutY="425.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#press_Login_btn" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../../styles/style.css" text="Login">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -68,18 +68,18 @@
                         <Cursor fx:constant="NONE" />
                      </cursor>
                      <image>
-                        <Image url="@../images/x.png" />
+                        <Image url="@../../images/x.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
          </children>
       </Pane>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="box-login" stylesheets="@../styles/style.css">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="box-login" stylesheets="@../../styles/style.css">
          <children>
             <ImageView fitHeight="220.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/cover-login-logo.png" />
+                  <Image url="@../../images/cover-login-logo.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" prefHeight="35.0" prefWidth="167.0" text="Welcome To" textFill="WHITE">

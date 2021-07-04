@@ -9,7 +9,7 @@ public class Library extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("view/fxmls/LoginPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/fxmls/login/LoginPage.fxml"));
         primaryStage.setTitle("YAR");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.initStyle(StageStyle.UNDECORATED);

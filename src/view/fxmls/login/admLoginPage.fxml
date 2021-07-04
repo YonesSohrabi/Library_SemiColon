@@ -14,13 +14,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admLoginPageCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.login.admLoginPageCtrl">
    <children>
       <Pane fx:id="admLoginPage" layoutX="398.0" layoutY="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
          <children>
             <ImageView fitHeight="105.0" fitWidth="85.0" layoutX="27.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/Logo.png" />
+                  <Image url="@../../images/Logo.png" />
                </image>
             </ImageView>
             <Label layoutX="39.0" layoutY="127.0" text="Admin Login Page" textFill="#108ffe">
@@ -38,8 +38,8 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="passAdmTXT" focusColor="#108ffe" labelFloat="true" layoutX="45.0" layoutY="309.0" prefHeight="40.0" prefWidth="300.0" promptText="Password" stylesheets="@../styles/style.css" unFocusColor="#108ffe" />
-            <JFXButton fx:id="loginAdmBTN" buttonType="RAISED" layoutX="47.0" layoutY="425.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../styles/style.css" text="Login">
+            <JFXPasswordField fx:id="passAdmTXT" focusColor="#108ffe" labelFloat="true" layoutX="45.0" layoutY="309.0" prefHeight="40.0" prefWidth="300.0" promptText="Password" stylesheets="@../../styles/style.css" unFocusColor="#108ffe" />
+            <JFXButton fx:id="loginAdmBTN" buttonType="RAISED" layoutX="47.0" layoutY="425.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../../styles/style.css" text="Login">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -54,12 +54,12 @@
                         <Cursor fx:constant="NONE" />
                      </cursor>
                      <image>
-                        <Image url="@../images/x.png" />
+                        <Image url="@../../images/x.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="backAdmBTN" buttonType="RAISED" layoutX="46.0" layoutY="485.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../styles/style.css" text="back">
+            <JFXButton fx:id="backAdmBTN" buttonType="RAISED" layoutX="46.0" layoutY="485.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../../styles/style.css" text="back">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -67,11 +67,11 @@
             <Label fx:id="admLoginErrLBL" alignment="CENTER" layoutX="46.0" layoutY="371.0" prefHeight="35.0" prefWidth="309.0" style="-fx-background-color: #e41749; -fx-background-radius: 10 30;" text="Please fill in all fields" textFill="WHITE" visible="false" />
          </children>
       </Pane>
-      <VBox alignment="CENTER" layoutY="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="box-login" stylesheets="@../styles/style.css">
+      <VBox alignment="CENTER" layoutY="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="box-login" stylesheets="@../../styles/style.css">
          <children>
             <ImageView fitHeight="220.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/cover-login-logo.png" />
+                  <Image url="@../../images/cover-login-logo.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" prefHeight="35.0" prefWidth="167.0" text="Welcome To" textFill="WHITE">

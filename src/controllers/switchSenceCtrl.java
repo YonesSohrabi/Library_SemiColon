@@ -12,18 +12,18 @@ public class switchSenceCtrl {
     public switchSenceCtrl(Stage stage) {
         this.stage = stage;
     }
-
+    // کنترل صفحات لاگین و ارتباط دادن آن ها به هم
     public void sceneSwitchLogin(String sceneName) throws IOException {
         Parent root = null;
         switch (sceneName){
             case "register":
-                root = FXMLLoader.load(getClass().getResource("../view/fxmls/RegisterPage.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/login/RegisterPage.fxml"));
                 break;
             case "loginPage":
-                root = FXMLLoader.load(getClass().getResource("../view/fxmls/LoginPage.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/login/LoginPage.fxml"));
                 break;
             case "admLogin":
-                root = FXMLLoader.load(getClass().getResource("../view/fxmls/admLoginPage.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/login/admLoginPage.fxml"));
                 break;
 
         }
@@ -34,6 +34,7 @@ public class switchSenceCtrl {
 
     }
 
+    // کنترل صفحات ادمین و ارتباط دادن آن ها به هم
     public void sceneSwitchAdmin(String sceneName) throws IOException {
         Parent root = null;
         switch (sceneName){

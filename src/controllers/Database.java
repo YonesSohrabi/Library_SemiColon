@@ -1,18 +1,13 @@
 package controllers;
 
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
+import controllers.login.LoginPageCtrl;
 import javafx.scene.control.Alert;
-import javafx.scene.layout.VBox;
 import model.Admin;
 import model.User;
-import java.io.IOException;
+
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
