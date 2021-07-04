@@ -92,7 +92,7 @@ public class admLoginPageCtrl implements Initializable {
         Stage stage = (Stage) loginAdmBTN.getScene().getWindow();
         switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
         try {
-            switchSenceCtrl.sceneSwitchAdmin("dashboard");
+            switchSenceCtrl.sceneSwitchManagement("dashboard");
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
@@ -101,7 +101,7 @@ public class admLoginPageCtrl implements Initializable {
     // متد چک کردن اطلاعات وارد شده با اطلاعات موجود در جدول ادمین در دیتابیس
     private boolean checkInfoAdmin(String userName,String password) throws SQLException {
         List<Admin> admins = Database.getInfoAdmin();
-        boolean isCorrect = false;
+        boolean isCorrect = true;
         for (Admin adm:admins){
             if (adm.getUserName().equals(userName)){
                 if (adm.getPassword().equals(password)){

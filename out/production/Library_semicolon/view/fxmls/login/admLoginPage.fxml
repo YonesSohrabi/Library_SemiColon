@@ -67,7 +67,7 @@
             <Label fx:id="admLoginErrLBL" alignment="CENTER" layoutX="46.0" layoutY="371.0" prefHeight="35.0" prefWidth="309.0" style="-fx-background-color: #e41749; -fx-background-radius: 10 30;" text="Please fill in all fields" textFill="WHITE" visible="false" />
          </children>
       </Pane>
-      <VBox alignment="CENTER" layoutY="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="box-login" stylesheets="@../../styles/style.css">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="box-login" stylesheets="@../../styles/style.css">
          <children>
             <ImageView fitHeight="220.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                <image>

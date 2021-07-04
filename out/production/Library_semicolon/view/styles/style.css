@@ -84,3 +84,90 @@
     -fx-background-color : #1620A1;
 }
 
+#editPageBtn {
+    -fx-background-color: #108ffe;
+    -fx-text-fill: #FFF;
+    -fx-background-radius: 10px;
+}
+#editPageBtn:hover{
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #108ffe;
+    -fx-border-color: #108ffe;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-radius: 10px;
+}
+#detailsAmtAcsBtn {
+    -fx-background-color: #42BB3E;
+    -fx-text-fill: #FFF;
+    -fx-background-radius: 10px;
+}
+#detailsAmtRadBtn {
+    -fx-background-color: #BF4246;
+    -fx-text-fill: #FFF;
+    -fx-background-radius: 10px;
+}
+#detailsAmtAcsBtn:hover,#detailsAmtRadBtn:hover{
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #108ffe;
+    -fx-border-color: #108ffe;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-radius: 10px;
+}
+.button
+{
+    -fx-background-color : #108FFE;
+    -fx-text-fill : #e7e5e5;
+}
+
+
+
+#button-item-book{
+    -fx-background-color: #17223b;
+}
+#button-item-book:hover{
+    -fx-background-color: #3b3b8d;
+}
+#button-item-book:pressed{
+    -fx-background-color: #17223b;
+}
+.button:hover{
+    -fx-background-color : #10165F;
+}
+.button:pressed
+{
+    -fx-background-color : #1620A1;
+}
+
+.scroll-pane {
+    -fx-background-color: #fff;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #dadada;
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: #fff;
+}

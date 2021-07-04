@@ -35,11 +35,11 @@ public class switchSenceCtrl {
     }
 
     // کنترل صفحات ادمین و ارتباط دادن آن ها به هم
-    public void sceneSwitchAdmin(String sceneName) throws IOException {
+    public void sceneSwitchManagement(String sceneName) throws IOException {
         Parent root = null;
         switch (sceneName){
             case "dashboard":
-                root = FXMLLoader.load(getClass().getResource("../views/mngDashboard.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngDashboard.fxml"));
                 break;
         }
 
