@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -11,13 +13,9 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.mngGozareshCtrl">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.mngSettingCtrl">
    <children>
-      <Label layoutX="337.0" layoutY="198.0" prefHeight="91.0" prefWidth="372.0" text="Gozarsh Page" textFill="#8a3333">
-         <font>
-            <Font name="System Bold" size="44.0" />
-         </font>
-      </Label>
       <VBox alignment="TOP_CENTER" layoutX="794.0" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #108FFE;">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
@@ -79,7 +77,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/icons8_user_50px.png" />
+                        <Image url="@../../images/icons8_book_shelf_50px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -147,14 +145,50 @@
                      </font>
                   </Label>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
                <VBox.margin>
                   <Insets top="60.0" />
                </VBox.margin>
             </Pane>
          </children>
       </VBox>
+      <Label layoutX="596.0" layoutY="30.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="157.0" text="تنظيمات">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Pane layoutX="46.0" layoutY="74.0" prefHeight="259.0" prefWidth="689.0" style="-fx-background-color: #f9f9e6; -fx-background-radius: 15;">
+         <children>
+            <JFXButton id="editPageBtn" fx:id="editBTN" buttonType="RAISED" layoutX="46.0" layoutY="203.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="86.0" stylesheets="@../../styles/style.css" text="ویرایش">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="admUserNameTXT" editable="false" focusColor="#108ffe" labelFloat="true" layoutX="464.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="180.0" promptText="نام کاربری" text="UserName" unFocusColor="#108ffe">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="admLNameTXT" focusColor="#108ffe" labelFloat="true" layoutX="254.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="180.0" promptText="نام خانوادگی" text="نام خانوادگی" unFocusColor="#108ffe">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="admCodeMeliTXT" focusColor="#108ffe" labelFloat="true" layoutX="46.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="180.0" promptText="کدملی" text="4000348567" unFocusColor="#108ffe">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="admFNameTXT" focusColor="#108ffe" labelFloat="true" layoutX="464.0" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="180.0" promptText="نام" text="نام" unFocusColor="#108ffe">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="admPassTXT" editable="false" focusColor="#108ffe" labelFloat="true" layoutX="254.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="180.0" promptText="پسورد" text="پسورد" unFocusColor="#108ffe">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
