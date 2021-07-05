@@ -35,6 +35,16 @@ public class mngDashboardCtrl extends mngStage implements Initializable{
             }
         });
 
+        faliatBTN.setOnAction(e ->{
+            Stage stage = (Stage) faliatBTN.getScene().getWindow();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchManagement("amanat");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
         gozareshBTN.setOnAction(e -> {
             Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);

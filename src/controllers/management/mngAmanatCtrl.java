@@ -1,39 +1,79 @@
 package controllers.management;
 
-
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import controllers.Database;
 import controllers.switchSenceCtrl;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Amanat;
+
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class mngSettingCtrl extends mngStage implements Initializable {
+public class mngAmanatCtrl extends mngStage implements Initializable {
 
     @FXML
-    private JFXButton editBTN;
+    private GridPane itemAmanatList;
 
     @FXML
-    private JFXTextField admUserNameTXT;
+    private JFXRadioButton ktbIDRB;
 
     @FXML
-    private JFXTextField admLNameTXT;
+    private ToggleGroup jostejoRadio;
 
     @FXML
-    private JFXTextField admCodeMeliTXT;
+    private JFXRadioButton usrIDRB;
 
     @FXML
-    private JFXTextField admFNameTXT;
+    private JFXRadioButton amtVazeiatRB;
 
     @FXML
-    private JFXTextField admPassTXT;
+    private JFXRadioButton allAmanatRB;
 
+    @FXML
+    private Pane ktbIDPane;
+
+    @FXML
+    private JFXTextField ktbIDTXT;
+
+    @FXML
+    private JFXButton ktbIDSearchBTN;
+
+    @FXML
+    private Pane usrIDPane;
+
+    @FXML
+    private JFXTextField usrIDTXT;
+
+    @FXML
+    private JFXButton usrIDSearchBTN;
+
+    @FXML
+    private Pane amtVazeiatPane;
+
+    @FXML
+    private JFXTextField amtMohlatTXT;
+
+    @FXML
+    private JFXButton amtMohlatSearchBTN;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         dashboardBTN.setOnAction(e -> {
             Stage stage = (Stage) dashboardBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -44,7 +84,7 @@ public class mngSettingCtrl extends mngStage implements Initializable {
             }
         });
 
-        booksBTN.setOnAction(e ->{
+        booksBTN.setOnAction(e -> {
             Stage stage = (Stage) booksBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
@@ -64,17 +104,7 @@ public class mngSettingCtrl extends mngStage implements Initializable {
             }
         });
 
-        faliatBTN.setOnAction(e ->{
-            Stage stage = (Stage) faliatBTN.getScene().getWindow();
-            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
-            try {
-                switchSenceCtrl.sceneSwitchManagement("amanat");
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-
-        gozareshBTN.setOnAction(e ->{
+        gozareshBTN.setOnAction(e -> {
             Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
@@ -84,7 +114,17 @@ public class mngSettingCtrl extends mngStage implements Initializable {
             }
         });
 
-        exitBTN.setOnAction(e ->{
+        settingBTN.setOnAction(e -> {
+            Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchManagement("setting");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+        exitBTN.setOnAction(e -> {
             Stage stage = (Stage) exitBTN.getScene().getWindow();
             stage.close();
         });

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.mngAmanatCtrl">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="794.0" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #108FFE;">
+         <children>
+            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8_user_100px.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label text="یونس سهرابی" textFill="#e7e5e5">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="dashboardBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="داشبورد" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/home-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </Button>
+            <Button fx:id="booksBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="کتاب ها">
+               <graphic>
+                  <ImageView cache="true" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons8_book_shelf_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </Button>
+            <Button fx:id="ketabdarBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="کتابدار">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/1icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </Button>
+            <Button fx:id="faliatBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="امانت">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons8_user_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </Button>
+            <Button fx:id="gozareshBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="گزارش گیری">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/gozaresh-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </Button>
+            <Button fx:id="settingBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="تنظیمات">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/setting-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </Button>
+            <Button fx:id="exitBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="خروج">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/exit-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </Button>
+            <Pane prefHeight="57.0" prefWidth="256.0">
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="69.0" layoutY="14.0" opacity="0.85" prefHeight="42.0" prefWidth="182.0" text="SemiColon Group :)" textAlignment="CENTER">
+                     <font>
+                        <Font name="Mistral" size="21.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="0.5095238095238095" endY="1.0" startX="0.19047619047619047" startY="0.4380952380952381">
+                           <stops>
+                              <Stop color="#c2ff90" />
+                              <Stop color="#ebebebb0" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="22.0" opacity="0.72" prefHeight="29.0" prefWidth="69.0" text="Developed by" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="MS Reference Specialty" size="9.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <StackPane layoutX="1.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #fff;">
+         <children>
+            <Pane fx:id="pnlBooks" prefHeight="554.0" prefWidth="793.0">
+               <children>
+                  <Label layoutX="586.0" layoutY="30.0" text="مدیریت امانت ها">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" layoutX="52.0" layoutY="193.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="42.0" prefWidth="720.0" spacing="80.0" style="-fx-background-color: #17223b; -fx-background-radius: 10;">
+                     <children>
+                        <Label text="شماره امانت" textFill="#e7e5e5">
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="نام کتاب" textFill="#e7e5e5">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="نام تحویل گیرنده" textAlignment="RIGHT" textFill="#e7e5e5">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="مهلت تحویل" textFill="#e7e5e5">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="عملیات" textFill="#e7e5e5">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox fx:id="pnItems" alignment="TOP_RIGHT" layoutX="43.0" layoutY="244.0" prefHeight="329.0" prefWidth="740.0" style="-fx-background-color: #fff;">
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <ScrollPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="366.0" prefWidth="740.0" stylesheets="@styles/style.css">
+                           <content>
+                              <GridPane fx:id="itemAmanatList" prefHeight="0.0" prefWidth="776.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="52.0" layoutY="75.0" prefHeight="110.0" prefWidth="720.0" style="-fx-background-color: A1E0C6; -fx-background-radius: 10;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="720.0" spacing="20.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="135.0" text="جستجو بر اساس :">
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <JFXRadioButton fx:id="ktbIDRB" nodeOrientation="RIGHT_TO_LEFT" text="آیدی کتاب">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="jostejoRadio" />
+                                 </toggleGroup>
+                              </JFXRadioButton>
+                              <JFXRadioButton fx:id="usrIDRB" nodeOrientation="RIGHT_TO_LEFT" text="آیدی تحویل گیرنده" toggleGroup="$jostejoRadio" />
+                              <JFXRadioButton fx:id="amtVazeiatRB" layoutX="284.0" layoutY="22.0" nodeOrientation="RIGHT_TO_LEFT" text="مهلت" toggleGroup="$jostejoRadio" />
+                              <JFXRadioButton fx:id="allAmanatRB" nodeOrientation="RIGHT_TO_LEFT" text="نمایش همه" toggleGroup="$jostejoRadio" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="720.0">
+                           <children>
+                              <StackPane prefHeight="70.0" prefWidth="736.0">
+                                 <children>
+                                    <Pane fx:id="ktbIDPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                       <children>
+                                          <JFXTextField fx:id="ktbIDTXT" focusColor="#c606a6" labelFloat="true" layoutX="289.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="201.0" promptText="آیدی کتاب" />
+                                          <JFXButton fx:id="ktbIDSearchBTN" layoutX="207.0" layoutY="19.0" ripplerFill="BLACK" text="جستجو">
+                                             <graphic>
+                                                <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/search-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </JFXButton>
+                                       </children>
+                                    </Pane>
+                                    <Pane fx:id="usrIDPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                       <children>
+                                          <JFXTextField fx:id="usrIDTXT" focusColor="#c606a6" labelFloat="true" layoutX="289.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="201.0" promptText="شماره کتاب" />
+                                          <JFXButton fx:id="usrIDSearchBTN" layoutX="207.0" layoutY="19.0" ripplerFill="BLACK" text="جستجو">
+                                             <graphic>
+                                                <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/search-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </JFXButton>
+                                       </children>
+                                    </Pane>
+                                    <Pane fx:id="amtVazeiatPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                       <children>
+                                          <JFXTextField fx:id="amtMohlatTXT" focusColor="#c606a6" labelFloat="true" layoutX="289.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="201.0" promptText="مهلت امانت" />
+                                          <JFXButton fx:id="amtMohlatSearchBTN" layoutX="207.0" layoutY="19.0" ripplerFill="BLACK" text="جستجو">
+                                             <graphic>
+                                                <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/search-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </JFXButton>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

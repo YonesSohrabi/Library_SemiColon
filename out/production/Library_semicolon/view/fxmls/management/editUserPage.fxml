@@ -9,12 +9,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.editUserPageCtrl">
    <children>
-      <JFXButton id="editPageBtn" fx:id="exitBTN" buttonType="RAISED" layoutX="261.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" stylesheets="@styles/style.css" text="خروج">
+      <JFXButton id="editPageBtn" fx:id="exitBTN" buttonType="RAISED" layoutX="261.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" stylesheets="@../../styles/style.css" text="خروج">
          <font>
             <Font size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton id="editPageBtn" fx:id="editBTN" buttonType="RAISED" layoutX="56.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" stylesheets="@styles/style.css" text="ویرایش">
+      <JFXButton id="editPageBtn" fx:id="editBTN" buttonType="RAISED" layoutX="56.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" stylesheets="@../../styles/style.css" text="ویرایش">
          <font>
             <Font size="15.0" />
          </font>
