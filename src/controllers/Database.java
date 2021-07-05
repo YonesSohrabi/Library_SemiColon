@@ -337,6 +337,63 @@ public class Database {
         closeConnection();
     }
 
+    public static List<User> readUsersDB() throws SQLException {
+        List<User> userList = new ArrayList<>();
+        Database.makeConnection();
+        ResultSet resultSet = Database.getStatement().executeQuery("SELECT * FROM user");
+        User user;
+        while (resultSet.next()) {
+            user = new User();
+            user.setID(resultSet.getString("usrID"));
+            user.setUserName(resultSet.getString("userName"));
+            user.setPassword(resultSet.getString("usrPass"));
+            user.setFirstName(resultSet.getString("usrFName"));
+            user.setLastName(resultSet.getString("usrLName"));
+            user.setCodeMeli(resultSet.getString("usrCodeMeli"));
+            userList.add(user);
+        }
+
+        Database.closeConnection();
+        return userList;
+    }
+
+    public static List<User> readUsersDB(String text, String lable) throws SQLException {
+        List<User> userList = new ArrayList<>();
+        Database.makeConnection();
+        String sql;
+        if (lable == "numOzv") {
+            sql = String.format("SELECT * FROM user WHERE usrID = '%s'", text);
+        } else {
+            sql = String.format("SELECT * FROM user WHERE usrCodeMeli = '%s'", text);
+        }
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        User user;
+        while (resultSet.next()) {
+            user = new User();
+            user.setID(resultSet.getString("usrID"));
+            user.setUserName(resultSet.getString("userName"));
+            user.setPassword(resultSet.getString("usrPass"));
+            user.setFirstName(resultSet.getString("usrFName"));
+            user.setLastName(resultSet.getString("usrLName"));
+            user.setCodeMeli(resultSet.getString("usrCodeMeli"));
+            userList.add(user);
+        }
+
+        Database.closeConnection();
+        return userList;
+    }
+
+    public static void deleteUser(String id) throws SQLException {
+        makeConnection();
+        String sql = String.format("DELETE FROM user WHERE usrID = %s", id);
+        try {
+            getStatement().execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
+
 
 }
 
