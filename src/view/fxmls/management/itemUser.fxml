@@ -21,11 +21,11 @@
       </ImageView>
       <Label fx:id="userNumIdLBL" prefHeight="19.0" prefWidth="78.0" text="10201" textFill="#b7c3d7">
          <HBox.margin>
-            <Insets left="-30.0" />
+            <Insets left="-10.0" />
          </HBox.margin></Label>
       <Label fx:id="userNameLBL" prefHeight="17.0" prefWidth="103.0" text="یونس" textFill="#b7c3d7">
          <HBox.margin>
-            <Insets left="35.0" />
+            <Insets left="25.0" />
          </HBox.margin>
       </Label>
       <Label fx:id="userFamilyLBL" prefHeight="23.0" prefWidth="104.0" text="سهرابی" textFill="#b7c3d7">

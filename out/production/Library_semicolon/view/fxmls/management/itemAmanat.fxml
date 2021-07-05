@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="25.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/book-icon.png" />
+            <Image url="@../../images/book-icon.png" />
          </image>
          <HBox.margin>
             <Insets left="10.0" />
@@ -33,18 +33,18 @@
       <Label fx:id="mohlatLBL" prefHeight="17.0" prefWidth="50.0" text="10 روز" textFill="#b7c3d7" />
       <Pane prefHeight="53.0" prefWidth="128.0">
          <children>
-            <Button id="button-item-book" fx:id="detailsBTN" layoutX="62.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="36.0" stylesheets="@styles/style.css">
+            <Button id="button-item-book" fx:id="detailsBTN" layoutX="62.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="36.0" stylesheets="@../../styles/style.css">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/details-icon.png" />
+                        <Image url="@../../images/details-icon.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
             <ImageView fx:id="elanImg" fitHeight="26.0" fitWidth="28.0" layoutX="38.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@images/tamdid-elan-icon.png" />
+                  <Image url="@../../images/tamdid-elan-icon.png" />
                </image>
             </ImageView>
          </children>

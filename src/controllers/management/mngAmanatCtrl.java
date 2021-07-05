@@ -74,6 +74,12 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        try {
+            searchAmanat();
+        } catch (SQLException | ParseException | IOException e) {
+            e.printStackTrace();
+        }
+
         dashboardBTN.setOnAction(e -> {
             Stage stage = (Stage) dashboardBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -192,7 +198,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
         int rows = 0;
         for (Amanat amanat : amanats) {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/views/itemAmanat.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("../../view/fxmls/management/itemAmanat.fxml"));
             HBox amanatBox = fxmlLoader.load();
             itemAmanatCtrl itemAmanatCtrl = fxmlLoader.getController();
             itemAmanatCtrl.setItemAmanat(amanat);
