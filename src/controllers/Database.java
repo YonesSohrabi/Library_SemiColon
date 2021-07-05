@@ -324,6 +324,19 @@ public class Database {
         closeConnection();
     }
 
+    public static void createUser(User user) throws SQLException {
+        makeConnection();
+        String sql = String.format("INSERT INTO user (usrID, userName, usrFName, usrLName, usrCodeMeli, usrPass)" +
+                        " VALUES ('%s','%s','%s','%s','%s','%s')", user.getID(), user.getUserName(), user.getFirstName(),
+                user.getLastName(), user.getCodeMeli(), user.getPassword());
+        try {
+            getStatement().execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
+
 
 }
 

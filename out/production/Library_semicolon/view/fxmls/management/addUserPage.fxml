@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.addUserPageCtrl">
+   <children>
+      <JFXButton id="editPageBtn" fx:id="exitBTN" buttonType="RAISED" layoutX="256.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" stylesheets="@styles/style.css" text="خروج">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="userNameTXT" focusColor="#108ffe" labelFloat="true" layoutX="206.0" layoutY="209.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="نام کاربری" unFocusColor="#108ffe">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton id="editPageBtn" fx:id="addBTN" buttonType="RAISED" layoutX="48.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" stylesheets="@styles/style.css" text="اضافه">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="usrIDTXT" focusColor="#108ffe" labelFloat="true" layoutX="205.0" layoutY="289.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="آیدی کاربر" unFocusColor="#108ffe">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="usrLNameTXT" focusColor="#108ffe" labelFloat="true" layoutX="42.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="نام خانوادگی" unFocusColor="#108ffe">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="172.0" layoutY="37.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="184.0" text="اضافه کردن کاربر" textFill="#108ffe">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="65.0" layoutY="79.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="24.0" prefWidth="290.0" text="فیلد ها را پر کنید. " textFill="#108ffe">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="usrCodeMeliTXT" focusColor="#108ffe" labelFloat="true" layoutX="42.0" layoutY="289.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="کدملی" unFocusColor="#108ffe">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <Label fx:id="addUserErrLBL" alignment="CENTER" layoutX="50.0" layoutY="451.0" prefHeight="35.0" prefWidth="309.0" style="-fx-background-color: #e41749; -fx-background-radius: 10 30;" text="لطفا تمامی فیلد ها را پر کنید" textFill="WHITE" visible="false" />
+      <JFXTextField fx:id="usrFNameTXT" focusColor="#108ffe" labelFloat="true" layoutX="205.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="نام" unFocusColor="#108ffe">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField fx:id="passwordTXT" focusColor="#108ffe" labelFloat="true" layoutX="42.0" layoutY="209.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="پسورد" unFocusColor="#108ffe">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXPasswordField>
+   </children>
+</AnchorPane>

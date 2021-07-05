@@ -14,14 +14,9 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class addBookPageCtrl implements Initializable {
-    @FXML
-    private JFXButton exitBTN;
 
     @FXML
     private JFXTextField ktbIDTXT;
-
-    @FXML
-    private JFXButton addBTN;
 
     @FXML
     private JFXTextField ktbNevisandehTXT;
@@ -36,7 +31,14 @@ public class addBookPageCtrl implements Initializable {
     private JFXTextField ktbTedadTXT;
 
     @FXML
+    private JFXButton addBTN;
+
+    @FXML
+    private JFXButton exitBTN;
+
+    @FXML
     private Label addBookErrLBL;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

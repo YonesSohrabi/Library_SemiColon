@@ -5,52 +5,26 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import controllers.switchSenceCtrl;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class mngUserCtrl extends mngStage implements Initializable {
 
-    @FXML
-    private GridPane itemUserList;
-
-    @FXML
-    private JFXRadioButton numUserRB;
-    
-    @FXML
-    private JFXRadioButton codeMeliUserRB;
-
-    @FXML
-    private JFXRadioButton allUserRB;
-
-    @FXML
-    private Pane usrNumOzvPane;
-
-    @FXML
-    private JFXTextField usrNumOzvtxt;
-
-    @FXML
-    private JFXButton usrNumOzvSearchbtn;
-
-    @FXML
-    private Pane usrCodeMeliPane;
-
-    @FXML
-    private JFXTextField usrCodeMelitxt;
-
-    @FXML
-    private JFXButton usrCodeMeliSearchbtn;
 
     @FXML
     private JFXButton addUserbtn;
 
     static Stage addUserPage = null;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -64,7 +38,7 @@ public class mngUserCtrl extends mngStage implements Initializable {
             }
         });
 
-        booksBTN.setOnAction(e -> {
+        booksBTN.setOnAction(e ->{
             Stage stage = (Stage) booksBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
@@ -74,7 +48,7 @@ public class mngUserCtrl extends mngStage implements Initializable {
             }
         });
 
-        gozareshBTN.setOnAction(e -> {
+        gozareshBTN.setOnAction(e ->{
             Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
@@ -84,7 +58,7 @@ public class mngUserCtrl extends mngStage implements Initializable {
             }
         });
 
-        settingBTN.setOnAction(e -> {
+        settingBTN.setOnAction(e ->{
             Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
@@ -94,13 +68,32 @@ public class mngUserCtrl extends mngStage implements Initializable {
             }
         });
 
-        exitBTN.setOnAction(e -> {
+        exitBTN.setOnAction(e ->{
             Stage stage = (Stage) exitBTN.getScene().getWindow();
             stage.close();
         });
 
+        addUserbtn.setOnAction(e -> {
+            try {
+                openAddUserPage();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
 
     }
+
+    private void openAddUserPage() throws IOException {
+        if (addUserPage == null) {
+            AnchorPane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/addUserPage.fxml"));
+            addUserPage = new Stage();
+            addUserPage.setScene(new Scene(root));
+            addUserPage.show();
+        }
+    }
+
+
 
 }
 
