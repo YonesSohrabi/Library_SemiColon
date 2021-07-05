@@ -27,7 +27,7 @@
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/icons8_user_100px.png" />
+                  <Image url="@../../images/icons8_user_100px.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="10.0" top="50.0" />
@@ -38,11 +38,11 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="dashboardBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="داشبورد" textFill="#e7e5e5">
+            <Button fx:id="dashboardBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="داشبورد" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/home-icon.png" />
+                        <Image url="@../../images/home-icon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -56,11 +56,11 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="booksBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="کتاب ها">
+            <Button fx:id="booksBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="کتاب ها">
                <graphic>
                   <ImageView cache="true" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icons8_book_shelf_50px.png" />
+                        <Image url="@../../images/icons8_book_shelf_50px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -68,11 +68,11 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="ketabdarBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="کتابدار">
+            <Button fx:id="ketabdarBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="کتابدار">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/1icon.png" />
+                        <Image url="@../../images/1icon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -80,11 +80,11 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="faliatBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="امانت">
+            <Button fx:id="faliatBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="امانت">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icons8_user_50px.png" />
+                        <Image url="@../../images/icons8_user_50px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -92,11 +92,11 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="gozareshBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="گزارش گیری">
+            <Button fx:id="gozareshBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="گزارش گیری">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/gozaresh-icon.png" />
+                        <Image url="@../../images/gozaresh-icon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -104,11 +104,11 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="settingBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="تنظیمات">
+            <Button fx:id="settingBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="تنظیمات">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/setting-icon.png" />
+                        <Image url="@../../images/setting-icon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -116,11 +116,11 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="exitBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/style.css" text="خروج">
+            <Button fx:id="exitBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="خروج">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/exit-icon.png" />
+                        <Image url="@../../images/exit-icon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -201,7 +201,7 @@
                         <Insets bottom="5.0" top="5.0" />
                      </padding>
                      <children>
-                        <ScrollPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="366.0" prefWidth="740.0" stylesheets="@styles/style.css">
+                        <ScrollPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="366.0" prefWidth="740.0" stylesheets="@../../styles/style.css">
                            <content>
                               <GridPane fx:id="itemAmanatList" prefHeight="0.0" prefWidth="776.0">
                                  <columnConstraints>
@@ -245,7 +245,7 @@
                                              <graphic>
                                                 <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@images/search-icon.png" />
+                                                      <Image url="@../../images/search-icon.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -259,7 +259,7 @@
                                              <graphic>
                                                 <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@images/search-icon.png" />
+                                                      <Image url="@../../images/search-icon.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -273,7 +273,7 @@
                                              <graphic>
                                                 <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@images/search-icon.png" />
+                                                      <Image url="@../../images/search-icon.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>

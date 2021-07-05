@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<HBox fx:id="itemBook" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="53.0" prefWidth="695.0" spacing="40.0" style="-fx-background-color: #17223b; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.itemAmanatCtrl">
+   <children>
+      <ImageView fitHeight="25.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/book-icon.png" />
+         </image>
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
+      </ImageView>
+      <Label fx:id="amtIdLBL" prefHeight="19.0" prefWidth="80.0" text="10201" textFill="#b7c3d7" />
+      <Label fx:id="ktbNameLBL" prefHeight="17.0" prefWidth="110.0" text="نام کتاب" textFill="#b7c3d7">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="usrNameLBL" prefHeight="24.0" prefWidth="115.0" text="نام کاربر" textFill="#b7c3d7">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="mohlatLBL" prefHeight="17.0" prefWidth="50.0" text="10 روز" textFill="#b7c3d7" />
+      <Pane prefHeight="53.0" prefWidth="128.0">
+         <children>
+            <Button id="button-item-book" fx:id="detailsBTN" layoutX="62.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="36.0" stylesheets="@styles/style.css">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/details-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fx:id="elanImg" fitHeight="26.0" fitWidth="28.0" layoutX="38.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/tamdid-elan-icon.png" />
+               </image>
+            </ImageView>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </Pane>
+   </children>
+   <effect>
+      <DropShadow blurType="GAUSSIAN" height="5.0" radius="2.0" width="5.0" />
+   </effect>
+</HBox>

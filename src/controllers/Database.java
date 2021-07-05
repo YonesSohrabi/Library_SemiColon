@@ -4,10 +4,12 @@ package controllers;
 import controllers.login.LoginPageCtrl;
 import javafx.scene.control.Alert;
 import model.Admin;
+import model.Amanat;
 import model.Book;
 import model.User;
 
 import java.sql.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -417,6 +419,79 @@ public class Database {
                 " WHERE usrID = '%s'", user.getFirstName(), user.getLastName(), user.getCodeMeli(), user.getPassword(), usrIDTXT);
         getStatement().executeUpdate(sql);
         closeConnection();
+    }
+
+    public static List<Amanat> readAmanatsDB() throws SQLException, ParseException {
+        List<Amanat> amanatList = new ArrayList<>();
+        Database.makeConnection();
+        ResultSet resultSet = Database.getStatement().executeQuery("SELECT * FROM amanat");
+        Amanat amanat;
+        while (resultSet.next()) {
+            amanat = new Amanat();
+            amanat.setAmtID(resultSet.getString("amtID"));
+            amanat.setKtbID(resultSet.getString("ktbID"));
+            amanat.setUsrID(resultSet.getString("usrID"));
+            amanat.setAmtDateGet(resultSet.getString("amtDateGet"));
+            amanat.setAmtDateRtrn(resultSet.getString("amtDateRtrn"));
+            amanat.setAmtDarkhastUsr(resultSet.getString("amtDarkhastUsr"));
+            amanat.setAmtEmkanTamdid(resultSet.getString("amtEmkanTamdid"));
+            amanat.setKtbName(getKtbName(resultSet.getString("ktbID")));
+            amanat.setUsrName(getUsrName(resultSet.getString("usrID")));
+            amanatList.add(amanat);
+        }
+
+        Database.closeConnection();
+        return amanatList;
+    }
+
+
+    public static List<Amanat> readAmanatsDB(String text, String lable) throws SQLException, ParseException {
+        List<Amanat> amanatList = new ArrayList<>();
+        Database.makeConnection();
+        String sql;
+        if (lable.equals("ktbID")) {
+            sql = String.format("SELECT * FROM amanat WHERE ktbID = '%s'", text);
+        } else {
+            sql = String.format("SELECT * FROM amanat WHERE usrID = '%s'", text);
+        }
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        Amanat amanat;
+        while (resultSet.next()) {
+            amanat = new Amanat();
+            amanat.setAmtID(resultSet.getString("amtID"));
+            amanat.setKtbID(resultSet.getString("ktbID"));
+            amanat.setUsrID(resultSet.getString("usrID"));
+            amanat.setAmtDateGet(resultSet.getString("amtDateGet"));
+            amanat.setAmtDateRtrn(resultSet.getString("amtDateRtrn"));
+            amanat.setAmtDarkhastUsr(resultSet.getString("amtDarkhastUsr"));
+            amanat.setAmtEmkanTamdid(resultSet.getString("amtEmkanTamdid"));
+            amanat.setKtbName(getKtbName(resultSet.getString("ktbID")));
+            amanat.setUsrName(getUsrName(resultSet.getString("usrID")));
+            amanatList.add(amanat);
+        }
+
+        Database.closeConnection();
+        return amanatList;
+    }
+
+    public static String getKtbName(String ktbID) throws SQLException {
+        makeConnection();
+        String sqlKtb = String.format("SELECT ktbName FROM book WHERE ktbID = '%s'", ktbID);
+        ResultSet resultSetKtb = Database.getStatement().executeQuery(sqlKtb);
+        resultSetKtb.next();
+        String ktbName = resultSetKtb.getString("ktbName");
+        resultSetKtb.close();
+        return ktbName;
+    }
+
+    public static String getUsrName(String usrID) throws SQLException {
+        makeConnection();
+        String sqlUsr = String.format("SELECT usrFName,usrLName FROM user WHERE usrID = '%s'", usrID);
+        ResultSet resultSetUsr = Database.getStatement().executeQuery(sqlUsr);
+        resultSetUsr.next();
+        String usrName = resultSetUsr.getString("usrFName") + " " + resultSetUsr.getString("usrLName");
+        resultSetUsr.close();
+        return usrName;
     }
 
 

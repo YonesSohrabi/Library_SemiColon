@@ -129,6 +129,77 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             stage.close();
         });
 
+        ktbIDRB.setOnAction(e -> {
+            if (ktbIDRB.isSelected()){
+                hidePaneJostejo();
+                ktbIDPane.setVisible(true);
+            }
+        });
+
+        ktbIDSearchBTN.setOnAction(e -> {
+            try {
+                searchAmanat(ktbIDTXT.getText(),"ktbID");
+            } catch (SQLException | ParseException | IOException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+
+        usrIDRB.setOnAction(e -> {
+            if (usrIDRB.isSelected()){
+                hidePaneJostejo();
+                usrIDPane.setVisible(true);
+            }
+        });
+
+        usrIDSearchBTN.setOnAction(e -> {
+            try {
+                searchAmanat(usrIDTXT.getText(),"usrID");
+            } catch (SQLException | ParseException | IOException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+
+        allAmanatRB.setOnAction(e -> {
+            try {
+                hidePaneJostejo();
+                searchAmanat();
+            } catch (SQLException | ParseException | IOException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+    }
+
+    private void hidePaneJostejo() {
+        ktbIDPane.setVisible(false);
+        usrIDPane.setVisible(false);
+        amtVazeiatPane.setVisible(false);
+    }
+
+
+    public void searchAmanat() throws SQLException, IOException, ParseException {
+        List<Amanat> amanats = new ArrayList<>(Database.readAmanatsDB());
+        showAmanat(amanats);
+    }
+
+    public void searchAmanat(String text,String lable) throws SQLException, IOException, ParseException {
+        List<Amanat> amanats = new ArrayList<>(Database.readAmanatsDB(text,lable));
+        showAmanat(amanats);
+    }
+
+
+    public void showAmanat(List<Amanat> amanats) throws IOException {
+        itemAmanatList.getChildren().clear();
+        int rows = 0;
+        for (Amanat amanat : amanats) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/views/itemAmanat.fxml"));
+            HBox amanatBox = fxmlLoader.load();
+            itemAmanatCtrl itemAmanatCtrl = fxmlLoader.getController();
+            itemAmanatCtrl.setItemAmanat(amanat);
+            itemAmanatList.addRow(rows++, amanatBox);
+            GridPane.setMargin(amanatBox, new Insets(5, 0, 5, 10));
+
+        }
     }
 
 }
