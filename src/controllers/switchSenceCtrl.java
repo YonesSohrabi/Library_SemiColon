@@ -68,6 +68,9 @@ public class switchSenceCtrl {
             case "gozaresh":
                 root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngGozarsh.fxml"));
                 break;
+            case "setting":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngSetting.fxml"));
+                break;
         }
 
         Scene scene = new Scene(root,1050,576);
