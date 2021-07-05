@@ -62,6 +62,16 @@ public class switchSenceCtrl {
             case "dashboard":
                 root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngDashboard.fxml"));
                 break;
+            case "book":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngBook.fxml"));
+                break;
+            case "gozaresh":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngGozarsh.fxml"));
+                break;
+            case "setting":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngSetting.fxml"));
+                break;
+
         }
 
         Scene scene = new Scene(root,1050,576);

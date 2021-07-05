@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.Date;
 
 public class Database {
     private static Connection connection = null;
@@ -53,7 +54,6 @@ public class Database {
             }
         }
     }
-
 
 
     public static boolean login_user(String txtusername, String txtpassword) {
@@ -187,7 +187,7 @@ public class Database {
         String dateformat = fr.format(date);
 
         //delete date_ms later if dont use
-        String addbook= "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonande , ktbEhdaDate, ktbVazeiat ,ktbTedad , ktbID)  values ('%s','%s','%s','%s','%s','%s','%d')";
+        String addbook= "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonandeh , ktbVazeiat ,ktbTedad , ktbID)  values ('%s','%s','%s','%s','%s','%d')";
 
         Random rnd = new Random();
         int book_id = rnd.nextInt(9000)+1000;
@@ -199,6 +199,7 @@ public class Database {
         Database.getStatement().execute(addbook);
         Database.closeConnection();
     }
+
 
 
     public static List<Book> create_bookList(String sql) {
@@ -230,6 +231,128 @@ public class Database {
         System.out.println(booklist1);
         return booklist1;
     }
+
+
+    public static void createBook(Book book) throws SQLException {
+        makeConnection();
+        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s')", book.getKtbID(), book.getKtbName(),
+                book.getKtbNevisande(), book.getKtbEhdaKonandeh(), Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(),
+                book.getAmtTarakoneshID());
+        try {
+            getStatement().execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
+
+    public static List<Book> readBooksDB() throws SQLException {
+        List<Book> bookList = new ArrayList<>();
+        Database.makeConnection();
+        ResultSet resultSet = Database.getStatement().executeQuery("SELECT * FROM book");
+        Book book;
+        while (resultSet.next()) {
+            book = new Book();
+            book.setKtbID(String.valueOf(resultSet.getInt("ktbID")));
+            book.setKtbName(resultSet.getString("ktbName"));
+            book.setKtbNevisande(resultSet.getString("ktbNevisandeh"));
+            book.setKtbTedad(resultSet.getString("ktbTedad"));
+            book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
+            bookList.add(book);
+        }
+
+        Database.closeConnection();
+        return bookList;
+    }
+
+
+    public static List<Book> readBooksDB(String txet, String lable) throws SQLException {
+        List<Book> bookList = new ArrayList<>();
+        Database.makeConnection();
+        String sql;
+        if (lable.equals("name")) {
+            sql = String.format("SELECT * FROM book WHERE ktbName = '%s'", txet);
+        } else {
+            sql = String.format("SELECT * FROM book WHERE ktbID = '%s'", txet);
+        }
+
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        Book book;
+        while (resultSet.next()) {
+            book = new Book();
+            book.setKtbID(String.valueOf(resultSet.getInt("ktbID")));
+            book.setKtbName(resultSet.getString("ktbName"));
+            book.setKtbNevisande(resultSet.getString("ktbNevisandeh"));
+            book.setKtbTedad(resultSet.getString("ktbTedad"));
+            book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
+            bookList.add(book);
+        }
+        return bookList;
+    }
+
+    public static List<Book> readBooksDB(int vazeiat) throws SQLException {
+        List<Book> bookList = new ArrayList<>();
+        Database.makeConnection();
+        String vaz;
+        if (vazeiat == 1) {
+            vaz = "موجود";
+        } else {
+            vaz = "ناموجود";
+        }
+        String sql = String.format("SELECT * FROM book WHERE ktbVazeiat = '%s'", vaz);
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        Book book;
+        while (resultSet.next()) {
+            book = new Book();
+            book.setKtbID(String.valueOf(resultSet.getInt("ktbID")));
+            book.setKtbName(resultSet.getString("ktbName"));
+            book.setKtbNevisande(resultSet.getString("ktbNevisandeh"));
+            book.setKtbTedad(resultSet.getString("ktbTedad"));
+            book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
+            bookList.add(book);
+        }
+        return bookList;
+    }
+
+    public static void deleteBook(String id) throws SQLException {
+        makeConnection();
+        String sql = String.format("DELETE FROM book WHERE ktbID = %s", id);
+        try {
+            getStatement().execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
+
+    public static Book getItemBookDB(String bookID) throws SQLException {
+        makeConnection();
+        String sql = String.format("Select * FROM book WHERE ktbID = '%s' ", bookID);
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        Book book = new Book();
+        resultSet.next();
+        book.setKtbID(resultSet.getString("ktbID"));
+        book.setKtbName(resultSet.getString("ktbName"));
+        book.setKtbNevisande(resultSet.getString("ktbNevisandeh"));
+        book.setKtbEhdaKonandeh(resultSet.getString("KtbEhdaKonandeh"));
+        book.setKtbTedad(resultSet.getString("ktbTedad"));
+        book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
+        book.setAmtTarakoneshID(resultSet.getString("amtTarakoneshID"));
+        closeConnection();
+
+        return book;
+    }
+
+
+    public static void updateBook(Book book, String ktbIDTXT) throws SQLException {
+        makeConnection();
+        String sql = String.format("UPDATE book SET ktbName = '%s', ktbTedad = '%s', ktbNevisandeh = '%s'," +
+                        " ktbEhdaKonandeh = '%s' WHERE ktbID = '%s'", book.getKtbName(), book.getKtbTedad(), book.getKtbNevisande(),
+                book.getKtbEhdaKonandeh(), ktbIDTXT);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
+
 
 }
 

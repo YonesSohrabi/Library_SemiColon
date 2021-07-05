@@ -27,7 +27,7 @@ public class Amanat {
         this.ktbID = ktbID;
         this.usrID = usrID;
         this.amtDateGet = amtDateGet;
-       // this.amtDateRtrn = DateSC.tamdidMohalat(amtDateGet, 10);
+        // this.amtDateRtrn = DateSC.tamdidMohalat(amtDateGet, 10);
         //this.mohlat = DateSC.mohlatTahvil(this.amtDateRtrn);
     }
 
@@ -110,7 +110,7 @@ public class Amanat {
     }
 
     public void setMohlat(String amtDateRtrn) throws ParseException {
-    //    this.mohlat = DateSC.mohlatTahvil(amtDateRtrn);
+        //    this.mohlat = DateSC.mohlatTahvil(amtDateRtrn);
     }
 
 

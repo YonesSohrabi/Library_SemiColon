@@ -6,6 +6,10 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/library</jdbc-url>
+<<<<<<< HEAD
+=======
+      <working-dir>$ProjectFileDir$</working-dir>
+>>>>>>> ed90b6e3d815cca74e2124db96a9c4ae892a5bb7
     </data-source>
   </component>
 </project>

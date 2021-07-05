@@ -10,8 +10,12 @@ public class Person {
     private String codeMeli;
 
 
-    public Person(){};
-    public Person(String ID,String userName, String password, String firstName, String lastName, String codeMeli) {
+    public Person() {
+    }
+
+    ;
+
+    public Person(String ID, String userName, String password, String firstName, String lastName, String codeMeli) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
