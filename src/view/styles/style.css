@@ -41,11 +41,11 @@
     -fx-background-color : #1620A1;
 }
 
-.scroll-pane {
+.scroll-pane_user {
     -fx-background-color: #02030A;
 }
 
-.scroll-bar:horizontal, .scroll-bar:vertical{
+.scroll-bar_user:horizontal, .scroll-bar_user:vertical{
     -fx-background-color:transparent;
 }
 
@@ -54,20 +54,20 @@
     -fx-border-color: transparent;
 }
 
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
+.scroll-bar_user:horizontal .track,
+.scroll-bar_user:vertical .track{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-radius: 0em;
 }
 
-.scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb {
+.scroll-bar_user:horizontal .thumb,
+.scroll-bar_user:vertical .thumb {
     -fx-background-color: #10165F;
     -fx-background-radius: 5em;
 }
 
-.scroll-pane > .corner {
+.scroll-pane_user > .corner {
     -fx-background-color: black;
 }
 .button_addbook
@@ -117,7 +117,7 @@
     -fx-border-style: solid;
     -fx-border-radius: 10px;
 }
-.button
+.button_adminPage
 {
     -fx-background-color : #108FFE;
     -fx-text-fill : #e7e5e5;
@@ -134,19 +134,19 @@
 #button-item-book:pressed{
     -fx-background-color: #17223b;
 }
-.button:hover{
+.button_adminPage:hover{
     -fx-background-color : #10165F;
 }
-.button:pressed
+.button_adminPage:pressed
 {
     -fx-background-color : #1620A1;
 }
 
-.scroll-pane {
+.scroll-pane_admin {
     -fx-background-color: #fff;
 }
 
-.scroll-bar:horizontal, .scroll-bar:vertical{
+.scroll-bar_admin:horizontal, .scroll-bar:vertical{
     -fx-background-color:transparent;
 }
 
@@ -155,19 +155,19 @@
     -fx-border-color: transparent;
 }
 
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
+.scroll-bar_admin:horizontal .track,
+.scroll-bar_admin:vertical .track{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-radius: 0em;
 }
 
-.scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb {
+.scroll-bar_admin:horizontal .thumb,
+.scroll-bar_admin:vertical .thumb {
     -fx-background-color: #dadada;
     -fx-background-radius: 5em;
 }
 
-.scroll-pane > .corner {
+.scroll-pane_admin > .corner {
     -fx-background-color: #fff;
 }

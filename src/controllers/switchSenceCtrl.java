@@ -26,7 +26,7 @@ public class switchSenceCtrl {
                 root = FXMLLoader.load(getClass().getResource("../view/fxmls/login/admLoginPage.fxml"));
                 break;
             case "home":
-                root = FXMLLoader.load(getClass().getResource("../view/fxmls/Home.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/user/Home.fxml"));
                 break;
         }
         Scene scene = new Scene(root,800,600);
@@ -38,13 +38,13 @@ public class switchSenceCtrl {
         Parent root = null;
         switch (sceneName){
             case "Home":
-                root = FXMLLoader.load(getClass().getResource("../view/fxmls/Home.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/user/Home.fxml"));
                 break;
             case "UserInfo":
-                root = FXMLLoader.load(getClass().getResource("../view/fxmls/UserInfo.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/user/UserInfo.fxml"));
                 break;
             case "BookList":
-                root = FXMLLoader.load(getClass().getResource("../view/fxmls/BookList.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/user/BookList.fxml"));
                 break;
             case "loginPage":
                 root = FXMLLoader.load(getClass().getResource("../view/fxmls/LoginPage.fxml"));

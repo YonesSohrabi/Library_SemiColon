@@ -1,5 +1,7 @@
-package controllers;
+package controllers.user;
 
+import controllers.Database;
+import controllers.switchSenceCtrl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,7 +55,7 @@ public class HomePageCtrl implements Initializable {
             user = Database.set_home_items();
             Database.closeConnection();
             lbl_fullname.setText(user.getFirstName() + " " + user.getLastName());
-        } catch (ClassNotFoundException | SQLException classNotFoundException) {
+        } catch (SQLException classNotFoundException) {
             classNotFoundException.printStackTrace();
         }
     }

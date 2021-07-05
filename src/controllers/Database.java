@@ -4,13 +4,13 @@ package controllers;
 import controllers.login.LoginPageCtrl;
 import javafx.scene.control.Alert;
 import model.Admin;
-import javafx.scene.layout.VBox;
 import model.Book;
 import model.User;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -36,7 +36,7 @@ public class Database {
 
     public static void makeConnection() throws  SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library" , "root" , "1380Ys1388?");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library" , "root" , "1234");
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.out.println(e);
@@ -65,7 +65,7 @@ public class Database {
             ResultSet result = Database.getStatement().executeQuery(mysql);
             while (result.next()) {
                 //   String ID = result.getString("id");
-                String username = result.getString("usrName");
+                String username = result.getString("userName");
                 String password = result.getString("usrPass");
                 String name = result.getString("usrFName");
                 String family = result.getString("usrLName");
@@ -78,7 +78,6 @@ public class Database {
                     break;
                 }
             }
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -88,8 +87,7 @@ public class Database {
     public static void registerUser(User p) {
         try {
             //ساختن تیبل مورد نیاز در دیتابیس
-            String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL ," +
-                    " `usrLName` varchar(80) NOT NULL , `usrName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT , PRIMARY KEY (`usrID`) ,UNIQUE (`usrName`))";
+            String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL , `usrLName` varchar(80) NOT NULL , `userName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT , PRIMARY KEY (`usrID`) ,UNIQUE (`userName`))";
             getStatement().execute(crtbl);
             //مشکل(ارور) در ثبت نام
         } catch (Exception ex) {
@@ -106,7 +104,6 @@ public class Database {
         String id = String.valueOf(rnd.nextInt(9000)+1000);
         System.out.println("id = " + id);
         String setinfo = "INSERT INTO user (usrID ,usrFName, usrLName , userName , usrPass)  values ('%s','%s','%s','%s','%s')";
-
         setinfo = String.format(setinfo, p.getID(), p.getFirstName(), p.getLastName(), p.getUserName(), p.getPassword());
         System.out.println(setinfo);
 
@@ -143,7 +140,6 @@ public class Database {
         }
         Database.closeConnection();
         return admins;
-
     }
 
 
@@ -152,12 +148,12 @@ public class Database {
         System.out.println("id in dabase class = " + id);
         User user = new User();
         try {
-            String mysql = "SELECT usrFName, usrLName , usrName , usrPass FROM user WHERE usrID =" + id;
+            String mysql = "SELECT usrFName, usrLName , userName , usrPass FROM user WHERE usrID =" + id;
             System.out.println("mysql=" + mysql);
             ResultSet result = Database.statement.executeQuery(mysql);
             result.next();
             //   String ID = result.getString("id");
-            String username = result.getString("usrName");
+            String username = result.getString("userName");
             String password = result.getString("usrPass");
             String name = result.getString("usrFName");
             String family = result.getString("usrLName");
@@ -202,6 +198,37 @@ public class Database {
         System.out.println(addbook);
         Database.getStatement().execute(addbook);
         Database.closeConnection();
+    }
+
+
+    public static List<Book> create_bookList(String sql) {
+
+        List<Book> booklist1 = null;
+        try {
+            System.out.println(sql);
+            ResultSet result = Database.statement.executeQuery(sql);
+            int i = 0;
+            booklist1 = new ArrayList<>();
+            while (result.next()) {
+                int bookid = result.getInt("ktbID");
+                String bookname = result.getString("ktbName");
+                String bookwriter = result.getString("ktbNevisandeh");
+                String ehdakonande = result.getString("ktbEhdaKonande");
+
+                Book book = new Book();
+                book.setKtbName(bookname);
+                book.setKtbNevisande(bookwriter);
+                book.setKtbID(String.valueOf(bookid));
+                book.setKtbEhdaKonandeh(ehdakonande);
+                book.setKtbTedad("1");
+                booklist1.add(book);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        System.out.println(booklist1);
+        return booklist1;
     }
 
 }
