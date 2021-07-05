@@ -77,7 +77,7 @@ public class itemUserCtrl implements Initializable {
 
     private void openEditUserPage() throws IOException {
         if (editUserPage == null) {
-            Pane root = FXMLLoader.load(getClass().getResource("../views/editUserPage.fxml"));
+            Pane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/editUserPage.fxml"));
             editUserPage = new Stage();
             editUserPage.initStyle(StageStyle.UNDECORATED);
             editUserPage.setScene(new Scene(root));

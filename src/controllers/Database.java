@@ -394,6 +394,31 @@ public class Database {
         closeConnection();
     }
 
+    public static User getItemUserDB(String userID) throws SQLException {
+        makeConnection();
+        String sql = String.format("Select * FROM user WHERE usrID = '%s' ", userID);
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        User user = new User();
+        resultSet.next();
+        user.setID(String.valueOf(resultSet.getInt("usrID")));
+        user.setUserName(resultSet.getString("userName"));
+        user.setPassword(resultSet.getString("usrPass"));
+        user.setFirstName(resultSet.getString("usrFName"));
+        user.setLastName(resultSet.getString("usrLName"));
+        user.setCodeMeli(resultSet.getString("usrCodeMeli"));
+        closeConnection();
+
+        return user;
+    }
+
+    public static void updateUser(User user, String usrIDTXT) throws SQLException {
+        makeConnection();
+        String sql = String.format("UPDATE user SET usrFName = '%s', usrLName = '%s' , usrCodeMeli = '%s', usrPass = '%s'" +
+                " WHERE usrID = '%s'", user.getFirstName(), user.getLastName(), user.getCodeMeli(), user.getPassword(), usrIDTXT);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
+
 
 }
 

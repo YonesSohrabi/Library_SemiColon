@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="25.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/item-user.png" />
+            <Image url="@../../images/item-user.png" />
          </image>
          <HBox.margin>
             <Insets left="10.0" />
@@ -33,20 +33,20 @@
       <Label fx:id="userCodeMeliLBL" prefHeight="17.0" prefWidth="85.0" text="4000348795" textFill="#b7c3d7" />
       <Pane prefHeight="53.0" prefWidth="128.0">
          <children>
-            <Button id="button-item-book" fx:id="editBTN" layoutX="30.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@styles/style.css">
+            <Button id="button-item-book" fx:id="editBTN" layoutX="24.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@../../styles/style.css">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/edit-icon.png" />
+                        <Image url="@../../images/edit-icon.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="button-item-book" fx:id="deleteBTN" layoutX="60.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@styles/style.css">
+            <Button id="button-item-book" fx:id="deleteBTN" layoutX="60.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@../../styles/style.css">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/trash-icon.png" />
+                        <Image url="@../../images/trash-icon.png" />
                      </image>
                   </ImageView>
                </graphic>

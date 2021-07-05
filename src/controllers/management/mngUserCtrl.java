@@ -167,7 +167,7 @@ public class mngUserCtrl extends mngStage implements Initializable {
 
     private void openAddUserPage() throws IOException {
         if (addUserPage == null) {
-            AnchorPane root = FXMLLoader.load(getClass().getResource("../views/addUserPage.fxml"));
+            AnchorPane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/addUserPage.fxml"));
             addUserPage = new Stage();
             addUserPage.setScene(new Scene(root));
             addUserPage.show();
