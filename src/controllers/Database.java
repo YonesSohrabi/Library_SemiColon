@@ -494,6 +494,39 @@ public class Database {
         return usrName;
     }
 
+    public static void updateAmanat(String amtID) throws SQLException {
+        makeConnection();
+        String sql = String.format("UPDATE amanat SET amtEmkanTamdid = '0', amtDarkhastUsr = '3' WHERE amtID = '%s'", amtID);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
+
+    public static void updateAmanat(String amtID, String amtDateRtrn) throws SQLException {
+        makeConnection();
+        String sql = String.format("UPDATE amanat SET amtDateRtrn = '%s', amtEmkanTamdid = '0', amtDarkhastUsr = '2'" +
+                " WHERE amtID = '%s'", amtDateRtrn, amtID);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
+
+    public static Amanat getItemAmanatDB(String amtID) throws SQLException, ParseException {
+        makeConnection();
+        String sql = String.format("Select * FROM amanat WHERE amtID = '%d' ", Integer.parseInt(amtID));
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        Amanat amanat = new Amanat();
+        resultSet.next();
+        amanat.setAmtID(String.valueOf(resultSet.getInt("amtID")));
+        amanat.setKtbID(resultSet.getString("ktbID"));
+        amanat.setUsrID(resultSet.getString("usrID"));
+        amanat.setAmtDateGet(resultSet.getString("amtDateGet"));
+        amanat.setAmtDateRtrn(resultSet.getString("amtDateRtrn"));
+        amanat.setAmtDarkhastUsr(resultSet.getString("amtDarkhastUsr"));
+        amanat.setAmtEmkanTamdid(resultSet.getString("amtEmkanTamdid"));
+        closeConnection();
+
+        return amanat;
+    }
+
 
 }
 

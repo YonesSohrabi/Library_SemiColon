@@ -70,7 +70,7 @@ public class itemAmanatCtrl implements Initializable {
 
     private void openDetailsAmanatPage() throws IOException {
         if (detailsAmanatPage == null) {
-            Pane root = FXMLLoader.load(getClass().getResource("../views/detailsAmanatPage.fxml"));
+            Pane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/detailsAmanatPage.fxml"));
             detailsAmanatPage = new Stage();
             detailsAmanatPage.initStyle(StageStyle.UNDECORATED);
             detailsAmanatPage.setScene(new Scene(root));
