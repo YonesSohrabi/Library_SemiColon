@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -28,9 +27,9 @@ import java.util.ResourceBundle;
 public class mngBookCtrl extends mngStage implements Initializable {
 
 
-
     @FXML
-    private ToggleGroup jostejoRadio;
+    private GridPane itemBookList;
+
 
     @FXML
     private JFXRadioButton nameBookRB;
@@ -65,8 +64,6 @@ public class mngBookCtrl extends mngStage implements Initializable {
     @FXML
     private Pane ktbVazeiatPane;
 
-    @FXML
-    private ToggleGroup vazeiatJostejo;
 
     @FXML
     private JFXButton addBookbtn;
@@ -94,6 +91,16 @@ public class mngBookCtrl extends mngStage implements Initializable {
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
                 switchSenceCtrl.sceneSwitchManagement("dashboard");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+        ketabdarBTN.setOnAction(e -> {
+            Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchManagement("ketabdar");
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

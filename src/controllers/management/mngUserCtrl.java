@@ -21,10 +21,7 @@ public class mngUserCtrl extends mngStage implements Initializable {
 
     @FXML
     private JFXRadioButton numUserRB;
-
-    @FXML
-    private ToggleGroup jostejoRadio;
-
+    
     @FXML
     private JFXRadioButton codeMeliUserRB;
 

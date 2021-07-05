@@ -8,8 +8,6 @@ import javafx.scene.layout.GridPane;
 
 public class mngStage {
 
-    @FXML
-    GridPane itemBookList;
 
     @FXML
     Button dashboardBTN;
