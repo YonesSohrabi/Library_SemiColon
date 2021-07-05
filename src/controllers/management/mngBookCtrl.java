@@ -99,6 +99,16 @@ public class mngBookCtrl extends mngStage implements Initializable {
             }
         });
 
+        gozareshBTN.setOnAction(e -> {
+            Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchManagement("gozaresh");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
 
 
         exitBTN.setOnAction(e -> {

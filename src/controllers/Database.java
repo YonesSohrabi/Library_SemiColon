@@ -285,6 +285,7 @@ public class Database {
         return bookList;
     }
 
+
     public static void deleteBook(String id) throws SQLException {
         makeConnection();
         String sql = String.format("DELETE FROM book WHERE ktbID = %s", id);
@@ -313,6 +314,7 @@ public class Database {
 
         return book;
     }
+
 
     public static void updateBook(Book book, String ktbIDTXT) throws SQLException {
         makeConnection();

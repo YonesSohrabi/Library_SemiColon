@@ -8,7 +8,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="402.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.editBookPageCtrl">
    <children>
-      <JFXButton id="editPageBtn" fx:id="exitBTN" buttonType="RAISED" layoutX="256.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" stylesheets="@styles/style.css" text="خروج">
+      <JFXButton id="editPageBtn" fx:id="exitBTN" buttonType="RAISED" layoutX="256.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" stylesheets="@../../styles/style.css" text="خروج">
          <font>
             <Font size="15.0" />
          </font>
@@ -18,7 +18,7 @@
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXButton id="editPageBtn" fx:id="editBTN" buttonType="RAISED" layoutX="51.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" stylesheets="@styles/style.css" text="ویرایش">
+      <JFXButton id="editPageBtn" fx:id="editBTN" buttonType="RAISED" layoutX="51.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" stylesheets="@../../styles/style.css" text="ویرایش">
          <font>
             <Font size="15.0" />
          </font>
