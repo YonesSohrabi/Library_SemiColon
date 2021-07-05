@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.User;
 
 import java.io.IOException;
@@ -179,6 +180,7 @@ public class mngUserCtrl extends mngStage implements Initializable {
         if (addUserPage == null) {
             AnchorPane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/addUserPage.fxml"));
             addUserPage = new Stage();
+            addUserPage.initStyle(StageStyle.UNDECORATED);
             addUserPage.setScene(new Scene(root));
             addUserPage.show();
         }

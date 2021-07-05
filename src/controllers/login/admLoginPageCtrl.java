@@ -42,8 +42,7 @@ public class admLoginPageCtrl implements Initializable {
     private Label admLoginErrLBL;
 
 
-    private String userName;
-    private String password;
+    public static String ID;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -106,8 +105,7 @@ public class admLoginPageCtrl implements Initializable {
             if (adm.getUserName().equals(userName)){
                 if (adm.getPassword().equals(password)){
                     isCorrect = true;
-                    this.userName = userName;
-                    this.password = password;
+                    ID = adm.getID();
                     break;
                 }
             }

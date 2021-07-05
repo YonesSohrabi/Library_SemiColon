@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Book;
 
 import java.io.IOException;
@@ -223,6 +224,7 @@ public class mngBookCtrl extends mngStage implements Initializable {
         if (addBookPage == null) {
             AnchorPane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/addBookPage.fxml"));
             addBookPage = new Stage();
+            addBookPage.initStyle(StageStyle.UNDECORATED);
             addBookPage.setScene(new Scene(root));
             addBookPage.show();
         }

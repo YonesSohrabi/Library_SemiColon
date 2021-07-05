@@ -528,6 +528,14 @@ public class Database {
     }
 
 
+    public static void updateAdmin(Admin admin, String adminID) throws SQLException {
+        makeConnection();
+        String sql = String.format("UPDATE admin SET admFName = '%s', admLName = '%s' , admCodeMeli = '%s',admUserName ='%s'," +
+                " admPass = '%s' WHERE admID = '%s'", admin.getFirstName(),admin.getLastName(), admin.getCodeMeli(),
+                admin.getUserName() ,admin.getPassword(), adminID);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
 }
 
 
