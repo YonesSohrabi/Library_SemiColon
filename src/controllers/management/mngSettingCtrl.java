@@ -38,7 +38,7 @@ public class mngSettingCtrl extends mngStage implements Initializable {
             Stage stage = (Stage) dashboardBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
-                switchSenceCtrl.sceneSwitch("dashboard");
+                switchSenceCtrl.sceneSwitchManagement("dashboard");
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -48,27 +48,7 @@ public class mngSettingCtrl extends mngStage implements Initializable {
             Stage stage = (Stage) booksBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
-                switchSenceCtrl.sceneSwitch("book");
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-
-        ketabdarBTN.setOnAction(e ->{
-            Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
-            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
-            try {
-                switchSenceCtrl.sceneSwitch("ketabdar");
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-
-        faliatBTN.setOnAction(e ->{
-            Stage stage = (Stage) faliatBTN.getScene().getWindow();
-            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
-            try {
-                switchSenceCtrl.sceneSwitch("amanat");
+                switchSenceCtrl.sceneSwitchManagement("book");
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -78,7 +58,7 @@ public class mngSettingCtrl extends mngStage implements Initializable {
             Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
-                switchSenceCtrl.sceneSwitch("gozaresh");
+                switchSenceCtrl.sceneSwitchManagement("gozaresh");
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

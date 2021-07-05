@@ -71,6 +71,7 @@ public class switchSenceCtrl {
             case "setting":
                 root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngSetting.fxml"));
                 break;
+
         }
 
         Scene scene = new Scene(root,1050,576);

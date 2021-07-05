@@ -31,6 +31,16 @@ public class mngGozareshCtrl extends mngStage implements Initializable {
             }
         });
 
+        settingBTN.setOnAction(e -> {
+            Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchManagement("setting");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
 
         exitBTN.setOnAction(e -> {
             Stage stage = (Stage) exitBTN.getScene().getWindow();
