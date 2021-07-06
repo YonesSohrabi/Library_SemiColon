@@ -19,7 +19,6 @@ public class Amanat {
     private String amtDarkhastUsr = "0";
     private String amtEmkanTamdid = "1";
 
-
     public Amanat() {
     }
 

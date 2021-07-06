@@ -39,7 +39,7 @@ public class addBookPage implements Initializable {
 
 public void showAddBookPage(String ehdakonande) throws IOException {
     System.out.println(ehdakonande);
-    FXMLLoader loader = new FXMLLoader(addBookPage.class.getResource("../view/fxmls/addBookPage.fxml"));
+    FXMLLoader loader = new FXMLLoader(addBookPage.class.getResource("../../view/fxmls/user/addBookPage.fxml"));
     Parent root = (Parent) loader.load();
     addBookPage a = loader.getController();
     a.ehdakonande_txtfield.setText(ehdakonande);
