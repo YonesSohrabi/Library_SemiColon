@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import model.Amanat;
 import model.Book;
 import model.User;
 
@@ -68,6 +69,7 @@ public class HomePageCtrl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Controlleritem2.setUserName(lbl_fullname.getText());
         setInfo();
         createhomeList();
     }
@@ -90,7 +92,7 @@ public class HomePageCtrl implements Initializable {
                  *
                  */
 
-                String mysql = "SELECT * FROM book where ktbEhdaKonande = " + "\"" + amanatgirande + "\"";
+                String mysql = "SELECT * FROM book where ktbAmntGirande = " + "\"" + amanatgirande + "\"";
                 showbooks_homepage(Database.create_bookList(mysql));
 
             } catch (SQLException e) {
@@ -110,7 +112,7 @@ public class HomePageCtrl implements Initializable {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/fxmls/user/Item.fxml"));
                         Parent root = (Parent) loader.load();
                         Controlleritem bookitem = loader.getController();
-                        bookitem.setitems(book);
+                        bookitem.setitemBook(book);
 
                         nodes[i] = root;
                         //give the items some effect

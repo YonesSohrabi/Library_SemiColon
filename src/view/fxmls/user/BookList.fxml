@@ -35,9 +35,27 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" layoutY="178.0" prefHeight="42.0" prefWidth="746.0" spacing="65.0" style="-fx-background-color: #02030A;">
+                  <HBox alignment="CENTER_LEFT" layoutY="178.0" prefHeight="42.0" prefWidth="746.0" spacing="40.0" style="-fx-background-color: #02030A;">
                      <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="71.0" text="نام کتاب" textFill="#e7e5e5">
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="138.0" text="امانت گیری" textFill="#e7e5e5">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="72.0" text="وضعیت" textFill="#e7e5e5">
+                           <HBox.margin>
+                              <Insets left="-10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="116.0" text="نویسنده" textFill="#e7e5e5">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="96.0" text="نام کتاب" textFill="#e7e5e5">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -45,27 +63,9 @@
                               <Insets left="17.0" />
                            </HBox.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="82.0" text="نویسنده" textFill="#e7e5e5">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="110.0" text="آِی دی" textFill="#e7e5e5">
                            <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="125.0" text="نام اهدا کننده" textFill="#e7e5e5">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="64.0" text="وضعیت" textFill="#e7e5e5">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="85.0" text="آِی دی" textFill="#e7e5e5">
-                           <HBox.margin>
-                              <Insets left="-10.0" />
+                              <Insets left="-25.0" />
                            </HBox.margin>
                         </Label>
                      </children>

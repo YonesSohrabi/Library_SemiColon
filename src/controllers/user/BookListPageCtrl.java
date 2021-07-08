@@ -62,6 +62,7 @@ public class BookListPageCtrl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Controlleritem2.setUserName(lbl_fullname.getText());
         setInfo();
         try {
             createBookList();
@@ -168,6 +169,7 @@ public class BookListPageCtrl implements Initializable {
         addBookPage.showAddBookPage(lbl_fullname.getText());
         createBookList();
     }
+
 
     public void btn_amanatgiri_clicked(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
 

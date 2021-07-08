@@ -1,6 +1,6 @@
 package model;
 
-//import controllers.DateSC;
+import controllers.DateSC;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -109,7 +109,7 @@ public class Amanat {
     }
 
     public void setMohlat(String amtDateRtrn) throws ParseException {
-        //    this.mohlat = DateSC.mohlatTahvil(amtDateRtrn);
+            this.mohlat = DateSC.mohlatTahvil(amtDateRtrn);
     }
 
 

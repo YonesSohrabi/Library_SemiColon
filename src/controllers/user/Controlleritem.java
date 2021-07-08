@@ -6,8 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import model.Amanat;
 import model.Book;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,7 +18,7 @@ public class Controlleritem implements Initializable {
     private Button btn_odat;
 
     @FXML
-    private Label item_date;
+    private Label item_dateAmntgiri;
 
     @FXML
     private Label item_mohlat;
@@ -35,12 +35,17 @@ public class Controlleritem implements Initializable {
     @FXML
     private Label item_bookID;
 
-    public void setitems(Book book){
+    static String bookID = null;
+
+    public void setitemBook(Book book){
         item_bookID.setText(String.valueOf(book.getKtbID()));
-        item_date.setText("15/4/1400");
         item_mohlat.setText(String.valueOf("10"));
         item_namebook.setText(book.getKtbName());
         item_writername.setText(book.getKtbNevisande());
+    }
+    public void setItemsAmnt(Amanat amnt){
+        item_dateAmntgiri.setText(amnt.getAmtDateGet());
+        item_mohlat.setText(amnt.getAmtDateRtrn());
     }
 
 
@@ -51,7 +56,7 @@ public class Controlleritem implements Initializable {
         item_writername.setText(a);
     }
     public void setdate(String a){
-        item_date.setText(a);
+        item_dateAmntgiri.setText(a);
     }
     public void setmohlat(String a){
         item_mohlat.setText(a);
@@ -61,6 +66,7 @@ public class Controlleritem implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
 
     }
 
