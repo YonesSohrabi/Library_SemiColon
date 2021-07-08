@@ -39,7 +39,7 @@ public class Database {
 
     public static void makeConnection() throws  SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library" , "root" , "1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library" , "root" , "1380Ys1388?");
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.out.println(e);
@@ -564,6 +564,58 @@ public class Database {
                 admin.getUserName() ,admin.getPassword(), adminID);
         getStatement().executeUpdate(sql);
         closeConnection();
+    }
+
+    public static List getAmanatRecent(String typeAmanat) throws SQLException {
+        makeConnection();
+        ArrayList<Amanat> amanatRecent = new ArrayList<>();
+        String sql;
+        if (typeAmanat.equals("عودت")) {
+            sql = String.format("SELECT * FROM amanat WHERE amtDarkhastUsr = '%s' ORDER BY amtID DESC LIMIT 4 ", typeAmanat);
+        } else {
+            sql = String.format("SELECT * FROM amanat WHERE NOT amtDarkhastUsr = '%s' ORDER BY amtID DESC LIMIT 4 ", "عودت");
+        }
+
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        Amanat amanat;
+        while (resultSet.next()) {
+            amanat = new Amanat();
+            amanat.setAmtID(resultSet.getString("amtID"));
+            amanat.setUsrName(getUsrName(resultSet.getString("usrID")));
+            amanat.setKtbName(getKtbName(resultSet.getString("ktbID")));
+            amanatRecent.add(amanat);
+        }
+        ArrayList str = new ArrayList();
+        for (Amanat amt : amanatRecent) {
+            String strAmt;
+            if (typeAmanat.equals("عودت")) {
+                strAmt = amt.getUsrName() + " کتاب " + amt.getKtbName() + " را با شماره " + amt.getAmtID() + " عودت داد.";
+            } else {
+                strAmt = amt.getUsrName() + " کتاب " + amt.getKtbName() + " را با شماره " + amt.getAmtID() + " به امانت برد.";
+            }
+            str.add(strAmt);
+        }
+        return str;
+    }
+
+    public static String counter(String tableName) throws SQLException {
+        makeConnection();
+        String sql = String.format("SELECT COUNT(*) FROM %s ", tableName);
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        resultSet.next();
+        String num = resultSet.getString(1);
+        closeConnection();
+        return num;
+    }
+
+    public static String counter(String tableName, String feildName, String feildValue) throws SQLException {
+        makeConnection();
+        String sql = String.format("SELECT COUNT(*) FROM %s WHERE %s = '%s' ", tableName, feildName, feildValue);
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        resultSet.next();
+        String num = resultSet.getString(1);
+        closeConnection();
+        return num;
     }
 }
 
