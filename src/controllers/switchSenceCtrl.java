@@ -65,6 +65,12 @@ public class switchSenceCtrl {
             case "book":
                 root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngBook.fxml"));
                 break;
+            case "ketabdar":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngUser.fxml"));
+                break;
+            case "amanat":
+                root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngAmanat.fxml"));
+                break;
             case "gozaresh":
                 root = FXMLLoader.load(getClass().getResource("../view/fxmls/management/mngGozarsh.fxml"));
                 break;

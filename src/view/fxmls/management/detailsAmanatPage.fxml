@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.detailsAmanatPageCtrl">
+   <children>
+      <HBox layoutX="31.0" layoutY="14.0" prefHeight="56.0" prefWidth="594.0" style="-fx-background-color: #F7E8E6; -fx-background-radius: 15;">
+         <children>
+            <Label alignment="CENTER" prefHeight="69.0" prefWidth="597.0" text="جزئیات امانت" textFill="#9e3c3c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox layoutX="31.0" layoutY="86.0" prefHeight="276.0" prefWidth="594.0" spacing="15.0" style="-fx-background-color: #f6c2c2; -fx-background-radius: 30 5;">
+         <children>
+            <Pane prefHeight="76.0" prefWidth="594.0">
+               <children>
+                  <JFXTextField fx:id="amtIDTXT" editable="false" focusColor="#108ffe" labelFloat="true" layoutX="410.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="آیدی امانت" text="23" unFocusColor="#108ffe">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="ktbIDTXT" editable="false" focusColor="#108ffe" labelFloat="true" layoutX="222.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="آیدی کتاب" text="23" unFocusColor="#108ffe">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="ktbNameTXT" editable="false" focusColor="#108ffe" labelFloat="true" layoutX="43.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="نام کتاب" text="23" unFocusColor="#108ffe">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="20.0" prefHeight="76.0" prefWidth="594.0">
+               <children>
+                  <JFXTextField fx:id="usrIDTXT" editable="false" focusColor="#108ffe" labelFloat="true" layoutX="410.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="آیدی کاربر" text="23" unFocusColor="#108ffe">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="usrNameTXT" editable="false" focusColor="#108ffe" labelFloat="true" layoutX="222.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="نام کاربر" text="23" unFocusColor="#108ffe">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="usrCodeMeliTXT" editable="false" focusColor="#108ffe" labelFloat="true" layoutX="43.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="کدملی" text="23" unFocusColor="#108ffe">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="10.0" prefHeight="87.0" prefWidth="594.0">
+               <children>
+                  <JFXTextField fx:id="amtGetDateTXT" editable="false" focusColor="#108ffe" labelFloat="true" layoutX="313.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="تاریخ امانت گرفتن" text="23" unFocusColor="#108ffe">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="amtRtrnDateTXT" editable="false" focusColor="#108ffe" labelFloat="true" layoutX="115.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="150.0" promptText="تاریخ تحویل" text="23" unFocusColor="#108ffe">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <Pane layoutX="30.0" layoutY="396.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="594.0" style="-fx-background-color: #E3EBC3; -fx-background-radius: 15;">
+         <children>
+            <Label alignment="CENTER" layoutX="-3.0" layoutY="11.0" prefHeight="25.0" prefWidth="183.0" text="وضعیت تمدید :" textFill="#5b5757">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Text fx:id="vazeiatTamdidTXT" fill="#00750c" layoutX="156.0" layoutY="29.0" nodeOrientation="RIGHT_TO_LEFT" strokeType="OUTSIDE" strokeWidth="0.0" text="امکان تمدید امانت وجود دارد." wrappingWidth="286.9830741882324" />
+         </children>
+      </Pane>
+      <Pane layoutX="30.0" layoutY="461.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="56.0" prefWidth="594.0" style="-fx-background-color: #C9EDCE; -fx-background-radius: 15;">
+         <children>
+            <Label alignment="CENTER" layoutX="-3.0" layoutY="11.0" prefHeight="25.0" prefWidth="183.0" text="وضعیت درخواست :" textFill="#5b5757">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Text fx:id="vazeiatDarkhastTXT" fill="#6b6b6b" layoutX="159.0" layoutY="28.0" nodeOrientation="RIGHT_TO_LEFT" strokeType="OUTSIDE" strokeWidth="0.0" text="کاربر فعلا درخواستی مبنی بر تمدید نداشته است ." wrappingWidth="408.98307037353516" />
+         </children>
+      </Pane>
+      <HBox fx:id="btnBox" layoutX="190.0" layoutY="533.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="277.0" spacing="20.0">
+         <children>
+            <JFXButton id="detailsAmtRadBtn" fx:id="radBTN" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="78.0" stylesheets="@../../styles/style.css" text="رد کردن" visible="false">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="editPageBtn" fx:id="exitBTN" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" stylesheets="@../../styles/style.css" text="خروج">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="detailsAmtAcsBtn" fx:id="pazireshBTN" buttonType="RAISED" layoutX="108.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" stylesheets="@../../styles/style.css" text="موافقت" visible="false">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

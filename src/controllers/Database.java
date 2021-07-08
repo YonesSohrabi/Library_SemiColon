@@ -4,10 +4,12 @@ package controllers;
 import controllers.login.LoginPageCtrl;
 import javafx.scene.control.Alert;
 import model.Admin;
+import model.Amanat;
 import model.Book;
 import model.User;
 
 import java.sql.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -353,7 +355,216 @@ public class Database {
         closeConnection();
     }
 
+    public static void createUser(User user) throws SQLException {
+        makeConnection();
+        String sql = String.format("INSERT INTO user (usrID, userName, usrFName, usrLName, usrCodeMeli, usrPass)" +
+                        " VALUES ('%s','%s','%s','%s','%s','%s')", user.getID(), user.getUserName(), user.getFirstName(),
+                user.getLastName(), user.getCodeMeli(), user.getPassword());
+        try {
+            getStatement().execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
 
+    public static List<User> readUsersDB() throws SQLException {
+        List<User> userList = new ArrayList<>();
+        Database.makeConnection();
+        ResultSet resultSet = Database.getStatement().executeQuery("SELECT * FROM user");
+        User user;
+        while (resultSet.next()) {
+            user = new User();
+            user.setID(resultSet.getString("usrID"));
+            user.setUserName(resultSet.getString("userName"));
+            user.setPassword(resultSet.getString("usrPass"));
+            user.setFirstName(resultSet.getString("usrFName"));
+            user.setLastName(resultSet.getString("usrLName"));
+            user.setCodeMeli(resultSet.getString("usrCodeMeli"));
+            userList.add(user);
+        }
+
+        Database.closeConnection();
+        return userList;
+    }
+
+    public static List<User> readUsersDB(String text, String lable) throws SQLException {
+        List<User> userList = new ArrayList<>();
+        Database.makeConnection();
+        String sql;
+        if (lable == "numOzv") {
+            sql = String.format("SELECT * FROM user WHERE usrID = '%s'", text);
+        } else {
+            sql = String.format("SELECT * FROM user WHERE usrCodeMeli = '%s'", text);
+        }
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        User user;
+        while (resultSet.next()) {
+            user = new User();
+            user.setID(resultSet.getString("usrID"));
+            user.setUserName(resultSet.getString("userName"));
+            user.setPassword(resultSet.getString("usrPass"));
+            user.setFirstName(resultSet.getString("usrFName"));
+            user.setLastName(resultSet.getString("usrLName"));
+            user.setCodeMeli(resultSet.getString("usrCodeMeli"));
+            userList.add(user);
+        }
+
+        Database.closeConnection();
+        return userList;
+    }
+
+    public static void deleteUser(String id) throws SQLException {
+        makeConnection();
+        String sql = String.format("DELETE FROM user WHERE usrID = %s", id);
+        try {
+            getStatement().execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
+
+    public static User getItemUserDB(String userID) throws SQLException {
+        makeConnection();
+        String sql = String.format("Select * FROM user WHERE usrID = '%s' ", userID);
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        User user = new User();
+        resultSet.next();
+        user.setID(String.valueOf(resultSet.getInt("usrID")));
+        user.setUserName(resultSet.getString("userName"));
+        user.setPassword(resultSet.getString("usrPass"));
+        user.setFirstName(resultSet.getString("usrFName"));
+        user.setLastName(resultSet.getString("usrLName"));
+        user.setCodeMeli(resultSet.getString("usrCodeMeli"));
+        closeConnection();
+
+        return user;
+    }
+
+    public static void updateUser(User user, String usrIDTXT) throws SQLException {
+        makeConnection();
+        String sql = String.format("UPDATE user SET usrFName = '%s', usrLName = '%s' , usrCodeMeli = '%s', usrPass = '%s'" +
+                " WHERE usrID = '%s'", user.getFirstName(), user.getLastName(), user.getCodeMeli(), user.getPassword(), usrIDTXT);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
+
+    public static List<Amanat> readAmanatsDB() throws SQLException, ParseException {
+        List<Amanat> amanatList = new ArrayList<>();
+        Database.makeConnection();
+        ResultSet resultSet = Database.getStatement().executeQuery("SELECT * FROM amanat");
+        Amanat amanat;
+        while (resultSet.next()) {
+            amanat = new Amanat();
+            amanat.setAmtID(resultSet.getString("amtID"));
+            amanat.setKtbID(resultSet.getString("ktbID"));
+            amanat.setUsrID(resultSet.getString("usrID"));
+            amanat.setAmtDateGet(resultSet.getString("amtDateGet"));
+            amanat.setAmtDateRtrn(resultSet.getString("amtDateRtrn"));
+            amanat.setAmtDarkhastUsr(resultSet.getString("amtDarkhastUsr"));
+            amanat.setAmtEmkanTamdid(resultSet.getString("amtEmkanTamdid"));
+            amanat.setKtbName(getKtbName(resultSet.getString("ktbID")));
+            amanat.setUsrName(getUsrName(resultSet.getString("usrID")));
+            amanatList.add(amanat);
+        }
+
+        Database.closeConnection();
+        return amanatList;
+    }
+
+
+    public static List<Amanat> readAmanatsDB(String text, String lable) throws SQLException, ParseException {
+        List<Amanat> amanatList = new ArrayList<>();
+        Database.makeConnection();
+        String sql;
+        if (lable.equals("ktbID")) {
+            sql = String.format("SELECT * FROM amanat WHERE ktbID = '%s'", text);
+        } else {
+            sql = String.format("SELECT * FROM amanat WHERE usrID = '%s'", text);
+        }
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        Amanat amanat;
+        while (resultSet.next()) {
+            amanat = new Amanat();
+            amanat.setAmtID(resultSet.getString("amtID"));
+            amanat.setKtbID(resultSet.getString("ktbID"));
+            amanat.setUsrID(resultSet.getString("usrID"));
+            amanat.setAmtDateGet(resultSet.getString("amtDateGet"));
+            amanat.setAmtDateRtrn(resultSet.getString("amtDateRtrn"));
+            amanat.setAmtDarkhastUsr(resultSet.getString("amtDarkhastUsr"));
+            amanat.setAmtEmkanTamdid(resultSet.getString("amtEmkanTamdid"));
+            amanat.setKtbName(getKtbName(resultSet.getString("ktbID")));
+            amanat.setUsrName(getUsrName(resultSet.getString("usrID")));
+            amanatList.add(amanat);
+        }
+
+        Database.closeConnection();
+        return amanatList;
+    }
+
+    public static String getKtbName(String ktbID) throws SQLException {
+        makeConnection();
+        String sqlKtb = String.format("SELECT ktbName FROM book WHERE ktbID = '%s'", ktbID);
+        ResultSet resultSetKtb = Database.getStatement().executeQuery(sqlKtb);
+        resultSetKtb.next();
+        String ktbName = resultSetKtb.getString("ktbName");
+        resultSetKtb.close();
+        return ktbName;
+    }
+
+    public static String getUsrName(String usrID) throws SQLException {
+        makeConnection();
+        String sqlUsr = String.format("SELECT usrFName,usrLName FROM user WHERE usrID = '%s'", usrID);
+        ResultSet resultSetUsr = Database.getStatement().executeQuery(sqlUsr);
+        resultSetUsr.next();
+        String usrName = resultSetUsr.getString("usrFName") + " " + resultSetUsr.getString("usrLName");
+        resultSetUsr.close();
+        return usrName;
+    }
+
+    public static void updateAmanat(String amtID) throws SQLException {
+        makeConnection();
+        String sql = String.format("UPDATE amanat SET amtEmkanTamdid = '0', amtDarkhastUsr = '3' WHERE amtID = '%s'", amtID);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
+
+    public static void updateAmanat(String amtID, String amtDateRtrn) throws SQLException {
+        makeConnection();
+        String sql = String.format("UPDATE amanat SET amtDateRtrn = '%s', amtEmkanTamdid = '0', amtDarkhastUsr = '2'" +
+                " WHERE amtID = '%s'", amtDateRtrn, amtID);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
+
+    public static Amanat getItemAmanatDB(String amtID) throws SQLException, ParseException {
+        makeConnection();
+        String sql = String.format("Select * FROM amanat WHERE amtID = '%d' ", Integer.parseInt(amtID));
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        Amanat amanat = new Amanat();
+        resultSet.next();
+        amanat.setAmtID(String.valueOf(resultSet.getInt("amtID")));
+        amanat.setKtbID(resultSet.getString("ktbID"));
+        amanat.setUsrID(resultSet.getString("usrID"));
+        amanat.setAmtDateGet(resultSet.getString("amtDateGet"));
+        amanat.setAmtDateRtrn(resultSet.getString("amtDateRtrn"));
+        amanat.setAmtDarkhastUsr(resultSet.getString("amtDarkhastUsr"));
+        amanat.setAmtEmkanTamdid(resultSet.getString("amtEmkanTamdid"));
+        closeConnection();
+
+        return amanat;
+    }
+
+
+    public static void updateAdmin(Admin admin, String adminID) throws SQLException {
+        makeConnection();
+        String sql = String.format("UPDATE admin SET admFName = '%s', admLName = '%s' , admCodeMeli = '%s',admUserName ='%s'," +
+                " admPass = '%s' WHERE admID = '%s'", admin.getFirstName(),admin.getLastName(), admin.getCodeMeli(),
+                admin.getUserName() ,admin.getPassword(), adminID);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
 }
 
 

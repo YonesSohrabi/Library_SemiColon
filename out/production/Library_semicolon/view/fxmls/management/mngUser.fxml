@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.mngSettingCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.mngUserCtrl">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="794.0" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #108FFE;">
          <children>
@@ -151,44 +158,127 @@
             </Pane>
          </children>
       </VBox>
-      <Label layoutX="596.0" layoutY="30.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="157.0" text="تنظيمات">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Pane layoutX="46.0" layoutY="74.0" prefHeight="259.0" prefWidth="689.0" style="-fx-background-color: #f9f9e6; -fx-background-radius: 15;">
+      <Pane layoutX="1.0" prefHeight="554.0" prefWidth="793.0">
          <children>
-            <JFXButton id="editPageBtn" fx:id="editBTN" buttonType="RAISED" layoutX="46.0" layoutY="203.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="86.0" stylesheets="@../../styles/style.css" text="ویرایش">
+            <Label layoutX="586.0" layoutY="30.0" text="مدیریت کاربران">
                <font>
-                  <Font size="15.0" />
+                  <Font size="24.0" />
                </font>
-            </JFXButton>
-            <JFXTextField fx:id="admUserNameTXT" focusColor="#108ffe" labelFloat="true" layoutX="464.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="180.0" promptText="نام کاربری" text="UserName" unFocusColor="#108ffe">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="admLNameTXT" focusColor="#108ffe" labelFloat="true" layoutX="254.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="180.0" promptText="نام خانوادگی" text="نام خانوادگی" unFocusColor="#108ffe">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="admCodeMeliTXT" focusColor="#108ffe" labelFloat="true" layoutX="46.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="180.0" promptText="کدملی" text="4000348567" unFocusColor="#108ffe">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="admFNameTXT" focusColor="#108ffe" labelFloat="true" layoutX="464.0" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="180.0" promptText="نام" text="نام" unFocusColor="#108ffe">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="admPassTXT" focusColor="#108ffe" labelFloat="true" layoutX="254.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="180.0" promptText="پسورد" text="پسورد" unFocusColor="#108ffe">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextField>
+            </Label>
+            <HBox alignment="CENTER_LEFT" layoutX="52.0" layoutY="193.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="42.0" prefWidth="720.0" spacing="90.0" style="-fx-background-color: #17223b; -fx-background-radius: 10;">
+               <children>
+                  <Label text="شماره عضویت" textFill="#e7e5e5">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="نام " textFill="#e7e5e5">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="نام خانوادگی" textAlignment="RIGHT" textFill="#e7e5e5">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="کدملی" textFill="#e7e5e5">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="عملیات" textFill="#e7e5e5">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox alignment="TOP_RIGHT" layoutX="43.0" layoutY="244.0" prefHeight="329.0" prefWidth="740.0" style="-fx-background-color: #fff;">
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <ScrollPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="339.0" prefWidth="740.0" stylesheets="@../../styles/style.css">
+                     <content>
+                        <GridPane fx:id="itemUserList" prefHeight="0.0" prefWidth="776.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
          </children>
       </Pane>
+      <VBox layoutX="52.0" layoutY="75.0" prefHeight="110.0" prefWidth="720.0" style="-fx-background-color: A1E0C6; -fx-background-radius: 10;">
+         <children>
+            <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="720.0" spacing="20.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="135.0" text="جستجو بر اساس :">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <JFXRadioButton fx:id="numUserRB" nodeOrientation="RIGHT_TO_LEFT" text="شماره عضویت">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="jostejoRadio" />
+                     </toggleGroup>
+                  </JFXRadioButton>
+                  <JFXRadioButton fx:id="codeMeliUserRB" nodeOrientation="RIGHT_TO_LEFT" text="کدملی" toggleGroup="$jostejoRadio" />
+                  <JFXRadioButton fx:id="allUserRB" nodeOrientation="RIGHT_TO_LEFT" text="نمایش همه" toggleGroup="$jostejoRadio" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="720.0">
+               <children>
+                  <StackPane prefHeight="70.0" prefWidth="736.0">
+                     <children>
+                        <Pane fx:id="usrNumOzvPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <JFXTextField fx:id="usrNumOzvtxt" focusColor="#c606a6" labelFloat="true" layoutX="289.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="201.0" promptText="شماره عضویت" />
+                              <JFXButton fx:id="usrNumOzvSearchbtn" layoutX="207.0" layoutY="19.0" ripplerFill="BLACK" text="جستجو">
+                                 <graphic>
+                                    <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../images/search-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="usrCodeMeliPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <JFXTextField fx:id="usrCodeMelitxt" focusColor="#c606a6" labelFloat="true" layoutX="289.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="201.0" promptText="کدملی" />
+                              <JFXButton fx:id="usrCodeMeliSearchbtn" layoutX="207.0" layoutY="19.0" ripplerFill="BLACK" text="جستجو">
+                                 <graphic>
+                                    <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../images/search-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </Pane>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <JFXButton fx:id="addUserbtn" layoutX="52.0" layoutY="23.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="49.0" prefWidth="150.0" text="اضافه کردن کاربر" textFill="#830a9e">
+         <graphic>
+            <ImageView fitHeight="42.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/add-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

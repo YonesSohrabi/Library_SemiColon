@@ -59,7 +59,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="backAdmBTN" buttonType="RAISED" layoutX="46.0" layoutY="485.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../../styles/style.css" text="back">
+            <JFXButton fx:id="backAdmBTN" buttonType="RAISED" layoutX="46.0" layoutY="485.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" stylesheets="@../../styles/style.css" text="Back">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>

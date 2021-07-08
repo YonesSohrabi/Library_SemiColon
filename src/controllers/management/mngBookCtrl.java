@@ -10,12 +10,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Book;
 
 import java.io.IOException;
@@ -28,9 +28,9 @@ import java.util.ResourceBundle;
 public class mngBookCtrl extends mngStage implements Initializable {
 
 
-
     @FXML
-    private ToggleGroup jostejoRadio;
+    private GridPane itemBookList;
+
 
     @FXML
     private JFXRadioButton nameBookRB;
@@ -65,8 +65,6 @@ public class mngBookCtrl extends mngStage implements Initializable {
     @FXML
     private Pane ktbVazeiatPane;
 
-    @FXML
-    private ToggleGroup vazeiatJostejo;
 
     @FXML
     private JFXButton addBookbtn;
@@ -94,6 +92,26 @@ public class mngBookCtrl extends mngStage implements Initializable {
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
                 switchSenceCtrl.sceneSwitchManagement("dashboard");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+        ketabdarBTN.setOnAction(e -> {
+            Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchManagement("ketabdar");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+        faliatBTN.setOnAction(e ->{
+            Stage stage = (Stage) faliatBTN.getScene().getWindow();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchManagement("amanat");
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -206,6 +224,7 @@ public class mngBookCtrl extends mngStage implements Initializable {
         if (addBookPage == null) {
             AnchorPane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/addBookPage.fxml"));
             addBookPage = new Stage();
+            addBookPage.initStyle(StageStyle.UNDECORATED);
             addBookPage.setScene(new Scene(root));
             addBookPage.show();
         }
