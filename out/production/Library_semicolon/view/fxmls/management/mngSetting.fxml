@@ -192,7 +192,7 @@
       </Pane>
       <VBox fx:id="editSettingLBL" alignment="CENTER" layoutX="206.0" layoutY="349.0" prefHeight="42.0" prefWidth="454.0" style="-fx-background-color: #7BCF70; -fx-background-radius: 25;" visible="false">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="478.0" text="اطلاعات مدیریت با موفقیت آپدیت شد .">
+            <Label fx:id="editSettingVBox" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="478.0" text="اطلاعات مدیریت با موفقیت آپدیت شد .">
                <font>
                   <Font size="13.0" />
                </font>

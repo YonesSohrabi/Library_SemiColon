@@ -113,6 +113,8 @@ public class mngSettingCtrl extends mngStage implements Initializable {
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
+            }else {
+
             }
         });
 

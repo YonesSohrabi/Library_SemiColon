@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.Date;
+
 
 public class Database {
     private static Connection connection = null;
@@ -50,6 +50,7 @@ public class Database {
     public static void closeConnection() {
         if (connection != null) {
             try {
+                statement.close();
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -123,7 +124,7 @@ public class Database {
         closeConnection();
     }
 
-    public static User getItemUserDB(String userID) throws SQLException, ClassNotFoundException {
+    public static User getItemUserDB(String userID) throws SQLException{
         makeConnection();
         String sql = String.format("Select * FROM user WHERE usrID = '%s' ", userID);
         ResultSet resultSet = getStatement().executeQuery(sql);
@@ -140,7 +141,7 @@ public class Database {
         return user;
     }
 
-    public static void updateUser(User user, String usrIDTXT) throws SQLException, ClassNotFoundException {
+    public static void updateUser(User user, String usrIDTXT) throws SQLException {
         makeConnection();
         String sql = String.format("UPDATE user SET usrFName = '%s', usrLName = '%s' , usrPass = '%s' , userName = '%s' , usrCodeMeli = '%s'"  +
                 " WHERE usrID = '%s'", user.getFirstName(), user.getLastName(), user.getPassword(), user.getUserName() ,user.getCodeMeli() , usrIDTXT);
@@ -263,9 +264,12 @@ public class Database {
 
     public static void createBook(Book book) throws SQLException {
         makeConnection();
-        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s')", book.getKtbID(), book.getKtbName(),
+        Date date = new Date();
+        SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
+        String dateformat = fr.format(date);
+        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')", book.getKtbID(), book.getKtbName(),
                 book.getKtbNevisande(), book.getKtbEhdaKonandeh(), Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(),
-                book.getAmtTarakoneshID());
+                dateformat,book.getAmtTarakoneshID(),"");
         try {
             getStatement().execute(sql);
         } catch (SQLException e) {
@@ -375,7 +379,7 @@ public class Database {
     public static void updateBook(Book book, String ktbIDTXT) throws SQLException {
         makeConnection();
         String sql = String.format("UPDATE book SET ktbName = '%s', ktbTedad = '%s', ktbNevisandeh = '%s'," +
-                        " ktbEhdaKonandeh = '%s' WHERE ktbID = '%s'", book.getKtbName(), book.getKtbTedad(), book.getKtbNevisande(),
+                        " ktbEhdaKonande = '%s' WHERE ktbID = '%s'", book.getKtbName(), book.getKtbTedad(), book.getKtbNevisande(),
                 book.getKtbEhdaKonandeh(), ktbIDTXT);
         getStatement().executeUpdate(sql);
         closeConnection();
@@ -519,15 +523,22 @@ public class Database {
         makeConnection();
         String amanatgiri= "INSERT INTO amanat (ktbID, usrID , amtDateGet , amtDateRtrn ,amtDarkhastUsr , amtEmkanTamdid)  values ('%s','%s','%s','%s','%s','%s')";
 
-        amanatgiri = String.format(amanatgiri, amanat.getKtbID() , amanat.getUsrID() , amanat.getAmtDateGet() , amanat.getAmtDateRtrn() , amanat.getAmtDarkhastUsr() ,  amanat.getAmtEmkanTamdid());
+        amanatgiri = String.format(amanatgiri, amanat.getKtbID() , amanat.getUsrID() , amanat.getAmtDateGet() ,
+                amanat.getAmtDateRtrn() , amanat.getAmtDarkhastUsr() ,  amanat.getAmtEmkanTamdid());
         System.out.println(amanatgiri);
-        Database.getStatement().execute(amanatgiri);
-        Database.closeConnection();
+
+        Database.getStatement().execute(amanatgiri,Statement.RETURN_GENERATED_KEYS);
+        ResultSet resultSet = statement.getGeneratedKeys();
+        resultSet.next();
+        int amtID = resultSet.getInt(1);
+        closeConnection();
 
         makeConnection();
-        String updateBook = String.format("UPDATE book SET ktbAmntGirande = '%s' , ktbVazeiat = '%s' WHERE ktbID = '%s' " , getUsrName(LoginPageCtrl.get_id()) ,"نا موجود" , amanat.getKtbID());
+        String updateBook = String.format("UPDATE book SET ktbAmntGirande = '%s' ,amtTarakoneshID = '%s',  ktbVazeiat = '%s' WHERE ktbID = '%s' " ,
+                getUsrName(LoginPageCtrl.get_id()),amtID,"ناموجود" , amanat.getKtbID());
         getStatement().execute(updateBook);
         closeConnection();
+
     }
 
 

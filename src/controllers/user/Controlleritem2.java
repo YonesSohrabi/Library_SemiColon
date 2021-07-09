@@ -99,8 +99,6 @@ public class Controlleritem2 implements Initializable {
                 amnt.setAmtDateRtrn(DateSC.tamdidMohalat(dateAmanatgiri , 10));
                 amnt.setMohlat(DateSC.tamdidMohalat(dateAmanatgiri,10));
 //                amnt.setKtbName(item2_namebook.getText());
-                amnt.setAmtDarkhastUsr("0");
-                amnt.setAmtEmkanTamdid("0");
                 Database.amanatgiri(amnt);
 
                 Stage stage = (Stage) btn_amanatgiri.getScene().getWindow();
