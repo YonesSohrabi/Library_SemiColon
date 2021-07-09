@@ -95,8 +95,8 @@ public class UserInfoPageCtrl implements Initializable {
     }
 
     public void editperson_btn_clicked(ActionEvent actionEvent) throws IOException {
-   //     editUserPageCtrl edituser_page = new editUserPageCtrl();
-   //     edituser_page.showpage();
+        editUserPageCtrl edituser_page = new editUserPageCtrl();
+        edituser_page.showpage();
     }
 
 

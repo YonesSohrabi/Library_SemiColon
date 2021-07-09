@@ -122,6 +122,34 @@ public class Database {
         closeConnection();
     }
 
+    public static User getItemUserDB(String userID) throws SQLException, ClassNotFoundException {
+        /**add codmeli later
+         *
+         */
+        makeConnection();
+        String sql = String.format("Select * FROM user WHERE usrID = '%s' ", userID);
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        User user = new User();
+        resultSet.next();
+        user.setID(String.valueOf(resultSet.getInt("usrID")));
+        user.setUserName(resultSet.getString("userName"));
+        user.setPassword(resultSet.getString("usrPass"));
+        user.setFirstName(resultSet.getString("usrFName"));
+        user.setLastName(resultSet.getString("usrLName"));
+        user.setCodeMeli(resultSet.getString("usrCodeMeli"));
+        closeConnection();
+
+        return user;
+    }
+
+    public static void updateUser(User user, String usrIDTXT) throws SQLException, ClassNotFoundException {
+        makeConnection();
+        String sql = String.format("UPDATE user SET usrFName = '%s', usrLName = '%s' , usrPass = '%s' , userName = '%s' , usrCodeMeli = '%s'"  +
+                " WHERE usrID = '%s'", user.getFirstName(), user.getLastName(), user.getPassword(), user.getUserName() ,user.getCodeMeli() , usrIDTXT);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
+
 
     // گرفتن اطلاعات مدیران کتابخانه از جدول ادمین موجود در دیتابیس
     public static List<Admin> getInfoAdmin() throws SQLException {
@@ -142,8 +170,7 @@ public class Database {
         Database.closeConnection();
         return admins;
     }
-
-
+    
     public static User set_home_items() {
         String id = LoginPageCtrl.get_id();
         System.out.println("id in dabase class = " + id);
