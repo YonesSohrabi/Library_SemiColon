@@ -1,6 +1,6 @@
 package model;
 
-//import controllers.DateSC;
+import controllers.DateSC;
 
 import controllers.DateSC;
 
@@ -20,7 +20,6 @@ public class Amanat {
     private String mohlat;
     private String amtDarkhastUsr = "0";
     private String amtEmkanTamdid = "1";
-
 
     public Amanat() {
     }

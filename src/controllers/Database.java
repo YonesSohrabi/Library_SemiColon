@@ -123,6 +123,31 @@ public class Database {
         closeConnection();
     }
 
+    public static User getItemUserDB(String userID) throws SQLException, ClassNotFoundException {
+        makeConnection();
+        String sql = String.format("Select * FROM user WHERE usrID = '%s' ", userID);
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        User user = new User();
+        resultSet.next();
+        user.setID(String.valueOf(resultSet.getInt("usrID")));
+        user.setUserName(resultSet.getString("userName"));
+        user.setPassword(resultSet.getString("usrPass"));
+        user.setFirstName(resultSet.getString("usrFName"));
+        user.setLastName(resultSet.getString("usrLName"));
+        user.setCodeMeli(resultSet.getString("usrCodeMeli"));
+        closeConnection();
+
+        return user;
+    }
+
+    public static void updateUser(User user, String usrIDTXT) throws SQLException, ClassNotFoundException {
+        makeConnection();
+        String sql = String.format("UPDATE user SET usrFName = '%s', usrLName = '%s' , usrPass = '%s' , userName = '%s' , usrCodeMeli = '%s'"  +
+                " WHERE usrID = '%s'", user.getFirstName(), user.getLastName(), user.getPassword(), user.getUserName() ,user.getCodeMeli() , usrIDTXT);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+    }
+
 
     // گرفتن اطلاعات مدیران کتابخانه از جدول ادمین موجود در دیتابیس
     public static List<Admin> getInfoAdmin() throws SQLException {
@@ -143,8 +168,7 @@ public class Database {
         Database.closeConnection();
         return admins;
     }
-
-
+    
     public static User set_home_items() {
         String id = LoginPageCtrl.get_id();
         System.out.println("id in dabase class = " + id);
@@ -176,7 +200,7 @@ public class Database {
     public static void create_book_table() {
         try {
             //ساختن تیبل مورد نیاز در دیتابیس
-            String crtbl = "CREATE TABLE  IF NOT EXISTS `book` ( `ktbID` INT NOT NULL , `ktbEhdaKonande` varchar(80) NOT NULL , `ktbName` varchar(80) NOT NULL ,  `ktbNevisandeh` varchar(80) NOT NULL ,  `ktbTedad` int NOT NULL ,  `ktbVazeiat` varchar(10) NOT NULL , `amtTarakoneshID` varchar(11) , `ktbEhdaDate` TEXT NOT NULL , PRIMARY KEY (`ktbID`))";
+            String crtbl = "CREATE TABLE  IF NOT EXISTS `book` ( `ktbID` INT NOT NULL , `ktbEhdaKonande` varchar(80) NOT NULL , `ktbName` varchar(80) NOT NULL ,  `ktbNevisandeh` varchar(80) NOT NULL ,  `ktbTedad` int NOT NULL ,  `ktbVazeiat` varchar(10) NOT NULL , `amtTarakoneshID` varchar(11) , `ktbEhdaDate` TEXT NOT NULL , `ktbAmntGirande` TEXT , PRIMARY KEY (`ktbID`))";
             Database.statement.execute(crtbl);
         } catch (Exception ex) {
             System.out.println(ex);
@@ -189,14 +213,14 @@ public class Database {
         String dateformat = fr.format(date);
 
         //delete date_ms later if dont use
-        String addbook= "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonandeh , ktbVazeiat ,ktbTedad , ktbID)  values ('%s','%s','%s','%s','%s','%d')";
+        String addbook= "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonande , ktbEhdaDate , ktbVazeiat ,ktbTedad , ktbAmntGirande , ktbID)  values ('%s','%s','%s','%s','%s','%s','%s','%d')";
 
         Random rnd = new Random();
         int book_id = rnd.nextInt(9000)+1000;
         System.out.println("bookid = "+book_id);
         System.out.println("namebook = " + book.getKtbName() );
         //int book_id = Integer.parseInt(String.valueOf(state.executeQuery(getid)));
-        addbook = String.format(addbook, book.getKtbName() , book.getKtbNevisande() , book.getKtbEhdaKonandeh() , dateformat , "موجود" , 1 , book_id );
+        addbook = String.format(addbook, book.getKtbName() , book.getKtbNevisande() , book.getKtbEhdaKonandeh()  , dateformat , "موجود" , 1 , "" , book_id );
         System.out.println(addbook);
         Database.getStatement().execute(addbook);
         Database.closeConnection();
@@ -217,6 +241,7 @@ public class Database {
                 String bookname = result.getString("ktbName");
                 String bookwriter = result.getString("ktbNevisandeh");
                 String ehdakonande = result.getString("ktbEhdaKonande");
+                String vaziyat = result.getString("ktbVazeiat");
 
                 Book book = new Book();
                 book.setKtbName(bookname);
@@ -224,6 +249,7 @@ public class Database {
                 book.setKtbID(String.valueOf(bookid));
                 book.setKtbEhdaKonandeh(ehdakonande);
                 book.setKtbTedad("1");
+                book.setKtbVazeit(vaziyat);
                 booklist1.add(book);
             }
 
@@ -425,31 +451,6 @@ public class Database {
         closeConnection();
     }
 
-    public static User getItemUserDB(String userID) throws SQLException {
-        makeConnection();
-        String sql = String.format("Select * FROM user WHERE usrID = '%s' ", userID);
-        ResultSet resultSet = getStatement().executeQuery(sql);
-        User user = new User();
-        resultSet.next();
-        user.setID(String.valueOf(resultSet.getInt("usrID")));
-        user.setUserName(resultSet.getString("userName"));
-        user.setPassword(resultSet.getString("usrPass"));
-        user.setFirstName(resultSet.getString("usrFName"));
-        user.setLastName(resultSet.getString("usrLName"));
-        user.setCodeMeli(resultSet.getString("usrCodeMeli"));
-        closeConnection();
-
-        return user;
-    }
-
-    public static void updateUser(User user, String usrIDTXT) throws SQLException {
-        makeConnection();
-        String sql = String.format("UPDATE user SET usrFName = '%s', usrLName = '%s' , usrCodeMeli = '%s', usrPass = '%s'" +
-                " WHERE usrID = '%s'", user.getFirstName(), user.getLastName(), user.getCodeMeli(), user.getPassword(), usrIDTXT);
-        getStatement().executeUpdate(sql);
-        closeConnection();
-    }
-
     public static List<Amanat> readAmanatsDB() throws SQLException, ParseException {
         List<Amanat> amanatList = new ArrayList<>();
         Database.makeConnection();
@@ -513,6 +514,23 @@ public class Database {
         return ktbName;
     }
 
+
+    public static void amanatgiri(Amanat amanat) throws SQLException {
+        makeConnection();
+        String amanatgiri= "INSERT INTO amanat (ktbID, usrID , amtDateGet , amtDateRtrn ,amtDarkhastUsr , amtEmkanTamdid)  values ('%s','%s','%s','%s','%s','%s')";
+
+        amanatgiri = String.format(amanatgiri, amanat.getKtbID() , amanat.getUsrID() , amanat.getAmtDateGet() , amanat.getAmtDateRtrn() , amanat.getAmtDarkhastUsr() ,  amanat.getAmtEmkanTamdid());
+        System.out.println(amanatgiri);
+        Database.getStatement().execute(amanatgiri);
+        Database.closeConnection();
+
+        makeConnection();
+        String updateBook = String.format("UPDATE book SET ktbAmntGirande = '%s' , ktbVazeiat = '%s' WHERE ktbID = '%s' " , getUsrName(LoginPageCtrl.get_id()) ,"نا موجود" , amanat.getKtbID());
+        getStatement().execute(updateBook);
+        closeConnection();
+    }
+
+
     public static String getUsrName(String usrID) throws SQLException {
         makeConnection();
         String sqlUsr = String.format("SELECT usrFName,usrLName FROM user WHERE usrID = '%s'", usrID);
@@ -522,6 +540,7 @@ public class Database {
         resultSetUsr.close();
         return usrName;
     }
+
 
     public static void updateAmanat(String amtID) throws SQLException {
         makeConnection();
@@ -597,6 +616,7 @@ public class Database {
         }
         return str;
     }
+
 
     public static String counter(String tableName) throws SQLException {
         makeConnection();

@@ -35,9 +35,27 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" layoutY="178.0" prefHeight="42.0" prefWidth="746.0" spacing="65.0" style="-fx-background-color: #02030A;">
+                  <HBox alignment="CENTER_LEFT" layoutY="178.0" prefHeight="42.0" prefWidth="746.0" spacing="40.0" style="-fx-background-color: #02030A;">
                      <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="71.0" text="نام کتاب" textFill="#e7e5e5">
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="138.0" text="امانت گیری" textFill="#e7e5e5">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="72.0" text="وضعیت" textFill="#e7e5e5">
+                           <HBox.margin>
+                              <Insets left="-10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="116.0" text="نویسنده" textFill="#e7e5e5">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="96.0" text="نام کتاب" textFill="#e7e5e5">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -45,27 +63,9 @@
                               <Insets left="17.0" />
                            </HBox.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="82.0" text="نویسنده" textFill="#e7e5e5">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="110.0" text="آِی دی" textFill="#e7e5e5">
                            <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="125.0" text="نام اهدا کننده" textFill="#e7e5e5">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="64.0" text="وضعیت" textFill="#e7e5e5">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="85.0" text="آِی دی" textFill="#e7e5e5">
-                           <HBox.margin>
-                              <Insets left="-10.0" />
+                              <Insets left="-25.0" />
                            </HBox.margin>
                         </Label>
                      </children>
@@ -114,6 +114,11 @@
                                  <font>
                                     <Font size="14.0" />
                                  </font></JFXRadioButton>
+                              <JFXRadioButton fx:id="writerBookRB" nodeOrientation="RIGHT_TO_LEFT" onAction="#searchwithbookwriter" text="نام نویسنده" textFill="WHITE" toggleGroup="$jostejoRadio">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXRadioButton>
                               <JFXRadioButton fx:id="nameBookRB" nodeOrientation="RIGHT_TO_LEFT" onAction="#searchwithbookname" text="نام کتاب" textFill="WHITE" toggleGroup="$jostejoRadio">
                                  <font>
                                     <Font size="14.0" />
@@ -126,7 +131,7 @@
                                     <Insets />
                                  </opaqueInsets>
                                  <HBox.margin>
-                                    <Insets left="50.0" />
+                                    <Insets left="15.0" />
                                  </HBox.margin>
                               </Label>
                            </children>
@@ -140,7 +145,7 @@
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXButton fx:id="search_bookname_btn" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="20.0" onAction="#search_bookname_btn_action" prefHeight="31.0" prefWidth="85.0" text="جستجو" textFill="#f8f8f8">
+                                    <JFXButton fx:id="search_bookname_btn" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="20.0" onAction="#search_bookname_btn_action" prefHeight="31.0" prefWidth="96.0" text="جستجو" textFill="#f8f8f8">
                                        <graphic>
                                           <ImageView fitHeight="22.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -157,12 +162,15 @@
                                        <font>
                                           <Font size="14.0" />
                                        </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </JFXButton>
                                  </children>
                               </Pane>
                               <Pane fx:id="searchwith_bookid_pane" prefHeight="200.0" prefWidth="200.0" visible="false">
                                  <children>
-                                    <JFXButton fx:id="search_bookID_btn" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="20.0" onAction="#search_bookID_btn_actoin" prefHeight="38.0" prefWidth="85.0" text="جستجو" textFill="#f8f8f8">
+                                    <JFXButton fx:id="search_bookID_btn" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="20.0" onAction="#search_bookID_btn_actoin" prefHeight="38.0" prefWidth="110.0" text="جستجو" textFill="#f8f8f8">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -179,6 +187,9 @@
                                        <padding>
                                           <Insets left="20.0" />
                                        </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </JFXButton>
                                     <JFXTextField fx:id="ktbIDtxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="آیدی کتاب" unFocusColor="WHITE">
                                        <font>
@@ -202,6 +213,36 @@
                                           <Font size="15.0" />
                                        </font>
                                     </JFXRadioButton>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="searchwith_bookwriter_pane" prefHeight="68.0" prefWidth="699.0" visible="false">
+                                 <children>
+                                    <JFXTextField fx:id="ktbwritertxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="نام نویسنده" unFocusColor="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXButton fx:id="search_bookwriter_btn1" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="20.0" onAction="#search_writer_btn_action" prefHeight="31.0" prefWidth="96.0" text="جستجو" textFill="#f8f8f8">
+                                       <graphic>
+                                          <ImageView fitHeight="22.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/icons8_Search_52px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <opaqueInsets>
+                                          <Insets left="20.0" />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
                                  </children>
                               </Pane>
                            </children>

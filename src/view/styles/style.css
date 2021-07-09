@@ -45,7 +45,7 @@
     -fx-background-color: #02030A;
 }
 
-.scroll-bar_user:horizontal, .scroll-bar_user:vertical{
+.scroll-bar:horizontal, .scroll-bar:vertical{
     -fx-background-color:transparent;
 }
 
@@ -54,15 +54,15 @@
     -fx-border-color: transparent;
 }
 
-.scroll-bar_user:horizontal .track,
-.scroll-bar_user:vertical .track{
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-radius: 0em;
 }
 
-.scroll-bar_user:horizontal .thumb,
-.scroll-bar_user:vertical .thumb {
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
     -fx-background-color: #10165F;
     -fx-background-radius: 5em;
 }

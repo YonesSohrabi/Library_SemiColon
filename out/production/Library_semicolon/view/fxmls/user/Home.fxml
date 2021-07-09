@@ -74,7 +74,7 @@
                         <Insets />
                      </opaqueInsets>
                   </HBox>
-                  <ScrollPane layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@../../styles/style.css">
+                  <ScrollPane layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0" styleClass="scroll-pane_user" stylesheets="@../../styles/style.css">
                      <content>
                         <VBox fx:id="pnItems" prefHeight="318.0" prefWidth="744.0" spacing="5.0" style="-fx-background-color: #02030A;" stylesheets="@../../styles/style.css">
                            <padding>
