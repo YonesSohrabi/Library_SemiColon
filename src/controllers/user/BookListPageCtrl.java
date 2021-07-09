@@ -1,6 +1,9 @@
 package controllers.user;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import controllers.Database;
 import controllers.switchSenceCtrl;
 import javafx.collections.FXCollections;
@@ -13,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.Book;
@@ -40,6 +44,70 @@ public class BookListPageCtrl implements Initializable {
 
     @FXML
     private Label lbl_fullname;
+
+
+    @FXML
+    private StackPane leftPane;
+
+    @FXML
+    private Pane pane_BooksList;
+
+    @FXML
+    private Button btn_addBoock;
+
+    @FXML
+    private JFXRadioButton allBookRB;
+
+    @FXML
+    private ToggleGroup jostejoRadio;
+
+    @FXML
+    private JFXRadioButton vazeiatBookRB;
+
+    @FXML
+    private JFXRadioButton IDBookRB;
+
+    @FXML
+    private JFXRadioButton nameBookRB;
+
+    @FXML
+    private Pane searchwith_bookname_pane;
+
+    @FXML
+    private JFXTextField ktbNametxt_search;
+
+    @FXML
+    private JFXButton search_bookname_btn;
+
+    @FXML
+    private Pane searchwith_bookid_pane;
+
+    @FXML
+    private JFXButton search_bookID_btn;
+
+    @FXML
+    private JFXTextField ktbIDtxt_search;
+
+    @FXML
+    private Pane searchwith_bookvaziyat_pane;
+
+    @FXML
+    private ToggleGroup vaziyat_radiobtn;
+
+    @FXML
+    private Pane rightPane;
+
+    @FXML
+    private Button btn_home;
+
+    @FXML
+    private JFXTextField ktbwritertxt_search;
+
+    @FXML
+    private Pane searchwith_bookwriter_pane;
+
+
+
 
     @FXML
     private JFXListView<?> listView_Booklist;
@@ -197,73 +265,131 @@ public class BookListPageCtrl implements Initializable {
     }
 //
     public void searchwith_showallbooks(ActionEvent actionEvent) throws ClassNotFoundException {
-//        searchwith_bookvaziyat_pane.setVisible(false);
-//        searchwith_bookid_pane.setVisible(false);
-//        searchwith_bookname_pane.setVisible(false);
-//        booklists();
+        searchwith_bookwriter_pane.setVisible(false);
+        searchwith_bookvaziyat_pane.setVisible(false);
+        searchwith_bookid_pane.setVisible(false);
+        searchwith_bookname_pane.setVisible(false);
+        createBookList();
     }
 //
     public void searchwithbookvaziyat(ActionEvent actionEvent) {
-//        searchwith_bookid_pane.setVisible(false);
-//        searchwith_bookname_pane.setVisible(false);
-//        searchwith_bookvaziyat_pane.setVisible(true);
+        searchwith_bookwriter_pane.setVisible(false);
+        searchwith_bookid_pane.setVisible(false);
+        searchwith_bookname_pane.setVisible(false);
+        searchwith_bookvaziyat_pane.setVisible(true);
     }
 //
     public void searchwithbookid(ActionEvent actionEvent) {
-//        searchwith_bookname_pane.setVisible(false);
-//        searchwith_bookvaziyat_pane.setVisible(false);
-//        searchwith_bookid_pane.setVisible(true);
+        searchwith_bookwriter_pane.setVisible(false);
+        searchwith_bookname_pane.setVisible(false);
+        searchwith_bookvaziyat_pane.setVisible(false);
+        searchwith_bookid_pane.setVisible(true);
     }
 //
     public void searchwithbookname(ActionEvent actionEvent) {
-//        searchwith_bookvaziyat_pane.setVisible(false);
-//        searchwith_bookid_pane.setVisible(false);
-//        searchwith_bookname_pane.setVisible(true);
+        searchwith_bookwriter_pane.setVisible(false);
+        searchwith_bookvaziyat_pane.setVisible(false);
+        searchwith_bookid_pane.setVisible(false);
+        searchwith_bookname_pane.setVisible(true);
    }
 //
     public void search_bookname_btn_action(ActionEvent actionEvent) {
-//        String bookname = ktbNametxt_search.getText();
-//
-//        try {
-//            pnItems_booklist.getChildren().clear();
-//            Node[] nodes = new Node[1000];
-//
-//            Database.makeConnection();
-//
-//            String mysql = "SELECT id ,amantgirande ,  name, writer , date, date_ms , amantdahande , mohlat FROM books where name = "+ "\""+ bookname +"\"";
-//            showbooks(Database.create_bookList(mysql));
-//
-//            Database.getStatement().close();
-//            Database.closeConnection();
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
+        String bookname = ktbNametxt_search.getText();
+
+        try {
+            pnItems_booklist.getChildren().clear();
+            Node[] nodes = new Node[1000];
+
+            Database.makeConnection();
+
+            String mysql = "SELECT * FROM book where ktbName = "+ "\""+ bookname +"\"";
+            showbooks(Database.create_bookList(mysql));
+
+            Database.getStatement().close();
+            Database.closeConnection();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 //
     public void search_bookID_btn_actoin(ActionEvent actionEvent) {
-//        String bookid = ktbIDtxt_search.getText();
-//
-//        try {
-//            pnItems_booklist.getChildren().clear();
-//            Node[] nodes = new Node[1000];
-//
-//            Database.makeConnection();
-//
-//            String mysql = "SELECT id ,amantgirande ,  name, writer , date, date_ms , amantdahande , mohlat FROM books where id = "+ "\""+ bookid +"\"";
-//            showbooks(Database.create_bookList(mysql));
-//
-//            Database.getStatement().close();
-//            Database.closeConnection();
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
+        String bookid = ktbIDtxt_search.getText();
+
+        try {
+            pnItems_booklist.getChildren().clear();
+            Node[] nodes = new Node[1000];
+
+            Database.makeConnection();
+
+            String mysql = "SELECT * FROM book where ktbID = "+ "\""+ bookid +"\"";
+            showbooks(Database.create_bookList(mysql));
+
+            Database.getStatement().close();
+            Database.closeConnection();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void show_amanatdadeshodebooks(ActionEvent actionEvent) {
+        try {
+            pnItems_booklist.getChildren().clear();
+            Node[] nodes = new Node[1000];
+
+            Database.makeConnection();
+
+            String mysql = "SELECT * FROM book where ktbVazeiat = \"نا موجود\" ";
+            showbooks(Database.create_bookList(mysql));
+
+            Database.getStatement().close();
+            Database.closeConnection();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void show_mojod_books(ActionEvent actionEvent) {
+        try {
+            pnItems_booklist.getChildren().clear();
+            Node[] nodes = new Node[1000];
 
+            Database.makeConnection();
+
+            String mysql = "SELECT * FROM book where ktbVazeiat = \"موجود\" ";
+            showbooks(Database.create_bookList(mysql));
+
+            Database.getStatement().close();
+            Database.closeConnection();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
+
+    public void search_writer_btn_action(ActionEvent actionEvent) {
+        String bookwriter = ktbwritertxt_search.getText();
+
+        try {
+            pnItems_booklist.getChildren().clear();
+            Node[] nodes = new Node[1000];
+
+            Database.makeConnection();
+
+            String mysql = "SELECT * FROM book where ktbNevisandeh = "+ "\""+ bookwriter +"\"";
+            showbooks(Database.create_bookList(mysql));
+
+            Database.getStatement().close();
+            Database.closeConnection();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void searchwithbookwriter(ActionEvent actionEvent) {
+        searchwith_bookvaziyat_pane.setVisible(false);
+        searchwith_bookid_pane.setVisible(false);
+        searchwith_bookname_pane.setVisible(false);
+        searchwith_bookwriter_pane.setVisible(true);
     }
 }
 
