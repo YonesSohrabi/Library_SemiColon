@@ -11,6 +11,7 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.mngGozareshCtrl">
    <children>
       <Label layoutX="337.0" layoutY="198.0" prefHeight="91.0" prefWidth="372.0" text="Gozarsh Page" textFill="#8a3333">
@@ -33,7 +34,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="dashboardBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="داشبورد" textFill="#e7e5e5">
+            <Button fx:id="dashboardBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" styleClass="button_adminPage" stylesheets="@../../styles/style.css" text="داشبورد" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -51,7 +52,7 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="booksBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="کتاب ها">
+            <Button fx:id="booksBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" styleClass="button_adminPage" stylesheets="@../../styles/style.css" text="کتاب ها">
                <graphic>
                   <ImageView cache="true" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -63,7 +64,7 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="ketabdarBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="کتابدار">
+            <Button fx:id="ketabdarBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" styleClass="button_adminPage" stylesheets="@../../styles/style.css" text="کتابدار">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -75,7 +76,7 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="faliatBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="امانت">
+            <Button fx:id="faliatBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" styleClass="button_adminPage" stylesheets="@../../styles/style.css" text="امانت">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -87,7 +88,7 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="gozareshBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="گزارش گیری">
+            <Button fx:id="gozareshBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" styleClass="button_adminPage" stylesheets="@../../styles/style.css" text="گزارش گیری">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -99,7 +100,7 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="settingBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="تنظیمات">
+            <Button fx:id="settingBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" styleClass="button_adminPage" stylesheets="@../../styles/style.css" text="تنظیمات">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -111,7 +112,7 @@
                   <Insets right="40.0" />
                </padding>
             </Button>
-            <Button fx:id="exitBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../styles/style.css" text="خروج">
+            <Button fx:id="exitBTN" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="22.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="259.0" styleClass="button_adminPage" stylesheets="@../../styles/style.css" text="خروج">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

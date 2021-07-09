@@ -7,6 +7,7 @@ import controllers.Database;
 import controllers.switchSenceCtrl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Admin;
 
@@ -16,8 +17,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import controllers.login.admLoginPageCtrl;
-import model.User;
 
 public class mngSettingCtrl extends mngStage implements Initializable {
 
@@ -39,6 +40,9 @@ public class mngSettingCtrl extends mngStage implements Initializable {
     @FXML
     private JFXTextField admPassTXT;
 
+    @FXML
+    private VBox editSettingLBL;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,7 +63,7 @@ public class mngSettingCtrl extends mngStage implements Initializable {
             }
         });
 
-        booksBTN.setOnAction(e ->{
+        booksBTN.setOnAction(e -> {
             Stage stage = (Stage) booksBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
@@ -79,7 +83,7 @@ public class mngSettingCtrl extends mngStage implements Initializable {
             }
         });
 
-        faliatBTN.setOnAction(e ->{
+        faliatBTN.setOnAction(e -> {
             Stage stage = (Stage) faliatBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
@@ -89,7 +93,7 @@ public class mngSettingCtrl extends mngStage implements Initializable {
             }
         });
 
-        gozareshBTN.setOnAction(e ->{
+        gozareshBTN.setOnAction(e -> {
             Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
@@ -100,14 +104,19 @@ public class mngSettingCtrl extends mngStage implements Initializable {
         });
 
         editBTN.setOnAction(e -> {
-            try {
-                updateInfoAdmin(admLoginPageCtrl.ID);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            if (!(admUserNameTXT.getText().equals("") || admPassTXT.getText().equals("") ||
+                    admFNameTXT.getText().equals("") || admLNameTXT.getText().equals("") ||
+                    admCodeMeliTXT.getText().equals(""))) {
+                try {
+                    updateInfoAdmin(admLoginPageCtrl.ID);
+                    editSettingLBL.setVisible(true);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
         });
 
-        exitBTN.setOnAction(e ->{
+        exitBTN.setOnAction(e -> {
             Stage stage = (Stage) exitBTN.getScene().getWindow();
             stage.close();
         });
@@ -127,8 +136,8 @@ public class mngSettingCtrl extends mngStage implements Initializable {
     private Admin infoAdmin(String adminID) throws SQLException {
         List<Admin> admins = new ArrayList<>(Database.getInfoAdmin());
         Admin admin = new Admin();
-        for (Admin adm:admins){
-            if (adm.getID().equals(adminID)){
+        for (Admin adm : admins) {
+            if (adm.getID().equals(adminID)) {
                 admin = adm;
                 break;
             }
@@ -143,7 +152,7 @@ public class mngSettingCtrl extends mngStage implements Initializable {
         admin.setCodeMeli(admCodeMeliTXT.getText());
         admin.setUserName(admUserNameTXT.getText());
         admin.setPassword(admPassTXT.getText());
-        Database.updateAdmin(admin,adminID);
+        Database.updateAdmin(admin, adminID);
     }
 }
 
