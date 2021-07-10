@@ -1,6 +1,7 @@
 package controllers;
 
 
+import com.mysql.cj.protocol.Resultset;
 import controllers.login.LoginPageCtrl;
 import javafx.scene.control.Alert;
 import model.Admin;
@@ -37,9 +38,9 @@ public class Database {
         }
     }
 
-    public static void makeConnection() throws  SQLException {
+    public static void makeConnection() throws SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library" , "root" , "1380Ys1388?");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "1234");
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.out.println(e);
@@ -104,7 +105,7 @@ public class Database {
         //ارسال اطلاعات ثبت نام به دیتابیس
 
         Random rnd = new Random();
-        String id = String.valueOf(rnd.nextInt(9000)+1000);
+        String id = String.valueOf(rnd.nextInt(9000) + 1000);
         System.out.println("id = " + id);
         String setinfo = "INSERT INTO user (usrID ,usrFName, usrLName , userName , usrPass)  values ('%s','%s','%s','%s','%s')";
         setinfo = String.format(setinfo, p.getID(), p.getFirstName(), p.getLastName(), p.getUserName(), p.getPassword());
@@ -124,7 +125,7 @@ public class Database {
         closeConnection();
     }
 
-    public static User getItemUserDB(String userID) throws SQLException{
+    public static User getItemUserDB(String userID) throws SQLException {
         makeConnection();
         String sql = String.format("Select * FROM user WHERE usrID = '%s' ", userID);
         ResultSet resultSet = getStatement().executeQuery(sql);
@@ -143,8 +144,8 @@ public class Database {
 
     public static void updateUser(User user, String usrIDTXT) throws SQLException {
         makeConnection();
-        String sql = String.format("UPDATE user SET usrFName = '%s', usrLName = '%s' , usrPass = '%s' , userName = '%s' , usrCodeMeli = '%s'"  +
-                " WHERE usrID = '%s'", user.getFirstName(), user.getLastName(), user.getPassword(), user.getUserName() ,user.getCodeMeli() , usrIDTXT);
+        String sql = String.format("UPDATE user SET usrFName = '%s', usrLName = '%s' , usrPass = '%s' , userName = '%s' , usrCodeMeli = '%s'" +
+                " WHERE usrID = '%s'", user.getFirstName(), user.getLastName(), user.getPassword(), user.getUserName(), user.getCodeMeli(), usrIDTXT);
         getStatement().executeUpdate(sql);
         closeConnection();
     }
@@ -169,7 +170,7 @@ public class Database {
         Database.closeConnection();
         return admins;
     }
-    
+
     public static User set_home_items() {
         String id = LoginPageCtrl.get_id();
         System.out.println("id in dabase class = " + id);
@@ -187,8 +188,8 @@ public class Database {
             String fullname = (name + " " + family);
             System.out.println("fullname =" + fullname);
             user.setFirstName(name);
-            user.setLastName(family );
-            user.setID( id);
+            user.setLastName(family);
+            user.setID(id);
             user.setUserName(username);
         } catch (Exception e) {
             System.out.println(e);
@@ -214,20 +215,18 @@ public class Database {
         String dateformat = fr.format(date);
 
         //delete date_ms later if dont use
-        String addbook= "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonande , ktbEhdaDate , ktbVazeiat ,ktbTedad , ktbAmntGirande , ktbID)  values ('%s','%s','%s','%s','%s','%s','%s','%d')";
+        String addbook = "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonande , ktbEhdaDate , ktbVazeiat ,ktbTedad , ktbAmntGirande , ktbID)  values ('%s','%s','%s','%s','%s','%s','%s','%d')";
 
         Random rnd = new Random();
-        int book_id = rnd.nextInt(9000)+1000;
-        System.out.println("bookid = "+book_id);
-        System.out.println("namebook = " + book.getKtbName() );
+        int book_id = rnd.nextInt(9000) + 1000;
+        System.out.println("bookid = " + book_id);
+        System.out.println("namebook = " + book.getKtbName());
         //int book_id = Integer.parseInt(String.valueOf(state.executeQuery(getid)));
-        addbook = String.format(addbook, book.getKtbName() , book.getKtbNevisande() , book.getKtbEhdaKonandeh()  , dateformat , "موجود" , 1 , "" , book_id );
+        addbook = String.format(addbook, book.getKtbName(), book.getKtbNevisande(), book.getKtbEhdaKonandeh(), dateformat, "موجود", 1, "", book_id);
         System.out.println(addbook);
         Database.getStatement().execute(addbook);
         Database.closeConnection();
     }
-
-
 
     public static List<Book> create_bookList(String sql) {
 
@@ -243,6 +242,8 @@ public class Database {
                 String bookwriter = result.getString("ktbNevisandeh");
                 String ehdakonande = result.getString("ktbEhdaKonande");
                 String vaziyat = result.getString("ktbVazeiat");
+                String amnttarakoneshid = result.getString("amtTarakoneshID");
+
 
                 Book book = new Book();
                 book.setKtbName(bookname);
@@ -251,6 +252,7 @@ public class Database {
                 book.setKtbEhdaKonandeh(ehdakonande);
                 book.setKtbTedad("1");
                 book.setKtbVazeit(vaziyat);
+                book.setAmtTarakoneshID(amnttarakoneshid);
                 booklist1.add(book);
             }
 
@@ -269,7 +271,7 @@ public class Database {
         String dateformat = fr.format(date);
         String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')", book.getKtbID(), book.getKtbName(),
                 book.getKtbNevisande(), book.getKtbEhdaKonandeh(), Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(),
-                dateformat,book.getAmtTarakoneshID(),"");
+                dateformat, book.getAmtTarakoneshID(), "");
         try {
             getStatement().execute(sql);
         } catch (SQLException e) {
@@ -317,6 +319,7 @@ public class Database {
             book.setKtbNevisande(resultSet.getString("ktbNevisandeh"));
             book.setKtbTedad(resultSet.getString("ktbTedad"));
             book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
+            book.setAmtTarakoneshID(resultSet.getString("amtTarakoneshID"));
             bookList.add(book);
         }
         return bookList;
@@ -518,27 +521,77 @@ public class Database {
         return ktbName;
     }
 
+    public static boolean getBookVaziyat(String ktbid) throws SQLException {
+        makeConnection();
+        boolean vaziyat ;
+        String testvaziyat = "select ktbVazeiat from book where ktbID = '%s' ";
+        testvaziyat = String.format(testvaziyat , ktbid);
+        ResultSet rs = Database.getStatement().executeQuery(testvaziyat);
+        rs.next();
+        String vazeiat = rs.getString("ktbVazeiat") ;
+        rs.close();
+        if (vazeiat.equals("موجود") ) {
+            vaziyat = true;
+        }
+        else{
+            vaziyat = false;
+        }
+        closeConnection();
+        return vaziyat;
+    }
 
     public static void amanatgiri(Amanat amanat) throws SQLException {
+        boolean vaziyat = getBookVaziyat(amanat.getKtbID());
+        if(vaziyat==true) {
+            makeConnection();
+            String amanatgiri = "INSERT INTO amanat (ktbID, usrID , amtDateGet , amtDateRtrn ,amtDarkhastUsr , amtEmkanTamdid)  values ('%s','%s','%s','%s','%s','%s')";
+            amanatgiri = String.format(amanatgiri, amanat.getKtbID(), amanat.getUsrID(), amanat.getAmtDateGet(),
+                    amanat.getAmtDateRtrn(), amanat.getAmtDarkhastUsr(), amanat.getAmtEmkanTamdid());
+            System.out.println(amanatgiri);
+            Database.getStatement().execute(amanatgiri, Statement.RETURN_GENERATED_KEYS);
+            ResultSet resultSet = statement.getGeneratedKeys();
+            resultSet.next();
+            int amtID = resultSet.getInt(1);
+            closeConnection();
+            updateBookAmntStatus(getUsrName(LoginPageCtrl.get_id()), String.valueOf(amtID), "ناموجود", amanat.getKtbID());
+        }
+        else if(vaziyat==false){
+            alert.errorAlert("کتاب مورد نظر شما درحال حاضر موجود نمیباشد");
+        }
+    }
+
+    public static void updateBookAmntStatus(String ktbamntgirande , String amnttarakoneshid , String ktbvaziyat , String ktbid) throws SQLException {
         makeConnection();
-        String amanatgiri= "INSERT INTO amanat (ktbID, usrID , amtDateGet , amtDateRtrn ,amtDarkhastUsr , amtEmkanTamdid)  values ('%s','%s','%s','%s','%s','%s')";
-
-        amanatgiri = String.format(amanatgiri, amanat.getKtbID() , amanat.getUsrID() , amanat.getAmtDateGet() ,
-                amanat.getAmtDateRtrn() , amanat.getAmtDarkhastUsr() ,  amanat.getAmtEmkanTamdid());
-        System.out.println(amanatgiri);
-
-        Database.getStatement().execute(amanatgiri,Statement.RETURN_GENERATED_KEYS);
-        ResultSet resultSet = statement.getGeneratedKeys();
-        resultSet.next();
-        int amtID = resultSet.getInt(1);
-        closeConnection();
-
-        makeConnection();
-        String updateBook = String.format("UPDATE book SET ktbAmntGirande = '%s' ,amtTarakoneshID = '%s',  ktbVazeiat = '%s' WHERE ktbID = '%s' " ,
-                getUsrName(LoginPageCtrl.get_id()),amtID,"ناموجود" , amanat.getKtbID());
+        String updateBook = String.format("UPDATE book SET ktbAmntGirande = '%s' ,amtTarakoneshID = '%s',  ktbVazeiat = '%s' WHERE ktbID = '%s' ",
+                ktbamntgirande, amnttarakoneshid, ktbvaziyat , ktbid);
         getStatement().execute(updateBook);
         closeConnection();
+    }
 
+    public static String getAmanatgiriDate(String amnttarakoneshid) throws SQLException {
+        makeConnection();
+        String sql = String.format("Select amtDateGet FROM amanat WHERE amtID = '%d' ", Integer.parseInt(amnttarakoneshid));
+
+        System.out.println(sql);
+
+        ResultSet rs = Database.getStatement().executeQuery(sql);
+        rs.next();
+        String amanatdateget = rs.getString("amtDateGet") ;
+        rs.close();
+        return amanatdateget;
+    }
+    public static String getMohlatTahvil(String amnttarakoneshid) throws SQLException, ParseException {
+        makeConnection();
+        String sql = String.format("Select amtDateRtrn FROM amanat WHERE amtID = '%d' ", Integer.parseInt(amnttarakoneshid));
+
+        System.out.println(sql);
+
+        ResultSet rs = Database.getStatement().executeQuery(sql);
+        rs.next();
+        String amanatdatereturn = rs.getString("amtDateRtrn") ;
+        rs.close();
+        String mohlat = DateSC.mohlatTahvil(amanatdatereturn);
+        return mohlat;
     }
 
 
@@ -552,10 +605,24 @@ public class Database {
         return usrName;
     }
 
-
-    public static void updateAmanat(String amtID) throws SQLException {
+    public static String getAmntTarakoneshID(String ktbID) throws SQLException {
         makeConnection();
-        String sql = String.format("UPDATE amanat SET amtEmkanTamdid = '0', amtDarkhastUsr = '3' WHERE amtID = '%s'", amtID);
+        String sqlUsr = String.format("SELECT amtTarakoneshID FROM book WHERE ktbID = '%s'", ktbID);
+        ResultSet resultSetUsr = Database.getStatement().executeQuery(sqlUsr);
+        resultSetUsr.next();
+        String amntID = resultSetUsr.getString("amtTarakoneshID");
+        resultSetUsr.close();
+        return amntID;
+    }
+
+    public static void updateAmanat(String amtID, int lable) throws SQLException {
+        makeConnection();
+        String sql = null;
+        if (lable == 0) {
+            sql = String.format("UPDATE amanat SET amtEmkanTamdid = '0', amtDarkhastUsr = '3' WHERE amtID = '%s'", amtID);
+        } else if (lable == 1) {
+            sql = String.format("UPDATE amanat SET amtEmkanTamdid = '0', amtDarkhastUsr = '1' WHERE amtID = '%s'", amtID);
+        }
         getStatement().executeUpdate(sql);
         closeConnection();
     }
@@ -590,8 +657,8 @@ public class Database {
     public static void updateAdmin(Admin admin, String adminID) throws SQLException {
         makeConnection();
         String sql = String.format("UPDATE admin SET admFName = '%s', admLName = '%s' , admCodeMeli = '%s',admUserName ='%s'," +
-                " admPass = '%s' WHERE admID = '%s'", admin.getFirstName(),admin.getLastName(), admin.getCodeMeli(),
-                admin.getUserName() ,admin.getPassword(), adminID);
+                        " admPass = '%s' WHERE admID = '%s'", admin.getFirstName(), admin.getLastName(), admin.getCodeMeli(),
+                admin.getUserName(), admin.getPassword(), adminID);
         getStatement().executeUpdate(sql);
         closeConnection();
     }
@@ -648,6 +715,8 @@ public class Database {
         closeConnection();
         return num;
     }
+
+
 }
 
 
