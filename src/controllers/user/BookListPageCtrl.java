@@ -238,32 +238,6 @@ public class BookListPageCtrl implements Initializable {
         createBookList();
     }
 
-
-    public void btn_amanatgiri_clicked(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
-
-    }
-
-    //search
-    //جستجو در صفحه ی بوک لیست بر اساس نام کتاب
-    public void btn_search_BkList_clicked(ActionEvent actionEvent) {
-//        String bookname = search_Bklist_txtfield.getText();
-//
-//        try {
-//            pnItems_booklist.getChildren().clear();
-//            Node[] nodes = new Node[1000];
-//
-//            Database.makeConnection();
-//
-//            String mysql = "SELECT id ,amantgirande ,  name, writer , date, date_ms , amantdahande , mohlat FROM books where name = "+ "\""+ bookname +"\"";
-//            showbooks(Database.create_bookList(mysql));
-//
-//            Database.getStatement().close();
-//            Database.closeConnection();
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-    }
-//
     public void searchwith_showallbooks(ActionEvent actionEvent) throws ClassNotFoundException {
         searchwith_bookwriter_pane.setVisible(false);
         searchwith_bookvaziyat_pane.setVisible(false);

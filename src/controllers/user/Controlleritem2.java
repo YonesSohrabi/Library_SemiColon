@@ -101,6 +101,8 @@ public class Controlleritem2 implements Initializable {
 //                amnt.setKtbName(item2_namebook.getText());
                 Database.amanatgiri(amnt);
 
+
+
                 Stage stage = (Stage) btn_amanatgiri.getScene().getWindow();
                 switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
                 try {
