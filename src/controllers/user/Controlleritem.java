@@ -27,8 +27,6 @@ import java.util.ResourceBundle;
 public class Controlleritem implements Initializable {
     ///////////////////////////////////////////////
     //item
-    @FXML
-    private Button btn_odat;
 
     @FXML
     private Label item_dateAmntgiri;
@@ -93,13 +91,19 @@ public class Controlleritem implements Initializable {
                 throwables.printStackTrace();
             }
         });
-        btn_odat.setOnAction(e -> {
-
-//            try {
-//
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
+        btn_odatBook.setOnAction(e -> {
+            try {
+                Database.updateBookAmntStatus("" , "" , "موجود" , item_bookID.getText());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            Stage stage = (Stage) btn_odatBook.getScene().getWindow();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchUserPage("Home");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         });
     }
 

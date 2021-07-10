@@ -1,6 +1,7 @@
 package controllers;
 
 
+import com.mysql.cj.protocol.Resultset;
 import controllers.login.LoginPageCtrl;
 import javafx.scene.control.Alert;
 import model.Admin;
@@ -518,35 +519,52 @@ public class Database {
         return ktbName;
     }
 
+    public static boolean getBookVaziyat(String ktbid) throws SQLException {
+        makeConnection();
+        boolean vaziyat ;
+        String testvaziyat = "select ktbVazeiat from book where ktbID = '%s' ";
+        testvaziyat = String.format(testvaziyat , ktbid);
+        ResultSet rs = Database.getStatement().executeQuery(testvaziyat);
+        rs.next();
+        String vazeiat = rs.getString("ktbVazeiat") ;
+        rs.close();
+        if (vazeiat.equals("موجود") ) {
+            vaziyat = true;
+        }
+        else{
+            vaziyat = false;
+        }
+        closeConnection();
+        return vaziyat;
+    }
 
     public static void amanatgiri(Amanat amanat) throws SQLException {
-        makeConnection();
-        String amanatgiri = "INSERT INTO amanat (ktbID, usrID , amtDateGet , amtDateRtrn ,amtDarkhastUsr , amtEmkanTamdid)  values ('%s','%s','%s','%s','%s','%s')";
+        boolean vaziyat = getBookVaziyat(amanat.getKtbID());
+        if(vaziyat==true) {
+            makeConnection();
+            String amanatgiri = "INSERT INTO amanat (ktbID, usrID , amtDateGet , amtDateRtrn ,amtDarkhastUsr , amtEmkanTamdid)  values ('%s','%s','%s','%s','%s','%s')";
+            amanatgiri = String.format(amanatgiri, amanat.getKtbID(), amanat.getUsrID(), amanat.getAmtDateGet(),
+                    amanat.getAmtDateRtrn(), amanat.getAmtDarkhastUsr(), amanat.getAmtEmkanTamdid());
+            System.out.println(amanatgiri);
+            Database.getStatement().execute(amanatgiri, Statement.RETURN_GENERATED_KEYS);
+            ResultSet resultSet = statement.getGeneratedKeys();
+            resultSet.next();
+            int amtID = resultSet.getInt(1);
+            closeConnection();
+            updateBookAmntStatus(getUsrName(LoginPageCtrl.get_id()), String.valueOf(amtID), "ناموجود", amanat.getKtbID());
+        }
+        else if(vaziyat==false){
+            alert.errorAlert("کتاب مورد نظر شما درحال حاضر موجود نمیباشد");
+        }
+    }
 
-        amanatgiri = String.format(amanatgiri, amanat.getKtbID(), amanat.getUsrID(), amanat.getAmtDateGet(),
-                amanat.getAmtDateRtrn(), amanat.getAmtDarkhastUsr(), amanat.getAmtEmkanTamdid());
-        System.out.println(amanatgiri);
-
-        Database.getStatement().execute(amanatgiri, Statement.RETURN_GENERATED_KEYS);
-        ResultSet resultSet = statement.getGeneratedKeys();
-        resultSet.next();
-        int amtID = resultSet.getInt(1);
-        closeConnection();
-
+    public static void updateBookAmntStatus(String ktbamntgirande , String amnttarakoneshid , String ktbvaziyat , String ktbid) throws SQLException {
         makeConnection();
         String updateBook = String.format("UPDATE book SET ktbAmntGirande = '%s' ,amtTarakoneshID = '%s',  ktbVazeiat = '%s' WHERE ktbID = '%s' ",
-                getUsrName(LoginPageCtrl.get_id()), amtID, "ناموجود", amanat.getKtbID());
+                ktbamntgirande, amnttarakoneshid, ktbvaziyat , ktbid);
         getStatement().execute(updateBook);
         closeConnection();
     }
-//
-//    public static void updateAmntStatus(String ktbamntgirande , String amnttarakoneshid , String ktbvaziyat , String ktbid) throws SQLException {
-//        makeConnection();
-//        String updateBook = String.format("UPDATE book SET ktbAmntGirande = '%s' ,amtTarakoneshID = '%s',  ktbVazeiat = '%s' WHERE ktbID = '%s' ",
-//                getUsrName(ktbamntgirande, amnttarakoneshid, ktbvaziyat , ktbid);
-//        getStatement().execute(updateBook);
-//        closeConnection();
-//    }
 
 
     public static String getUsrName(String usrID) throws SQLException {
