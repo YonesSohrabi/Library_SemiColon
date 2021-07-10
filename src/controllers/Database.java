@@ -228,7 +228,6 @@ public class Database {
         Database.closeConnection();
     }
 
-
     public static List<Book> create_bookList(String sql) {
 
         List<Book> booklist1 = null;
@@ -243,6 +242,8 @@ public class Database {
                 String bookwriter = result.getString("ktbNevisandeh");
                 String ehdakonande = result.getString("ktbEhdaKonande");
                 String vaziyat = result.getString("ktbVazeiat");
+                String amnttarakoneshid = result.getString("amtTarakoneshID");
+
 
                 Book book = new Book();
                 book.setKtbName(bookname);
@@ -251,6 +252,7 @@ public class Database {
                 book.setKtbEhdaKonandeh(ehdakonande);
                 book.setKtbTedad("1");
                 book.setKtbVazeit(vaziyat);
+                book.setAmtTarakoneshID(amnttarakoneshid);
                 booklist1.add(book);
             }
 
@@ -564,6 +566,32 @@ public class Database {
                 ktbamntgirande, amnttarakoneshid, ktbvaziyat , ktbid);
         getStatement().execute(updateBook);
         closeConnection();
+    }
+
+    public static String getAmanatgiriDate(String amnttarakoneshid) throws SQLException {
+        makeConnection();
+        String sql = String.format("Select amtDateGet FROM amanat WHERE amtID = '%d' ", Integer.parseInt(amnttarakoneshid));
+
+        System.out.println(sql);
+
+        ResultSet rs = Database.getStatement().executeQuery(sql);
+        rs.next();
+        String amanatdateget = rs.getString("amtDateGet") ;
+        rs.close();
+        return amanatdateget;
+    }
+    public static String getMohlatTahvil(String amnttarakoneshid) throws SQLException, ParseException {
+        makeConnection();
+        String sql = String.format("Select amtDateRtrn FROM amanat WHERE amtID = '%d' ", Integer.parseInt(amnttarakoneshid));
+
+        System.out.println(sql);
+
+        ResultSet rs = Database.getStatement().executeQuery(sql);
+        rs.next();
+        String amanatdatereturn = rs.getString("amtDateRtrn") ;
+        rs.close();
+        String mohlat = DateSC.mohlatTahvil(amanatdatereturn);
+        return mohlat;
     }
 
 

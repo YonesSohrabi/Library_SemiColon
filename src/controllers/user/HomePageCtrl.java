@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -126,7 +127,7 @@ public class HomePageCtrl implements Initializable {
                         i++;
                         System.out.println(i);
                     }
-                } catch (IOException e) {
+                } catch (IOException | SQLException | ParseException e) {
                    e.printStackTrace();
                 }
             }

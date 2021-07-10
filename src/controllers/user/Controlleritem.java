@@ -54,11 +54,13 @@ public class Controlleritem implements Initializable {
 
     static String bookID = null;
 
-    public void setitemBook(Book book){
+    public void setitemBook(Book book) throws SQLException, ParseException {
         item_bookID.setText(String.valueOf(book.getKtbID()));
         item_mohlat.setText(String.valueOf("10"));
         item_namebook.setText(book.getKtbName());
         item_writername.setText(book.getKtbNevisande());
+        item_dateAmntgiri.setText(Database.getAmanatgiriDate(book.getAmtTarakoneshID()));
+        item_mohlat.setText(Database.getMohlatTahvil(book.getAmtTarakoneshID()));
     }
     public void setItemsAmnt(Amanat amnt){
         item_dateAmntgiri.setText(amnt.getAmtDateGet());
