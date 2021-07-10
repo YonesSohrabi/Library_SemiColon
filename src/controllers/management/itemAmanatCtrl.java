@@ -62,6 +62,10 @@ public class itemAmanatCtrl implements Initializable {
         ktbNameLBL.setText(amanat.getKtbName());
         usrNameLBL.setText(amanat.getUsrName());
         mohlatLBL.setText((amanat.getMohlat()));
+        if(amanat.getAmtDarkhastUsr().equals("عودت")){
+           mohlatLBL.setText("عودت داده شد");
+        }
+
         if (amanat.getAmtDarkhastUsr().equals("1")){
             elanImg.setVisible(true);
         }

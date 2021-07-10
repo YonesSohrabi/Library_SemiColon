@@ -124,6 +124,8 @@ public class detailsAmanatPageCtrl implements Initializable {
             vazeiatDarkhastTXT.setText("مهلت کتاب به مدت 10 روز دیگر با موافقت مدیریت برای کاربر تمدید شد.");
         } else if (amanat.getAmtDarkhastUsr().equals("3")) {
             vazeiatDarkhastTXT.setText("درخواست تمدید مهلت توسط مدیریت برای این کتاب رد شد .");
+        } else if (amanat.getAmtDarkhastUsr().equals("عودت")) {
+            vazeiatDarkhastTXT.setText("كتاب به كتابخانه عودت داده شده است .");
         }
 
         User user = Database.getItemUserDB(usrIDTXT.getText());
