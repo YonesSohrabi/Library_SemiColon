@@ -408,7 +408,7 @@ public class Database {
     public static List<User> readUsersDB() throws SQLException {
         List<User> userList = new ArrayList<>();
         Database.makeConnection();
-        ResultSet resultSet = Database.getStatement().executeQuery("SELECT * FROM user");
+        ResultSet resultSet = getStatement().executeQuery("SELECT * FROM user WHERE status = '1'");
         User user;
         while (resultSet.next()) {
             user = new User();
@@ -430,9 +430,9 @@ public class Database {
         Database.makeConnection();
         String sql;
         if (lable == "numOzv") {
-            sql = String.format("SELECT * FROM user WHERE usrID = '%s'", text);
+            sql = String.format("SELECT * FROM user WHERE usrID = '%s' AND status = '1'", text);
         } else {
-            sql = String.format("SELECT * FROM user WHERE usrCodeMeli = '%s'", text);
+            sql = String.format("SELECT * FROM user WHERE usrCodeMeli = '%s' AND status = '1'", text);
         }
         ResultSet resultSet = Database.getStatement().executeQuery(sql);
         User user;
@@ -456,7 +456,33 @@ public class Database {
         String sql = String.format("UPDATE user SET status = '0' WHERE usrID = '%s'",id);
         getStatement().executeUpdate(sql);
         closeConnection();
+
+        Date date = new Date();
+        SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
+        String[] dates = fr.format(date).split("/");
+        Roozh roozh = new Roozh();
+        roozh.gregorianToPersian(Integer.parseInt(dates[0]),Integer.parseInt(dates[1]),Integer.parseInt(dates[2]));
+        makeConnection();
+        sql = String.format("UPDATE amanat SET amtDateRtrn = '%s', amtDarkhastUsr = '%s' WHERE usrID = '%s'",roozh,"عودت",id);
+        getStatement().executeUpdate(sql);
         closeConnection();
+
+        makeConnection();
+        sql = String.format("SELECT ktbID FROM amanat WHERE usrID = '%s'",id);
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        ArrayList ktbId = new ArrayList();
+        while (resultSet.next()){
+            ktbId.add(resultSet.getString(1));
+        }
+        closeConnection();
+
+        makeConnection();
+        for (Object kid:ktbId) {
+            sql = String.format("UPDATE book SET ktbVazeiat = '%s' WHERE ktbID = '%s'","موجود",kid);
+            getStatement().executeUpdate(sql);
+        }
+        closeConnection();
+
     }
 
     public static List<Amanat> readAmanatsDB() throws SQLException, ParseException {
