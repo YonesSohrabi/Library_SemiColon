@@ -88,7 +88,7 @@ public class detailsAmanatPageCtrl implements Initializable {
 
         radBTN.setOnAction(e -> {
             try {
-                Database.updateAmanat(amtIDTXT.getText());
+                Database.updateAmanat(amtIDTXT.getText() , 0);
                 getDataAmanat(amtIDTXT.getText());
             } catch (SQLException | ParseException throwables) {
                 throwables.printStackTrace();

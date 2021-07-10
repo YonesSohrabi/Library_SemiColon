@@ -1,14 +1,27 @@
 package controllers.user;
 
 
+import controllers.Database;
+import controllers.DateSC;
+import controllers.Roozh;
+import controllers.login.LoginPageCtrl;
+import controllers.switchSenceCtrl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import model.Amanat;
 import model.Book;
+
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controlleritem implements Initializable {
@@ -28,6 +41,12 @@ public class Controlleritem implements Initializable {
 
     @FXML
     private Label item_namebook;
+
+    @FXML
+    private Button btn_tamdid;
+
+    @FXML
+    private Button btn_odatBook;
 
     @FXML
     private HBox itemC;
@@ -66,8 +85,22 @@ public class Controlleritem implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        btn_tamdid.setOnAction(e -> {
+            try {
+                Database.updateAmanat(Database.getAmntTarakoneshID(item_bookID.getText()) , 1);
+                btn_tamdid.setVisible(false);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+        btn_odat.setOnAction(e -> {
 
-
+//            try {
+//
+//            } catch (SQLException throwables) {
+//                throwables.printStackTrace();
+//            }
+        });
     }
 
     public void set_bookID(String a) {
