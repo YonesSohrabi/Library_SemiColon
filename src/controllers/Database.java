@@ -268,10 +268,12 @@ public class Database {
         makeConnection();
         Date date = new Date();
         SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
-        String dateformat = fr.format(date);
-        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')", book.getKtbID(), book.getKtbName(),
-                book.getKtbNevisande(), book.getKtbEhdaKonandeh(), Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(),
-                dateformat, book.getAmtTarakoneshID(), "");
+        String[] dates = fr.format(date).split("/");
+        Roozh roozh = new Roozh();
+        roozh.gregorianToPersian(Integer.parseInt(dates[0]),Integer.parseInt(dates[1]),Integer.parseInt(dates[2]));
+        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+                book.getKtbID(), book.getKtbName(), book.getKtbNevisande(), book.getKtbEhdaKonandeh(),
+                Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(), book.getAmtTarakoneshID(),roozh,"","1");
         try {
             getStatement().execute(sql);
         } catch (SQLException e) {
@@ -283,7 +285,7 @@ public class Database {
     public static List<Book> readBooksDB() throws SQLException {
         List<Book> bookList = new ArrayList<>();
         Database.makeConnection();
-        ResultSet resultSet = Database.getStatement().executeQuery("SELECT * FROM book");
+        ResultSet resultSet = Database.getStatement().executeQuery("SELECT * FROM book WHERE status = '1'");
         Book book;
         while (resultSet.next()) {
             book = new Book();
@@ -305,9 +307,9 @@ public class Database {
         Database.makeConnection();
         String sql;
         if (lable.equals("name")) {
-            sql = String.format("SELECT * FROM book WHERE ktbName = '%s'", txet);
+            sql = String.format("SELECT * FROM book WHERE ktbName = '%s' AND status = '1' ", txet);
         } else {
-            sql = String.format("SELECT * FROM book WHERE ktbID = '%s'", txet);
+            sql = String.format("SELECT * FROM book WHERE ktbID = '%s' AND status = '1' ", txet);
         }
 
         ResultSet resultSet = Database.getStatement().executeQuery(sql);
@@ -334,7 +336,7 @@ public class Database {
         } else {
             vaz = "ناموجود";
         }
-        String sql = String.format("SELECT * FROM book WHERE ktbVazeiat = '%s'", vaz);
+        String sql = String.format("SELECT * FROM book WHERE ktbVazeiat = '%s' AND status = '1' ", vaz);
         ResultSet resultSet = Database.getStatement().executeQuery(sql);
         Book book;
         while (resultSet.next()) {
@@ -351,12 +353,17 @@ public class Database {
 
     public static void deleteBook(String id) throws SQLException {
         makeConnection();
-        String sql = String.format("DELETE FROM book WHERE ktbID = %s", id);
-        try {
-            getStatement().execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        String sql = String.format("UPDATE book SET status = '0' WHERE ktbID = '%s'",id);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+        Date date = new Date();
+        SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
+        String[] dates = fr.format(date).split("/");
+        Roozh roozh = new Roozh();
+        roozh.gregorianToPersian(Integer.parseInt(dates[0]),Integer.parseInt(dates[1]),Integer.parseInt(dates[2]));
+        makeConnection();
+        sql = String.format("UPDATE amanat SET amtDateRtrn = '%s', amtDarkhastUsr = '%s' WHERE ktbID = '%s'",roozh,"عودت",id);
+        getStatement().executeUpdate(sql);
         closeConnection();
     }
 
@@ -369,7 +376,7 @@ public class Database {
         book.setKtbID(resultSet.getString("ktbID"));
         book.setKtbName(resultSet.getString("ktbName"));
         book.setKtbNevisande(resultSet.getString("ktbNevisandeh"));
-        book.setKtbEhdaKonandeh(resultSet.getString("KtbEhdaKonandeh"));
+        book.setKtbEhdaKonandeh(resultSet.getString("KtbEhdaKonande"));
         book.setKtbTedad(resultSet.getString("ktbTedad"));
         book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
         book.setAmtTarakoneshID(resultSet.getString("amtTarakoneshID"));
@@ -404,7 +411,7 @@ public class Database {
     public static List<User> readUsersDB() throws SQLException {
         List<User> userList = new ArrayList<>();
         Database.makeConnection();
-        ResultSet resultSet = Database.getStatement().executeQuery("SELECT * FROM user");
+        ResultSet resultSet = getStatement().executeQuery("SELECT * FROM user WHERE status = '1'");
         User user;
         while (resultSet.next()) {
             user = new User();
@@ -426,9 +433,9 @@ public class Database {
         Database.makeConnection();
         String sql;
         if (lable == "numOzv") {
-            sql = String.format("SELECT * FROM user WHERE usrID = '%s'", text);
+            sql = String.format("SELECT * FROM user WHERE usrID = '%s' AND status = '1'", text);
         } else {
-            sql = String.format("SELECT * FROM user WHERE usrCodeMeli = '%s'", text);
+            sql = String.format("SELECT * FROM user WHERE usrCodeMeli = '%s' AND status = '1'", text);
         }
         ResultSet resultSet = Database.getStatement().executeQuery(sql);
         User user;
@@ -449,13 +456,36 @@ public class Database {
 
     public static void deleteUser(String id) throws SQLException {
         makeConnection();
-        String sql = String.format("DELETE FROM user WHERE usrID = %s", id);
-        try {
-            getStatement().execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        String sql = String.format("UPDATE user SET status = '0' WHERE usrID = '%s'",id);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+
+        Date date = new Date();
+        SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
+        String[] dates = fr.format(date).split("/");
+        Roozh roozh = new Roozh();
+        roozh.gregorianToPersian(Integer.parseInt(dates[0]),Integer.parseInt(dates[1]),Integer.parseInt(dates[2]));
+        makeConnection();
+        sql = String.format("UPDATE amanat SET amtDateRtrn = '%s', amtDarkhastUsr = '%s' WHERE usrID = '%s'",roozh,"عودت",id);
+        getStatement().executeUpdate(sql);
+        closeConnection();
+
+        makeConnection();
+        sql = String.format("SELECT ktbID FROM amanat WHERE usrID = '%s'",id);
+        ResultSet resultSet = getStatement().executeQuery(sql);
+        ArrayList ktbId = new ArrayList();
+        while (resultSet.next()){
+            ktbId.add(resultSet.getString(1));
         }
         closeConnection();
+
+        makeConnection();
+        for (Object kid:ktbId) {
+            sql = String.format("UPDATE book SET ktbVazeiat = '%s' WHERE ktbID = '%s'","موجود",kid);
+            getStatement().executeUpdate(sql);
+        }
+        closeConnection();
+
     }
 
     public static List<Amanat> readAmanatsDB() throws SQLException, ParseException {
@@ -706,9 +736,10 @@ public class Database {
         return num;
     }
 
-    public static String counter(String tableName, String feildName, String feildValue) throws SQLException {
+    public static String counter(String tableName, String feildName, String feildValue,String status,String valueStatus) throws SQLException {
         makeConnection();
-        String sql = String.format("SELECT COUNT(*) FROM %s WHERE %s = '%s' ", tableName, feildName, feildValue);
+        String sql = String.format("SELECT COUNT(*) FROM %s WHERE %s = '%s' AND %s = '%s' ",
+                tableName, feildName, feildValue,status,valueStatus);
         ResultSet resultSet = getStatement().executeQuery(sql);
         resultSet.next();
         String num = resultSet.getString(1);
