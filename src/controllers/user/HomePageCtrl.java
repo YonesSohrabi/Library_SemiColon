@@ -79,7 +79,7 @@ public class HomePageCtrl implements Initializable {
                 //ساختن تیبل مورد نیاز در دیتابیس
                 Database.create_book_table();
                 String amanatgirande = lbl_fullname.getText();
-                String mysql = "SELECT * FROM book where ktbAmntGirande = " + "\"" + amanatgirande + "\"";
+                String mysql = "SELECT * FROM book where ktbAmntGirande = " + "\"" + amanatgirande + "\" and status = '1'";
                 showBooksHomepage(Database.createBookList(mysql));
             } catch (SQLException e) {
                 e.printStackTrace();

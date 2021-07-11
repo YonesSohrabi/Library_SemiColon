@@ -91,7 +91,7 @@ public class Database {
     public static void registerUser(User p) {
         try {
             //ساختن تیبل مورد نیاز در دیتابیس
-            String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL , `usrLName` varchar(80) NOT NULL , `userName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT , PRIMARY KEY (`usrID`) ,UNIQUE (`userName`))";
+            String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL , `usrLName` varchar(80) NOT NULL , `userName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT ,`status` varchar(10) = '1' , PRIMARY KEY (`usrID`) ,UNIQUE (`userName`))";
             getStatement().execute(crtbl);
             //مشکل(ارور) در ثبت نام
         } catch (Exception ex) {
@@ -168,7 +168,7 @@ public class Database {
         String id = LoginPageCtrl.get_id();
         User user = new User();
         try {
-            String mysql = "SELECT usrFName, usrLName , userName , usrPass FROM user WHERE usrID =" + id;
+            String mysql = "SELECT usrFName, usrLName , userName , usrPass FROM user WHERE usrID =" + id +" and status ='1' ";
             System.out.println("mysql=" + mysql);
             ResultSet result = Database.statement.executeQuery(mysql);
             result.next();
@@ -192,7 +192,7 @@ public class Database {
     public static void create_book_table() {
         try {
             //ساختن تیبل مورد نیاز در دیتابیس
-            String crtbl = "CREATE TABLE  IF NOT EXISTS `book` ( `ktbID` INT NOT NULL , `ktbEhdaKonande` varchar(80) NOT NULL , `ktbName` varchar(80) NOT NULL ,  `ktbNevisandeh` varchar(80) NOT NULL ,  `ktbTedad` int NOT NULL ,  `ktbVazeiat` varchar(10) NOT NULL , `amtTarakoneshID` varchar(11) , `ktbEhdaDate` TEXT NOT NULL , `ktbAmntGirande` TEXT , PRIMARY KEY (`ktbID`))";
+            String crtbl = "CREATE TABLE  IF NOT EXISTS `book` ( `ktbID` INT NOT NULL , `ktbEhdaKonande` varchar(80) NOT NULL , `ktbName` varchar(80) NOT NULL ,  `ktbNevisandeh` varchar(80) NOT NULL ,  `ktbTedad` int NOT NULL ,  `ktbVazeiat` varchar(10) NOT NULL , `amtTarakoneshID` varchar(11) , `ktbEhdaDate` TEXT NOT NULL , `ktbAmntGirande` TEXT , `status` varchar(10) = '1'  , PRIMARY KEY (`ktbID`))";
             Database.statement.execute(crtbl);
         } catch (Exception ex) {
             System.out.println(ex);
@@ -253,9 +253,9 @@ public class Database {
         String[] dates = fr.format(date).split("/");
         Roozh roozh = new Roozh();
         roozh.gregorianToPersian(Integer.parseInt(dates[0]),Integer.parseInt(dates[1]),Integer.parseInt(dates[2]));
-        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
                 book.getKtbID(), book.getKtbName(), book.getKtbNevisande(), book.getKtbEhdaKonandeh(),
-                Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(), book.getAmtTarakoneshID(),roozh,"","1");
+                Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(), book.getAmtTarakoneshID(),roozh,"","1",book.getStatus());
         try {
             getStatement().execute(sql);
         } catch (SQLException e) {
@@ -517,10 +517,11 @@ public class Database {
         Database.closeConnection();
         return amanatList;
     }
-    //گرفتن نام کتاب مورد نظر از جول book دیتابیس با استفاده از آی دی کتاب
+    //گرفتن نام کتاب مورد نظر از جدول book دیتابیس با استفاده از آی دی کتاب
     public static String getKtbName(String ktbID) throws SQLException {
         makeConnection();
-        String sqlKtb = String.format("SELECT ktbName FROM book WHERE ktbID = '%s'", ktbID);
+        String sqlKtb = String.format("SELECT ktbName FROM book WHERE ktbID = '%s' ", ktbID);
+        System.out.println(sqlKtb);
         ResultSet resultSetKtb = Database.getStatement().executeQuery(sqlKtb);
         resultSetKtb.next();
         String ktbName = resultSetKtb.getString("ktbName");

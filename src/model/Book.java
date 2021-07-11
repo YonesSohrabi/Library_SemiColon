@@ -9,17 +9,19 @@ public class Book {
     private String ktbTedad;
     private String ktbVazeit;
     private String amtTarakoneshID = "";
+    private String status;
 
     public Book() {
     }
 
-    public Book(String ktbID, String ktbName, String ktbNevisande, String ktbEhdaKonandeh, String ktbTedad, String ktbVazeit) {
+    public Book(String ktbID, String ktbName, String ktbNevisande, String ktbEhdaKonandeh, String ktbTedad, String ktbVazeit , String status) {
         this.ktbID = ktbID;
         this.ktbName = ktbName;
         this.ktbNevisande = ktbNevisande;
         this.ktbEhdaKonandeh = ktbEhdaKonandeh;
         this.ktbTedad = ktbTedad;
         this.ktbVazeit = ktbVazeit;
+        this.status = status;
     }
 
     public String getKtbID() {
@@ -76,5 +78,13 @@ public class Book {
 
     public void setAmtTarakoneshID(String amtTarakoneshID) {
         this.amtTarakoneshID = amtTarakoneshID;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

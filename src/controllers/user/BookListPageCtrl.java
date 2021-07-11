@@ -216,7 +216,7 @@ public class BookListPageCtrl implements Initializable {
             pnItems_booklist.getChildren().clear();
             Node[] nodes = new Node[1000];
             Database.makeConnection();
-            String mysql = "SELECT * FROM book where ktbName = "+ "\""+ bookname +"\"";
+            String mysql = "SELECT * FROM book where ktbName = "+ "\""+ bookname +"\" and status = '1'";
             showbooks(Database.createBookList(mysql));
             Database.getStatement().close();
             Database.closeConnection();
@@ -231,7 +231,7 @@ public class BookListPageCtrl implements Initializable {
             pnItems_booklist.getChildren().clear();
             Node[] nodes = new Node[1000];
             Database.makeConnection();
-            String mysql = "SELECT * FROM book where ktbID = "+ "\""+ bookid +"\"";
+            String mysql = "SELECT * FROM book where ktbID = "+ "\""+ bookid +"\" and status = '1'";
             showbooks(Database.createBookList(mysql));
             Database.getStatement().close();
             Database.closeConnection();
@@ -245,7 +245,7 @@ public class BookListPageCtrl implements Initializable {
             pnItems_booklist.getChildren().clear();
             Node[] nodes = new Node[1000];
             Database.makeConnection();
-            String mysql = "SELECT * FROM book where ktbVazeiat = \"نا موجود\" ";
+            String mysql = "SELECT * FROM book where ktbVazeiat = \"ناموجود\" and status = '1'";
             showbooks(Database.createBookList(mysql));
             Database.getStatement().close();
             Database.closeConnection();
@@ -259,7 +259,7 @@ public class BookListPageCtrl implements Initializable {
             pnItems_booklist.getChildren().clear();
             Node[] nodes = new Node[1000];
             Database.makeConnection();
-            String mysql = "SELECT * FROM book where ktbVazeiat = \"موجود\" ";
+            String mysql = "SELECT * FROM book where ktbVazeiat = \"موجود\" and status = '1'";
             showbooks(Database.createBookList(mysql));
             Database.getStatement().close();
             Database.closeConnection();
@@ -275,7 +275,7 @@ public class BookListPageCtrl implements Initializable {
 
             Node[] nodes = new Node[1000];
             Database.makeConnection();
-            String mysql = "SELECT * FROM book where ktbNevisandeh = "+ "\""+ bookwriter +"\"";
+            String mysql = "SELECT * FROM book where ktbNevisandeh = "+ "\""+ bookwriter +"\" and status = '1'";
             showbooks(Database.createBookList(mysql));
             Database.getStatement().close();
             Database.closeConnection();

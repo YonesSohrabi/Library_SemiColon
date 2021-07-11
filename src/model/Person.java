@@ -9,19 +9,19 @@ public class Person {
     private String lastName;
     private String codeMeli;
 
-
     public Person() {
     }
 
     ;
 
-    public Person(String ID, String userName, String password, String firstName, String lastName, String codeMeli) {
+    public Person(String ID, String userName, String password, String firstName, String lastName, String codeMeli ) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.codeMeli = codeMeli;
         this.ID = ID;
+
     }
 
     public String getID() {
