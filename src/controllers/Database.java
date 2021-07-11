@@ -42,7 +42,7 @@ public class Database {
     //اتصال به دیتابیس
     public static void makeConnection() throws SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "1380Ys1388?");
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.out.println(e);

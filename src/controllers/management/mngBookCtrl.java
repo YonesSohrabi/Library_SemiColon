@@ -139,7 +139,12 @@ public class mngBookCtrl extends mngStage implements Initializable {
 
         exitBTN.setOnAction(e -> {
             Stage stage = (Stage) exitBTN.getScene().getWindow();
-            stage.close();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchLogin("loginPage");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         });
 
         addBookbtn.setOnAction(e -> {
