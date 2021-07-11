@@ -37,27 +37,26 @@ public class addBookPage implements Initializable {
     @FXML
     private JFXButton addBTN;
 
+    //متد جهت نمایش صفحه ی اضافه کردن کتاب
 public void showAddBookPage(String ehdakonande) throws IOException {
     System.out.println(ehdakonande);
     FXMLLoader loader = new FXMLLoader(addBookPage.class.getResource("../../view/fxmls/user/addBookPage.fxml"));
     Parent root = (Parent) loader.load();
     addBookPage a = loader.getController();
     a.ehdakonande_txtfield.setText(ehdakonande);
-
     Stage stage = new Stage();
     Scene scene = new Scene(root);
     stage.setScene(scene);
     stage.initStyle(StageStyle.UNDECORATED);
-    //this.ehdakonande_txtfield.setText(ehdakonande);
     stage.show();
 }
 
     public void initialize(URL location, ResourceBundle resources) {
-
+    //اکشن دکمه ی خروج
         exitBTN.setOnAction(e -> {
             closeBTN();
         });
-
+    //اکشن دکمه ی اضافه کردن کتاب
         addBTN.setOnAction(e -> {
             try {
                 addBookToDB();
@@ -71,9 +70,8 @@ public void showAddBookPage(String ehdakonande) throws IOException {
 
     public void closeBTN() {
         ((Stage) exitBTN.getScene().getWindow()).close();
-       // mngBookCtrl.addBookPage = null;
     }
-
+    //book اضافه کردن کتاب به دیتابیس
     private void addBookToDB() throws SQLException, ClassNotFoundException {
         Book book = new Book();
             //اتصال به دیتابیس
@@ -85,12 +83,10 @@ public void showAddBookPage(String ehdakonande) throws IOException {
             book.setKtbName(nameBook_field.getText());
             book.setKtbNevisande(name_writer.getText());
             book.setKtbEhdaKonandeh(ehdakonande_txtfield.getText());
-
         if (
                 !(nameBook_field.getText().equals("") ||
                         name_writer.getText().equals("") ||
                         ehdakonande_txtfield.getText().equals("")
-
         )) {
             Database.add_book(book);
             nameBook_field.setText("");

@@ -26,19 +26,12 @@ import model.Book;
 import model.User;
 
 public class HomePageCtrl implements Initializable {
-    static String id;
 
     @FXML
     public VBox pnItems = null;
 
     @FXML
     private VBox pnItems_booklist = null;
-
-    @FXML
-    private Button btnSignout;
-
-    @FXML
-    private Button btn_home;
 
     @FXML
     private Button btn_Signout;
@@ -52,12 +45,9 @@ public class HomePageCtrl implements Initializable {
     @FXML
     private Label lbl_fullname;
 
-
-    final ObservableList<String> bookInfo = FXCollections.observableArrayList();
-
+    //ست کردن اطلاعات نمایش داده شده توسط برنامه با کاربر واردشده
     public void setInfo() {
         User user = new User();
-
         try {
             Database.makeConnection();
             user = Database.set_home_items();
@@ -79,6 +69,7 @@ public class HomePageCtrl implements Initializable {
             createhomeList();
     }
 
+    //ساختن و نمایش لیست کتاب های امانت گرفته شده توسط کاربر در صفحه ی home
         public void createhomeList() {
             pnItems.getChildren().clear();
             int i = 0;
@@ -88,21 +79,16 @@ public class HomePageCtrl implements Initializable {
                 //ساختن تیبل مورد نیاز در دیتابیس
                 Database.create_book_table();
                 String amanatgirande = lbl_fullname.getText();
-
-                /***replace ehdakonande with ktbAmtID later
-                 *
-                 */
-
                 String mysql = "SELECT * FROM book where ktbAmntGirande = " + "\"" + amanatgirande + "\"";
-                showbooks_homepage(Database.create_bookList(mysql));
-
+                showBooksHomepage(Database.createBookList(mysql));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
             Database.closeConnection();
         }
 
-        public void showbooks_homepage(List<Book> books) {
+        //متد نمایش لیست کتابها در pnItem صفحه ی home
+        public void showBooksHomepage(List<Book> books) {
             pnItems.getChildren().clear();
             Node[] nodes = new Node[1000];
             int i = 0;
@@ -114,9 +100,8 @@ public class HomePageCtrl implements Initializable {
                         Parent root = (Parent) loader.load();
                         Controlleritem bookitem = loader.getController();
                         bookitem.setitemBook(book);
-
                         nodes[i] = root;
-                        //give the items some effect
+                        //دادن افکت به آیتم های جدول
                         nodes[i].setOnMouseEntered(event -> {
                             nodes[j].setStyle("-fx-background-color : #0A0E3F");
                         });
@@ -132,7 +117,7 @@ public class HomePageCtrl implements Initializable {
                 }
             }
         }
-
+//اکشن دکمه های منوی سمت راست برنامه
     public void btn_BookList_clicked(ActionEvent actionEvent) throws ClassNotFoundException {
         Stage stage = (Stage) btn_BookList.getScene().getWindow();
         switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -141,10 +126,6 @@ public class HomePageCtrl implements Initializable {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
-    }
-
-    public void btn_amanatgiri_clicked(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
-
     }
 
     public void btn_info_clicked(ActionEvent actionEvent) {
@@ -158,7 +139,6 @@ public class HomePageCtrl implements Initializable {
     }
 
     public void btn_Signout_clicked(ActionEvent actionEvent) throws IOException {
-
         Stage stage = (Stage) btn_Signout.getScene().getWindow();
         switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
         try {
@@ -169,8 +149,5 @@ public class HomePageCtrl implements Initializable {
     }
 
     public void btn_search_clicked(ActionEvent actionEvent) {
-    }
-
-    public void btn_odatBoock_clicked(ActionEvent actionEvent) {
     }
 }

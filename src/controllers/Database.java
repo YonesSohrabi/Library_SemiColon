@@ -3,6 +3,7 @@ package controllers;
 
 import com.mysql.cj.protocol.Resultset;
 import controllers.login.LoginPageCtrl;
+import controllers.login.RegisterPageCtrl;
 import javafx.scene.control.Alert;
 import model.Admin;
 import model.Amanat;
@@ -38,6 +39,7 @@ public class Database {
         }
     }
 
+    //اتصال به دیتابیس
     public static void makeConnection() throws SQLException {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "1234");
@@ -47,7 +49,7 @@ public class Database {
             e.printStackTrace();
         }
     }
-
+    //قطع کردن اتصال به دیتابیس
     public static void closeConnection() {
         if (connection != null) {
             try {
@@ -58,8 +60,7 @@ public class Database {
             }
         }
     }
-
-
+    //اتصال به دیتابیس یوزر و چک کردن نام کاربری و رمز ورود وارد شده برای ورود کاربر با کاربر های ثبت نام شده
     public static boolean login_user(String txtusername, String txtpassword) {
         boolean login = false;
         try {
@@ -68,26 +69,25 @@ public class Database {
 
             ResultSet result = Database.getStatement().executeQuery(mysql);
             while (result.next()) {
-                //   String ID = result.getString("id");
                 String username = result.getString("userName");
                 String password = result.getString("usrPass");
                 String name = result.getString("usrFName");
                 String family = result.getString("usrLName");
                 if (txtusername.compareTo(username) == 0 && txtpassword.compareTo(password) == 0) {
-                    // ست کردن اطلاعات در کلاس person مطابق با اطلاعات کاربر
                     login = true;
                     String id = result.getString("usrID");
                     LoginPageCtrl.set_id(id);
-                    System.out.println("id geted from databace =" + id);
                     break;
                 }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        //برگرداندن true درصورت موجود بودن نام کاربری و رمز و برگرداندن false درصورت اشتباه بودن نام کاربری یا رمز ورود
         return login;
     }
 
+    //ثبت نام یوزر جدید
     public static void registerUser(User p) {
         try {
             //ساختن تیبل مورد نیاز در دیتابیس
@@ -102,14 +102,11 @@ public class Database {
             alert2.setContentText("Registration Failed pleaes TryAgain");
             alert2.showAndWait();
         }
-        //ارسال اطلاعات ثبت نام به دیتابیس
-
+        //ارسال اطلاعات ثبت نام کننده به دیتابیس یوزر
         Random rnd = new Random();
         String id = String.valueOf(rnd.nextInt(9000) + 1000);
-        System.out.println("id = " + id);
         String setinfo = "INSERT INTO user (usrID ,usrFName, usrLName , userName , usrPass)  values ('%s','%s','%s','%s','%s')";
         setinfo = String.format(setinfo, p.getID(), p.getFirstName(), p.getLastName(), p.getUserName(), p.getPassword());
-        System.out.println(setinfo);
 
         try {
             getStatement().execute(setinfo);
@@ -118,13 +115,12 @@ public class Database {
             alert2.setHeaderText(null);
             alert2.setContentText("Successfully Registration!\nyour id is : " + p.getID());
             alert2.showAndWait();
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         closeConnection();
     }
-
+    // گرفتن اطلاعات کاربر از دیتابیس یوزر
     public static User getItemUserDB(String userID) throws SQLException {
         makeConnection();
         String sql = String.format("Select * FROM user WHERE usrID = '%s' ", userID);
@@ -138,10 +134,9 @@ public class Database {
         user.setLastName(resultSet.getString("usrLName"));
         user.setCodeMeli(resultSet.getString("usrCodeMeli"));
         closeConnection();
-
         return user;
     }
-
+    //آپدیت کردن اطلاعات یک یوزر در دیتابیس یوزر
     public static void updateUser(User user, String usrIDTXT) throws SQLException {
         makeConnection();
         String sql = String.format("UPDATE user SET usrFName = '%s', usrLName = '%s' , usrPass = '%s' , userName = '%s' , usrCodeMeli = '%s'" +
@@ -149,8 +144,6 @@ public class Database {
         getStatement().executeUpdate(sql);
         closeConnection();
     }
-
-
     // گرفتن اطلاعات مدیران کتابخانه از جدول ادمین موجود در دیتابیس
     public static List<Admin> getInfoAdmin() throws SQLException {
         List<Admin> admins = new ArrayList<>();
@@ -170,23 +163,20 @@ public class Database {
         Database.closeConnection();
         return admins;
     }
-
+    //گرفتن اطلاعات کاربر مشخص در دیتابیس با استفاده از آیدی آن(به منظور ست کردن فیلدهای موجود در برنامه)
     public static User set_home_items() {
         String id = LoginPageCtrl.get_id();
-        System.out.println("id in dabase class = " + id);
         User user = new User();
         try {
             String mysql = "SELECT usrFName, usrLName , userName , usrPass FROM user WHERE usrID =" + id;
             System.out.println("mysql=" + mysql);
             ResultSet result = Database.statement.executeQuery(mysql);
             result.next();
-            //   String ID = result.getString("id");
             String username = result.getString("userName");
             String password = result.getString("usrPass");
             String name = result.getString("usrFName");
             String family = result.getString("usrLName");
             String fullname = (name + " " + family);
-            System.out.println("fullname =" + fullname);
             user.setFirstName(name);
             user.setLastName(family);
             user.setID(id);
@@ -198,7 +188,7 @@ public class Database {
     }
 
     ///////////////////////////////////<<BOOK>>/////////////////////////////////////
-
+    //ساختن تیبل book در دیتابیس
     public static void create_book_table() {
         try {
             //ساختن تیبل مورد نیاز در دیتابیس
@@ -208,28 +198,20 @@ public class Database {
             System.out.println(ex);
         }
     }
-
+    //اضافه کردن کتاب جدید به دیتابیس book
     public static void add_book(Book book) throws SQLException {
         Date date = new Date();
         SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
         String dateformat = fr.format(date);
-
-        //delete date_ms later if dont use
         String addbook = "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonande , ktbEhdaDate , ktbVazeiat ,ktbTedad , ktbAmntGirande , ktbID)  values ('%s','%s','%s','%s','%s','%s','%s','%d')";
-
         Random rnd = new Random();
         int book_id = rnd.nextInt(9000) + 1000;
-        System.out.println("bookid = " + book_id);
-        System.out.println("namebook = " + book.getKtbName());
-        //int book_id = Integer.parseInt(String.valueOf(state.executeQuery(getid)));
         addbook = String.format(addbook, book.getKtbName(), book.getKtbNevisande(), book.getKtbEhdaKonandeh(), dateformat, "موجود", 1, "", book_id);
-        System.out.println(addbook);
         Database.getStatement().execute(addbook);
         Database.closeConnection();
     }
-
-    public static List<Book> create_bookList(String sql) {
-
+    //ساختن یک لیست از کتابهای موجود در دیتابیس book برای جهت نمایش در برنامه
+    public static List<Book> createBookList(String sql) {
         List<Book> booklist1 = null;
         try {
             System.out.println(sql);
@@ -237,14 +219,14 @@ public class Database {
             int i = 0;
             booklist1 = new ArrayList<>();
             while (result.next()) {
+                //گرفتن اطلاعات از دیتابیس
                 int bookid = result.getInt("ktbID");
                 String bookname = result.getString("ktbName");
                 String bookwriter = result.getString("ktbNevisandeh");
                 String ehdakonande = result.getString("ktbEhdaKonande");
                 String vaziyat = result.getString("ktbVazeiat");
                 String amnttarakoneshid = result.getString("amtTarakoneshID");
-
-
+                //ست کردن اطلاعات در کلاس Book
                 Book book = new Book();
                 book.setKtbName(bookname);
                 book.setKtbNevisande(bookwriter);
@@ -253,6 +235,7 @@ public class Database {
                 book.setKtbTedad("1");
                 book.setKtbVazeit(vaziyat);
                 book.setAmtTarakoneshID(amnttarakoneshid);
+                //اضافه کردن اطلاعات کتاب به لیست کل کتابها
                 booklist1.add(book);
             }
 
@@ -262,8 +245,7 @@ public class Database {
         System.out.println(booklist1);
         return booklist1;
     }
-
-
+    //اضافه کردن کتاب جدید به دیتابیس book در صفحه ی ادمین
     public static void createBook(Book book) throws SQLException {
         makeConnection();
         Date date = new Date();
@@ -280,6 +262,7 @@ public class Database {
         closeConnection();
     }
 
+    //خواندن اطلاعات کتاب ها از دیتابیس book (ادمین)
     public static List<Book> readBooksDB() throws SQLException {
         List<Book> bookList = new ArrayList<>();
         Database.makeConnection();
@@ -294,12 +277,11 @@ public class Database {
             book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
             bookList.add(book);
         }
-
         Database.closeConnection();
         return bookList;
     }
 
-
+    //خواندن اطلاعات کتابی خاص از دیتابیس book (ادمین)
     public static List<Book> readBooksDB(String txet, String lable) throws SQLException {
         List<Book> bookList = new ArrayList<>();
         Database.makeConnection();
@@ -309,7 +291,6 @@ public class Database {
         } else {
             sql = String.format("SELECT * FROM book WHERE ktbID = '%s'", txet);
         }
-
         ResultSet resultSet = Database.getStatement().executeQuery(sql);
         Book book;
         while (resultSet.next()) {
@@ -324,7 +305,7 @@ public class Database {
         }
         return bookList;
     }
-
+    //خواندن اطلاعات کتابها ازجدول book (ادمین)
     public static List<Book> readBooksDB(int vazeiat) throws SQLException {
         List<Book> bookList = new ArrayList<>();
         Database.makeConnection();
@@ -348,7 +329,7 @@ public class Database {
         }
         return bookList;
     }
-
+    //د حذف یک کتاب از جدول book دیتابیس
     public static void deleteBook(String id) throws SQLException {
         makeConnection();
         String sql = String.format("DELETE FROM book WHERE ktbID = %s", id);
@@ -359,7 +340,7 @@ public class Database {
         }
         closeConnection();
     }
-
+    //گرفتن اطلاعات کتابی خاص از جدول book دیتابیس با استفاده از آی دی کتاب
     public static Book getItemBookDB(String bookID) throws SQLException {
         makeConnection();
         String sql = String.format("Select * FROM book WHERE ktbID = '%s' ", bookID);
@@ -374,11 +355,9 @@ public class Database {
         book.setKtbVazeit(resultSet.getString("ktbVazeiat"));
         book.setAmtTarakoneshID(resultSet.getString("amtTarakoneshID"));
         closeConnection();
-
         return book;
     }
-
-
+    //آپدیت کردن اطلاعات کتابی خاص در جدول book دیتابیس
     public static void updateBook(Book book, String ktbIDTXT) throws SQLException {
         makeConnection();
         String sql = String.format("UPDATE book SET ktbName = '%s', ktbTedad = '%s', ktbNevisandeh = '%s'," +
@@ -387,7 +366,7 @@ public class Database {
         getStatement().executeUpdate(sql);
         closeConnection();
     }
-
+    //ساخت کاربر جدید توسط ادمین
     public static void createUser(User user) throws SQLException {
         makeConnection();
         String sql = String.format("INSERT INTO user (usrID, userName, usrFName, usrLName, usrCodeMeli, usrPass)" +
@@ -400,7 +379,7 @@ public class Database {
         }
         closeConnection();
     }
-
+    //خواندن اطلاعات کاربر از جول user دیتابیس
     public static List<User> readUsersDB() throws SQLException {
         List<User> userList = new ArrayList<>();
         Database.makeConnection();
@@ -416,11 +395,11 @@ public class Database {
             user.setCodeMeli(resultSet.getString("usrCodeMeli"));
             userList.add(user);
         }
-
         Database.closeConnection();
         return userList;
     }
 
+    //خواندن اطلاعات کاربری خاص از جول user دیتابیس با استفاده از آی دی یا کدملی
     public static List<User> readUsersDB(String text, String lable) throws SQLException {
         List<User> userList = new ArrayList<>();
         Database.makeConnection();
@@ -442,11 +421,10 @@ public class Database {
             user.setCodeMeli(resultSet.getString("usrCodeMeli"));
             userList.add(user);
         }
-
         Database.closeConnection();
         return userList;
     }
-
+    //حذف کردن کاربر از جول user دیتابیس
     public static void deleteUser(String id) throws SQLException {
         makeConnection();
         String sql = String.format("DELETE FROM user WHERE usrID = %s", id);
@@ -457,7 +435,7 @@ public class Database {
         }
         closeConnection();
     }
-
+    //گرفتن اطلاعات مربوط به امانت گیری کتابها از جدول amant دیتابیس
     public static List<Amanat> readAmanatsDB() throws SQLException, ParseException {
         List<Amanat> amanatList = new ArrayList<>();
         Database.makeConnection();
@@ -476,12 +454,11 @@ public class Database {
             amanat.setUsrName(getUsrName(resultSet.getString("usrID")));
             amanatList.add(amanat);
         }
-
         Database.closeConnection();
         return amanatList;
     }
 
-
+    // گرفتن اطلاعات مربوط به امانت گیری کتابی خاص از جدول amant دیتابیس با استفاده از آی دی کتاب یا آی دی یوزر
     public static List<Amanat> readAmanatsDB(String text, String lable) throws SQLException, ParseException {
         List<Amanat> amanatList = new ArrayList<>();
         Database.makeConnection();
@@ -510,7 +487,7 @@ public class Database {
         Database.closeConnection();
         return amanatList;
     }
-
+    //گرفتن نام کتاب مورد نظر از جول book دیتابیس با استفاده از آی دی کتاب
     public static String getKtbName(String ktbID) throws SQLException {
         makeConnection();
         String sqlKtb = String.format("SELECT ktbName FROM book WHERE ktbID = '%s'", ktbID);
@@ -520,7 +497,7 @@ public class Database {
         resultSetKtb.close();
         return ktbName;
     }
-
+    //گرفتن وضعیت(موجود بودن یا نبودن) کتابی خاص در جدول book دیتابیس با استفاده از آی دی کتاب
     public static boolean getBookVaziyat(String ktbid) throws SQLException {
         makeConnection();
         boolean vaziyat ;
@@ -539,10 +516,12 @@ public class Database {
         closeConnection();
         return vaziyat;
     }
-
+    //امانت گرفتن کتاب از کتابخانه
     public static void amanatgiri(Amanat amanat) throws SQLException {
+        //گرفتن وضعیت کتاب از طریق متد مربوطه
         boolean vaziyat = getBookVaziyat(amanat.getKtbID());
         if(vaziyat==true) {
+            //در صورت موجود بودن کتاب-->اتصال به دیتابیس و ثبت اطلاعات مربوط به امانت گیری در جدول amanat دیتابیس
             makeConnection();
             String amanatgiri = "INSERT INTO amanat (ktbID, usrID , amtDateGet , amtDateRtrn ,amtDarkhastUsr , amtEmkanTamdid)  values ('%s','%s','%s','%s','%s','%s')";
             amanatgiri = String.format(amanatgiri, amanat.getKtbID(), amanat.getUsrID(), amanat.getAmtDateGet(),
@@ -555,11 +534,12 @@ public class Database {
             closeConnection();
             updateBookAmntStatus(getUsrName(LoginPageCtrl.get_id()), String.valueOf(amtID), "ناموجود", amanat.getKtbID());
         }
+        //در ضورت موجود نبودن کتاب نمایش الرت کتاب موجود نیست
         else if(vaziyat==false){
             alert.errorAlert("کتاب مورد نظر شما درحال حاضر موجود نمیباشد");
         }
     }
-
+    //آپدیت کردن فیلدهای مربوط به امانت در جدول book دیتابیس در صورت ایجاد تغییر
     public static void updateBookAmntStatus(String ktbamntgirande , String amnttarakoneshid , String ktbvaziyat , String ktbid) throws SQLException {
         makeConnection();
         String updateBook = String.format("UPDATE book SET ktbAmntGirande = '%s' ,amtTarakoneshID = '%s',  ktbVazeiat = '%s' WHERE ktbID = '%s' ",
@@ -567,25 +547,22 @@ public class Database {
         getStatement().execute(updateBook);
         closeConnection();
     }
-
+    //گرفتن تاریخ امانت گیری کتابی خاص از جدول amanat دیتابیس با استفاده از آی دی امانت(آی دی امانت بین جدول book و amanat یکسان هستند)
     public static String getAmanatgiriDate(String amnttarakoneshid) throws SQLException {
         makeConnection();
         String sql = String.format("Select amtDateGet FROM amanat WHERE amtID = '%d' ", Integer.parseInt(amnttarakoneshid));
-
         System.out.println(sql);
-
         ResultSet rs = Database.getStatement().executeQuery(sql);
         rs.next();
         String amanatdateget = rs.getString("amtDateGet") ;
         rs.close();
         return amanatdateget;
     }
+    //گرفتن مهلت تحویل کتابی خاص از جدول amanat دیتابیس با استفاده از آی دی امانت(آی دی امانت بین جدول book و amanat یکسان هستند)
     public static String getMohlatTahvil(String amnttarakoneshid) throws SQLException, ParseException {
         makeConnection();
         String sql = String.format("Select amtDateRtrn FROM amanat WHERE amtID = '%d' ", Integer.parseInt(amnttarakoneshid));
-
         System.out.println(sql);
-
         ResultSet rs = Database.getStatement().executeQuery(sql);
         rs.next();
         String amanatdatereturn = rs.getString("amtDateRtrn") ;
@@ -593,18 +570,17 @@ public class Database {
         String mohlat = DateSC.mohlatTahvil(amanatdatereturn);
         return mohlat;
     }
-
-
+    //گرفتن نام کامل کاربری خاص از جدول user با استفاده از آی دی آن کاربر
     public static String getUsrName(String usrID) throws SQLException {
         makeConnection();
         String sqlUsr = String.format("SELECT usrFName,usrLName FROM user WHERE usrID = '%s'", usrID);
         ResultSet resultSetUsr = Database.getStatement().executeQuery(sqlUsr);
         resultSetUsr.next();
-        String usrName = resultSetUsr.getString("usrFName") + " " + resultSetUsr.getString("usrLName");
+        String usrFullName = resultSetUsr.getString("usrFName") + " " + resultSetUsr.getString("usrLName");
         resultSetUsr.close();
-        return usrName;
+        return usrFullName;
     }
-
+    //گرفتن آی دی تراکنشی خاص از جدول book دیتابیس(برای دسترسی به اطلاعات مربوط به امانت این کتاب در جدول amanat دیتابیس از طریق آی دی تراکنش)
     public static String getAmntTarakoneshID(String ktbID) throws SQLException {
         makeConnection();
         String sqlUsr = String.format("SELECT amtTarakoneshID FROM book WHERE ktbID = '%s'", ktbID);
@@ -614,7 +590,7 @@ public class Database {
         resultSetUsr.close();
         return amntID;
     }
-
+    //آپدیت کردن اطلاعات مربوط به امانتی خاص در صورت ایجاد تغییر
     public static void updateAmanat(String amtID, int lable) throws SQLException {
         makeConnection();
         String sql = null;
@@ -626,7 +602,7 @@ public class Database {
         getStatement().executeUpdate(sql);
         closeConnection();
     }
-
+    //آپدیت کردن اطلاعات مربوط به امانتی خاص در صورت ایجاد تغییر
     public static void updateAmanat(String amtID, String amtDateRtrn) throws SQLException {
         makeConnection();
         String sql = String.format("UPDATE amanat SET amtDateRtrn = '%s', amtEmkanTamdid = '0', amtDarkhastUsr = '2'" +
@@ -634,7 +610,7 @@ public class Database {
         getStatement().executeUpdate(sql);
         closeConnection();
     }
-
+    //گرفتن اطلاعات مربوط به امانت گیری کتابی خاص از طریق آی دی امانت
     public static Amanat getItemAmanatDB(String amtID) throws SQLException, ParseException {
         makeConnection();
         String sql = String.format("Select * FROM amanat WHERE amtID = '%d' ", Integer.parseInt(amtID));
@@ -649,7 +625,6 @@ public class Database {
         amanat.setAmtDarkhastUsr(resultSet.getString("amtDarkhastUsr"));
         amanat.setAmtEmkanTamdid(resultSet.getString("amtEmkanTamdid"));
         closeConnection();
-
         return amanat;
     }
 
@@ -662,7 +637,7 @@ public class Database {
         getStatement().executeUpdate(sql);
         closeConnection();
     }
-
+    //گرفتن تراکنش های اخیر کاربران از جدول amanat دیتابیس
     public static List getAmanatRecent(String typeAmanat) throws SQLException {
         makeConnection();
         ArrayList<Amanat> amanatRecent = new ArrayList<>();
@@ -672,7 +647,6 @@ public class Database {
         } else {
             sql = String.format("SELECT * FROM amanat WHERE NOT amtDarkhastUsr = '%s' ORDER BY amtID DESC LIMIT 4 ", "عودت");
         }
-
         ResultSet resultSet = Database.getStatement().executeQuery(sql);
         Amanat amanat;
         while (resultSet.next()) {
@@ -695,7 +669,6 @@ public class Database {
         return str;
     }
 
-
     public static String counter(String tableName) throws SQLException {
         makeConnection();
         String sql = String.format("SELECT COUNT(*) FROM %s ", tableName);
@@ -715,8 +688,6 @@ public class Database {
         closeConnection();
         return num;
     }
-
-
 }
 
 

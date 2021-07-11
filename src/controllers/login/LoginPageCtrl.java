@@ -31,22 +31,22 @@ public class  LoginPageCtrl {
     @FXML
     private Label openAdmLoginPage;
 
-
     @FXML
     private JFXTextField txtfield_UserName;
-
 
     @FXML
     private JFXPasswordField txtfield_Password;
 
+    @FXML
+    private Label labelalrtLogin;
 
-
+    //خروج
     @FXML
     void press_Exit_btn(ActionEvent event) {
         Stage stage = (Stage) exit_btn.getScene().getWindow();
         stage.close();
     }
-
+    //باز کردن صفحه ی ورود ادمین
     @FXML
     void openAdmLoginPage(MouseEvent event) {
         Stage stage = (Stage) openAdmLoginPage.getScene().getWindow();
@@ -70,11 +70,12 @@ public class  LoginPageCtrl {
     }
 
     static String id;
-    public void press_Login_btn(ActionEvent actionEvent)  {
+
+    public void press_Login_btn(ActionEvent actionEvent) {
         //چک کردن پر بودن فیلد های مورد نیاز
         boolean login = false;
         if (txtfield_UserName.getText().equals("") || txtfield_Password.getText().equals("")) {
-            alert.login_fiilall();
+            labelalrtLogin.setText("complate all the fields");
         } else {
             // کانکشن به دیتابیس
             try {
@@ -103,18 +104,19 @@ public class  LoginPageCtrl {
 
                 //آلارم غلط بودن یوزر یا پسوورد
                 else if (login == false) {
-                    alert.login_wrong();
+                    labelalrtLogin.setText("username or password is wrong");
                     txtfield_Password.setText("");
                 }
                 //مشکل و ارور در لاگین
-            }catch(Exception e) {
-                alert.login_error();
+            } catch (Exception e) {
+                labelalrtLogin.setText("Login Failed pleaes TryAgain");
             }
         }
     }
+
     //گرفتن آی دی برای استفاده در کلاسهای دیگر
-    public static String get_id(){
-        System.out.println("returned id ="+ id);
+    public static String get_id() {
+        System.out.println("returned id =" + id);
         return id;
     }
     public static void set_id(String ID){

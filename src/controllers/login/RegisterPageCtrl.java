@@ -11,11 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import model.User;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.scene.control.Label;
 
 public class  RegisterPageCtrl implements Initializable {
 
@@ -27,7 +27,6 @@ public class  RegisterPageCtrl implements Initializable {
 
     @FXML
     private JFXTextField txt_Field_LastName;
-
 
     @FXML
     private JFXTextField txt_Field_FirstName;
@@ -41,20 +40,22 @@ public class  RegisterPageCtrl implements Initializable {
     @FXML
     private JFXButton btn_Back;
 
+    @FXML
+    private Label labelalrtRgis;
+
     User librarian1 = new User();
 
     //انجام ثبت نام
     public void press_Registration_btn(ActionEvent actionEvent) {
-
         //چک کردن خالی نبودن فیلد های مورد نیاز برای ثبت نام
         if (txt_Field_FirstName.getText().compareTo("") == 0 || txt_Field_LastName.getText().compareTo("") == 0 ||
                 txt_Field_Password_R.getText().compareTo("") == 0 ||
                 txt_Field_ConfirmPassword.getText().compareTo("") == 0) {
-            alert.regis_fillall();
+            labelalrtRgis.setText("complate all the fields");
         }
         //چک کردن برابر بودن پسوورد و تاییدیه ی پسوورد
         else if (!(txt_Field_Password_R.getText().equals(txt_Field_ConfirmPassword.getText()))) {
-            alert.regis_wrongconfirmpass();
+            labelalrtRgis.setText("Enter confirmPassword correctly");
         } else {
             //ست کردن یک نمونه از کلاس user با اطلاعات ثبت شده توسط کاربر
             librarian1.setFirstName(txt_Field_FirstName.getText());
@@ -63,46 +64,40 @@ public class  RegisterPageCtrl implements Initializable {
             librarian1.setUserName(txt_Field_UserName_R.getText());
             System.out.println("Password =" + librarian1.getPassword());
             Random rnd = new Random();
-            String id = String.valueOf(rnd.nextInt(9000)+1000);
+            String id = String.valueOf(rnd.nextInt(9000) + 1000);
             System.out.println("id = " + id);
             librarian1.setID(id);
-        }
 
-        try {
-            //اتصال به دیتابیس
-            Database.makeConnection();
-            Database.registerUser(librarian1);
-            //خالی کردن تکست فیلدها
-            txt_Field_FirstName.setText("");
-            txt_Field_LastName.setText("");
-            txt_Field_UserName_R.setText("");
-            txt_Field_Password_R.setText("");
-            txt_Field_ConfirmPassword.setText("");
-
-            Stage stage = (Stage) btn_Back.getScene().getWindow();
-            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
             try {
-                switchSenceCtrl.sceneSwitchLogin("loginPage");
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
+                //اتصال به دیتابیس
+                Database.makeConnection();
+                Database.registerUser(librarian1);
+                //خالی کردن تکست فیلدها
+                txt_Field_FirstName.setText("");
+                txt_Field_LastName.setText("");
+                txt_Field_UserName_R.setText("");
+                txt_Field_Password_R.setText("");
+                txt_Field_ConfirmPassword.setText("");
+                //برگشت به صفحه ی لاگین با اتمام مراحل ثبت نام
+                Stage stage = (Stage) btn_Back.getScene().getWindow();
+                switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+                try {
+                    switchSenceCtrl.sceneSwitchLogin("loginPage");
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                // مشکل در ثبت نام
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println(e);
+                labelalrtRgis.setText("Registration Failed pleaes TryAgain");
             }
-            // مشکل در ثبت نام
-        } catch (Exception e) {
-            System.out.println(e);
-            System.out.println(e);
-            alert.regis_Faild();
         }
     }
-
-
-    public void press_Exit_btn(ActionEvent actionEvent) {
-        Stage stage2 = (Stage) exit_btn_regis.getScene().getWindow();
-        stage2.close();
-    }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //بازگشت به صفحه ی لاگین پیج با زدن دکمه ی back
         btn_Back.setOnAction(e -> {
             Stage stage = (Stage) btn_Back.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -112,7 +107,7 @@ public class  RegisterPageCtrl implements Initializable {
                 ioException.printStackTrace();
             }
         });
-
+        //خروج
         exit_btn_regis.setOnAction(e -> {
             Stage stage2 = (Stage) exit_btn_regis.getScene().getWindow();
             stage2.close();
