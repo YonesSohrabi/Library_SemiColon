@@ -40,6 +40,11 @@ public class UserInfoPageCtrl implements Initializable {
     @FXML
     private Label lbl_fullname;
 
+    /**صفحه ی نمایش اطلاعات کاربر
+     *
+     */
+
+    //ست کردن فیلدهای موجود در صفحه با اطلاعات کاربر وارد شده
     public void set_user_info() {
         User user = new User();
         try {
@@ -61,7 +66,12 @@ public class UserInfoPageCtrl implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         set_user_info();
     }
-
+    //باز شدن پنجره ی ویرایش اطلاعات کاربر
+    public void editperson_btn_clicked(ActionEvent actionEvent) throws IOException {
+        editUserPageCtrl edituser_page = new editUserPageCtrl();
+        edituser_page.showpage();
+    }
+//اکشن دکمه های منوی سمت راست برنامه
     public void btn_Home_clicked(ActionEvent actionEvent) {
         Stage stage = (Stage) btn_BookList.getScene().getWindow();
         switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -93,11 +103,4 @@ public class UserInfoPageCtrl implements Initializable {
             ioException.printStackTrace();
         }
     }
-
-    public void editperson_btn_clicked(ActionEvent actionEvent) throws IOException {
-        editUserPageCtrl edituser_page = new editUserPageCtrl();
-        edituser_page.showpage();
-    }
-
-
 }

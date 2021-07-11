@@ -213,6 +213,5 @@ public class mngUserCtrl extends mngStage implements Initializable {
             GridPane.setMargin(userBox, new Insets(5, 0, 5, 10));
         }
     }
-
 }
 

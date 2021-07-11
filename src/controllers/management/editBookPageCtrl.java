@@ -82,6 +82,4 @@ public class editBookPageCtrl implements Initializable {
         ((Stage)exitBTN.getScene().getWindow()).close();
         itemBookCtrl.editBookPage = null;
     }
-
-
 }
