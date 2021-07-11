@@ -156,7 +156,7 @@ public class mngDashboardCtrl extends mngStage implements Initializable{
                 amanat1.setText(String.valueOf(amtRecentList.get(0)));
                 break;
             case 0 :
-                odatHBox1.setVisible(true);
+                amtHBox1.setVisible(true);
                 amanat1.setText("موردی برای نمایش وجود ندارد .");
                 break;
 
