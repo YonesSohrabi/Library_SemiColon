@@ -76,7 +76,9 @@ public class Controlleritem implements Initializable {
         //تمدید کتاب مورد نظر
         btn_tamdid.setOnAction(e -> {
             try {
+                Database.updateDarkhastUser( item_bookID.getText());
                 Database.updateAmanat(Database.getAmntTarakoneshID(item_bookID.getText()) , 1);
+                System.out.println("btntamdid bookid" +item_bookID.getText());
                 alert.informationAlert("درخواست تمدید ثبت شد");
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -93,7 +95,9 @@ public class Controlleritem implements Initializable {
         //برگرداندن کتاب موردنظر به کتابخانه
         btn_odatBook.setOnAction(e -> {
             try {
+                Database.updateDarkhastUser(item_bookID.getText());
                 Database.updateBookAmntStatus("" , "" , "موجود" , item_bookID.getText());
+                System.out.println("btn odat bookid " +item_bookID.getText());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

@@ -85,7 +85,7 @@
                         </VBox>
                      </content>
                   </ScrollPane>
-                  <VBox layoutX="47.0" layoutY="59.0" prefHeight="117.0" prefWidth="699.0">
+                  <VBox layoutX="47.0" layoutY="78.0" prefHeight="117.0" prefWidth="699.0">
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="59.0" prefWidth="699.0" spacing="20.0">
                            <children>
@@ -221,7 +221,7 @@
                         </StackPane>
                      </children>
                   </VBox>
-                  <ImageView fitHeight="117.0" fitWidth="154.0" layoutX="8.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="84.0" fitWidth="85.0" layoutX="8.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/Logo2.png" />
                      </image>

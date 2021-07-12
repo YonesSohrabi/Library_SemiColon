@@ -247,6 +247,7 @@ public class Database {
                 book.setKtbTedad("1");
                 book.setKtbVazeit(vaziyat);
                 book.setAmtTarakoneshID(amnttarakoneshid);
+                book.setKtbID(String.valueOf(bookid));
                 //اضافه کردن اطلاعات کتاب به لیست کل کتابها
                 booklist1.add(book);
             }
@@ -588,9 +589,13 @@ public class Database {
                 ktbamntgirande, amnttarakoneshid, ktbvaziyat , ktbid);
         getStatement().execute(updateBook);
         closeConnection();
+    }
 
+    public static void updateDarkhastUser(String ktbid) throws SQLException {
         makeConnection();
+        System.out.println(getAmntTarakoneshID(ktbid));
         String updateAmanat = String.format("UPDATE amanat SET amtDarkhastUsr = \"عودت\" WHERE amtID = '%s' ", getAmntTarakoneshID(ktbid));
+        System.out.println(updateAmanat);
         getStatement().execute(updateAmanat);
         closeConnection();
     }
@@ -633,6 +638,7 @@ public class Database {
     public static String getAmntTarakoneshID(String ktbID) throws SQLException {
         makeConnection();
         String sqlUsr = String.format("SELECT amtTarakoneshID FROM book WHERE ktbID = '%s' ", ktbID);
+        System.out.println(sqlUsr);
         ResultSet resultSetUsr = Database.getStatement().executeQuery(sqlUsr);
         resultSetUsr.next();
         String amntID = resultSetUsr.getString("amtTarakoneshID");
