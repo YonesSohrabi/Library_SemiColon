@@ -197,11 +197,14 @@ public class Database {
     public static void add_book(Book book) throws SQLException {
         Date date = new Date();
         SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
-        String dateformat = fr.format(date);
+        String[] dates = fr.format(date).split("/");
+        Roozh roozh = new Roozh();
+        roozh.gregorianToPersian(Integer.parseInt(dates[0]),Integer.parseInt(dates[1]),Integer.parseInt(dates[2]));
+
         String addbook = "INSERT INTO book (ktbName, ktbNevisandeh , ktbEhdaKonande , ktbEhdaDate , ktbVazeiat ,ktbTedad , ktbAmntGirande , ktbID)  values ('%s','%s','%s','%s','%s','%s','%s','%d')";
         Random rnd = new Random();
         int book_id = rnd.nextInt(9000) + 1000;
-        addbook = String.format(addbook, book.getKtbName(), book.getKtbNevisande(), book.getKtbEhdaKonandeh(), dateformat, "موجود", 1, "", book_id);
+        addbook = String.format(addbook, book.getKtbName(), book.getKtbNevisande(), book.getKtbEhdaKonandeh(), roozh, "موجود", 1, "", book_id);
         Database.getStatement().execute(addbook);
         Database.closeConnection();
     }
@@ -572,6 +575,8 @@ public class Database {
                 ktbamntgirande, amnttarakoneshid, ktbvaziyat , ktbid);
         getStatement().execute(updateBook);
         closeConnection();
+        makeConnection();
+        
     }
     //گرفتن تاریخ امانت گیری کتابی خاص از جدول amanat دیتابیس با استفاده از آی دی امانت(آی دی امانت بین جدول book و amanat یکسان هستند)
     public static String getAmanatgiriDate(String amnttarakoneshid) throws SQLException {
@@ -609,7 +614,10 @@ public class Database {
     //گرفتن آی دی تراکنشی خاص از جدول book دیتابیس(برای دسترسی به اطلاعات مربوط به امانت این کتاب در جدول amanat دیتابیس از طریق آی دی تراکنش)
     public static String getAmntTarakoneshID(String ktbID) throws SQLException {
         makeConnection();
-        String sqlUsr = String.format("SELECT amtTarakoneshID FROM book WHERE ktbID = '%s'", ktbID);
+        String sqlUsr = String.format("SELECT amtTarakoneshID FROM book WHERE ktbID = '%s' ", ktbID);
+
+        System.out.println(sqlUsr);
+
         ResultSet resultSetUsr = Database.getStatement().executeQuery(sqlUsr);
         resultSetUsr.next();
         String amntID = resultSetUsr.getString("amtTarakoneshID");
@@ -627,6 +635,30 @@ public class Database {
         }
         getStatement().executeUpdate(sql);
         closeConnection();
+    }
+    //گرفتن وضعیت درخواست تمدید کاربر(جهت عدم نمایش دکمه ی تمدید درصورتی که کاربر قبلا درخواست نمدید داده باشد)
+    public static String getDarkhastTamdidStatus(String amtID) throws SQLException {
+        makeConnection();
+        String sql = String.format("select amtDarkhastUsr from amanat WHERE amtID = '%s'", amtID);
+        System.out.println(sql);
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        resultSet.next();
+        String amntdarkhast = resultSet.getString("amtDarkhastUsr");
+        resultSet.close();
+        closeConnection();
+        return amntdarkhast;
+    }
+    //گرفتن وضعیت امکان تمدید کاربر(جهت عدم نمایش دکمه ی تمدید درصورتی که کاربر قبلا درخواست نمدید داده باشد)
+    public static String getEmkanTamdidStatus(String amtID) throws SQLException {
+        makeConnection();
+        String sql = String.format("select amtEmkanTamdid from amanat WHERE amtID = '%s'", amtID);
+        System.out.println(sql);
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        resultSet.next();
+        String amntemkantamdid = resultSet.getString("amtEmkanTamdid");
+        resultSet.close();
+        closeConnection();
+        return amntemkantamdid;
     }
     //آپدیت کردن اطلاعات مربوط به امانتی خاص در صورت ایجاد تغییر
     public static void updateAmanat(String amtID, String amtDateRtrn) throws SQLException {

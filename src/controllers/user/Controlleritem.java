@@ -56,6 +56,22 @@ public class Controlleritem implements Initializable {
         //گرفتن تاریخ امانتگیری و مهلت از طریق متد مربوطه در دیتابیس
         item_dateAmntgiri.setText(Database.getAmanatgiriDate(book.getAmtTarakoneshID()));
         item_mohlat.setText(Database.getMohlatTahvil(book.getAmtTarakoneshID()));
+
+        //عدم نمایش دکمه ی تمدید درصورتی که کاربر قبلا درخواست تمدید داده باشد
+        try {
+            System.out.println(book.getKtbID());
+            String amntid = Database.getAmntTarakoneshID(book.getKtbID());
+            System.out.println("amntId = "+amntid);
+            System.out.println(Database.getDarkhastTamdidStatus(amntid).equals("1"));
+            if(Database.getDarkhastTamdidStatus(amntid).equals("1")){
+                btn_tamdid.setVisible(false);
+            }
+            if( Database.getEmkanTamdidStatus(amntid).equals("0")){
+                btn_tamdid.setVisible(false);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
@@ -63,10 +79,19 @@ public class Controlleritem implements Initializable {
         //تمدید کتاب مورد نظر
         btn_tamdid.setOnAction(e -> {
             try {
+                System.out.println("bookid =" + this.item_bookID.getText());
                 Database.updateAmanat(Database.getAmntTarakoneshID(item_bookID.getText()) , 1);
                 alert.informationAlert("درخواست تمدید ثبت شد");
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            }
+            //رفرش کردن لیست
+            Stage stage = (Stage) btn_tamdid.getScene().getWindow();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchUserPage("Home");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
             }
         });
         //برگرداندن کتاب موردنظر به کتابخانه
