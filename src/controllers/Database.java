@@ -650,15 +650,6 @@ public class Database {
         closeConnection();
     }
 
-    public static void updateDarkhastUser(String ktbid) throws SQLException {
-        makeConnection();
-        System.out.println(getAmntTarakoneshID(ktbid));
-        String updateAmanat = String.format("UPDATE amanat SET amtDarkhastUsr = \"عودت\" WHERE amtID = '%s' ", getAmntTarakoneshID(ktbid));
-        System.out.println(updateAmanat);
-        getStatement().execute(updateAmanat);
-        closeConnection();
-    }
-
     //گرفتن تاریخ امانت گیری کتابی خاص از جدول amanat دیتابیس با استفاده از آی دی امانت(آی دی امانت بین جدول book و amanat یکسان هستند)
     public static String getAmanatgiriDate(String amnttarakoneshid) throws SQLException {
         makeConnection();
@@ -715,6 +706,15 @@ public class Database {
             sql = String.format("UPDATE amanat SET amtEmkanTamdid = '0', amtDarkhastUsr = '1' WHERE amtID = '%s'", amtID);
         }
         getStatement().executeUpdate(sql);
+        closeConnection();
+    }
+
+    public static void updateAmanat (String date , String vaziyat , String ktbid ) throws SQLException {
+        makeConnection();
+        System.out.println(getAmntTarakoneshID(ktbid));
+        String updateAmanat = String.format("UPDATE amanat SET amtDarkhastUsr = \"%s\" , amtDateRtrn = '%s'  WHERE amtID = '%s' " ,"عودت" , date , getAmntTarakoneshID(ktbid));
+        System.out.println(updateAmanat);
+        getStatement().execute(updateAmanat);
         closeConnection();
     }
 
