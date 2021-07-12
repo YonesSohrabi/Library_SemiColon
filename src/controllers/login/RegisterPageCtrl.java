@@ -66,10 +66,8 @@ public class  RegisterPageCtrl implements Initializable {
             librarian1.setLastName(txt_Field_LastName.getText());
             librarian1.setPassword(txt_Field_Password_R.getText());
             librarian1.setUserName(txt_Field_UserName_R.getText());
-            System.out.println("Password =" + librarian1.getPassword());
             Random rnd = new Random();
             String id = String.valueOf(rnd.nextInt(9000) + 1000);
-            System.out.println("id = " + id);
             librarian1.setID(id);
 
             try {
@@ -92,7 +90,6 @@ public class  RegisterPageCtrl implements Initializable {
                 }
                 // مشکل در ثبت نام
             } catch (Exception e) {
-                System.out.println(e);
                 System.out.println(e);
                 labelalrtRgis.setText("Registration Failed pleaes TryAgain");
             }

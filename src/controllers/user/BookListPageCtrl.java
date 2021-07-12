@@ -122,7 +122,6 @@ public class BookListPageCtrl implements Initializable {
     }
     //متد جهت نمایش کتابهای کتابخانه در pnItem_bookList از طریق item2
     public void showbooks(List<Book> books) throws IOException {
-        System.out.println("book    "+ books);
         pnItems_booklist.getChildren().clear();
         Node[] nodes = new Node[1000];
         int i = 0;
@@ -146,7 +145,6 @@ public class BookListPageCtrl implements Initializable {
                 //اضافه کردن item ایجاد و ست شده به pnItem_bookList در صفحه ی booklist
                 pnItems_booklist.getChildren().add(nodes[i]);
                 i++;
-                System.out.println(i);
             }
         }
     }

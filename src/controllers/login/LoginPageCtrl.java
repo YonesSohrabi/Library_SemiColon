@@ -116,7 +116,6 @@ public class  LoginPageCtrl {
 
     //گرفتن آی دی برای استفاده در کلاسهای دیگر
     public static String get_id() {
-        System.out.println("returned id =" + id);
         return id;
     }
     public static void set_id(String ID){

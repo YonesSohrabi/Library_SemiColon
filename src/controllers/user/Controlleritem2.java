@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Amanat;
 import model.Book;
@@ -53,7 +52,6 @@ public class Controlleritem2 implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //امانت گرفتن کتاب موردنظر در صورت موجود بودن
         btn_amanatgiri.setOnAction(e -> {
-            System.out.println(item2_bookID.getText());
             Roozh roozh = new Roozh();
             Date date = new Date();
             //گرفتن تارخ امانت گیری به صورت میلادی

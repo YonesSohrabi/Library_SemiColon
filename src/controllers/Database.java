@@ -180,7 +180,6 @@ public class Database {
         User user = new User();
         try {
             String mysql = "SELECT usrFName, usrLName , userName , usrPass FROM user WHERE usrID =" + id +" and status ='1' ";
-            System.out.println("mysql=" + mysql);
             ResultSet result = Database.statement.executeQuery(mysql);
             result.next();
             String username = result.getString("userName");
@@ -228,7 +227,6 @@ public class Database {
     public static List<Book> createBookList(String sql) {
         List<Book> booklist1 = null;
         try {
-            System.out.println(sql);
             ResultSet result = Database.statement.executeQuery(sql);
             int i = 0;
             booklist1 = new ArrayList<>();
@@ -256,7 +254,6 @@ public class Database {
         } catch (Exception e) {
             System.out.println(e);
         }
-        System.out.println(booklist1);
         return booklist1;
     }
     //اضافه کردن کتاب جدید به دیتابیس book در صفحه ی ادمین
@@ -535,7 +532,6 @@ public class Database {
     public static String getKtbName(String ktbID) throws SQLException {
         makeConnection();
         String sqlKtb = String.format("SELECT ktbName FROM book WHERE ktbID = '%s' ", ktbID);
-        System.out.println(sqlKtb);
         ResultSet resultSetKtb = Database.getStatement().executeQuery(sqlKtb);
         resultSetKtb.next();
         String ktbName = resultSetKtb.getString("ktbName");
@@ -572,7 +568,6 @@ public class Database {
             String amanatgiri = "INSERT INTO amanat (ktbID, usrID , amtDateGet , amtDateRtrn ,amtDarkhastUsr , amtEmkanTamdid)  values ('%s','%s','%s','%s','%s','%s')";
             amanatgiri = String.format(amanatgiri, amanat.getKtbID(), amanat.getUsrID(), amanat.getAmtDateGet(),
                     amanat.getAmtDateRtrn(), amanat.getAmtDarkhastUsr(), amanat.getAmtEmkanTamdid());
-            System.out.println(amanatgiri);
             Database.getStatement().execute(amanatgiri, Statement.RETURN_GENERATED_KEYS);
             ResultSet resultSet = statement.getGeneratedKeys();
             resultSet.next();
@@ -604,7 +599,6 @@ public class Database {
     public static String getAmanatgiriDate(String amnttarakoneshid) throws SQLException {
         makeConnection();
         String sql = String.format("Select amtDateGet FROM amanat WHERE amtID = '%d' ", Integer.parseInt(amnttarakoneshid));
-        System.out.println(sql);
         ResultSet rs = Database.getStatement().executeQuery(sql);
         rs.next();
         String amanatdateget = rs.getString("amtDateGet") ;
@@ -616,7 +610,6 @@ public class Database {
     public static String getMohlatTahvil(String amnttarakoneshid) throws SQLException, ParseException {
         makeConnection();
         String sql = String.format("Select amtDateRtrn FROM amanat WHERE amtID = '%d' ", Integer.parseInt(amnttarakoneshid));
-        System.out.println(sql);
         ResultSet rs = Database.getStatement().executeQuery(sql);
         rs.next();
         String amanatdatereturn = rs.getString("amtDateRtrn") ;
@@ -640,9 +633,6 @@ public class Database {
     public static String getAmntTarakoneshID(String ktbID) throws SQLException {
         makeConnection();
         String sqlUsr = String.format("SELECT amtTarakoneshID FROM book WHERE ktbID = '%s' ", ktbID);
-
-        System.out.println(sqlUsr);
-
         ResultSet resultSetUsr = Database.getStatement().executeQuery(sqlUsr);
         resultSetUsr.next();
         String amntID = resultSetUsr.getString("amtTarakoneshID");
@@ -667,7 +657,6 @@ public class Database {
     public static String getDarkhastTamdidStatus(String amtID) throws SQLException {
         makeConnection();
         String sql = String.format("select amtDarkhastUsr from amanat WHERE amtID = '%s'", amtID);
-        System.out.println(sql);
         ResultSet resultSet = Database.getStatement().executeQuery(sql);
         resultSet.next();
         String amntdarkhast = resultSet.getString("amtDarkhastUsr");
@@ -680,7 +669,6 @@ public class Database {
     public static String getEmkanTamdidStatus(String amtID) throws SQLException {
         makeConnection();
         String sql = String.format("select amtEmkanTamdid from amanat WHERE amtID = '%s'", amtID);
-        System.out.println(sql);
         ResultSet resultSet = Database.getStatement().executeQuery(sql);
         resultSet.next();
         String amntemkantamdid = resultSet.getString("amtEmkanTamdid");

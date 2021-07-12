@@ -59,10 +59,7 @@ public class Controlleritem implements Initializable {
 
         //عدم نمایش دکمه ی تمدید درصورتی که کاربر قبلا درخواست تمدید داده باشد
         try {
-            System.out.println(book.getKtbID());
             String amntid = Database.getAmntTarakoneshID(book.getKtbID());
-            System.out.println("amntId = "+amntid);
-            System.out.println(Database.getDarkhastTamdidStatus(amntid).equals("1"));
             if(Database.getDarkhastTamdidStatus(amntid).equals("1")){
                 btn_tamdid.setVisible(false);
             }
@@ -79,7 +76,6 @@ public class Controlleritem implements Initializable {
         //تمدید کتاب مورد نظر
         btn_tamdid.setOnAction(e -> {
             try {
-                System.out.println("bookid =" + this.item_bookID.getText());
                 Database.updateAmanat(Database.getAmntTarakoneshID(item_bookID.getText()) , 1);
                 alert.informationAlert("درخواست تمدید ثبت شد");
             } catch (SQLException throwables) {

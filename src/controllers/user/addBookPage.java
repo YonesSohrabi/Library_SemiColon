@@ -39,7 +39,6 @@ public class addBookPage implements Initializable {
 
     //متد جهت نمایش صفحه ی اضافه کردن کتاب
 public void showAddBookPage(String ehdakonande) throws IOException {
-    System.out.println(ehdakonande);
     FXMLLoader loader = new FXMLLoader(addBookPage.class.getResource("../../view/fxmls/user/addBookPage.fxml"));
     Parent root = (Parent) loader.load();
     addBookPage a = loader.getController();

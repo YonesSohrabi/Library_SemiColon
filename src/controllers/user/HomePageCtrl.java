@@ -135,7 +135,6 @@ public class HomePageCtrl implements Initializable {
                         });
                         pnItems.getChildren().add(nodes[i]);
                         i++;
-                        System.out.println(i);
                     }
                 } catch (IOException | SQLException | ParseException e) {
                    e.printStackTrace();
@@ -238,7 +237,6 @@ public class HomePageCtrl implements Initializable {
             Node[] nodes = new Node[1000];
             Database.makeConnection();
             String mysql = "SELECT * FROM book where ktbNevisandeh = "+ "\""+ bookwriter +"\" and ktbAmntGirande = " + "\"" + amanatgirande + "\" and status = '1'";
-            System.out.println(mysql);
             showBooksHomepage(Database.createBookList(mysql));
             Database.getStatement().close();
             Database.closeConnection();
