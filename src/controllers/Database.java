@@ -115,6 +115,22 @@ public class Database {
         }
         closeConnection();
     }
+
+    //دسترسی به یوزرنیم های جدول user دیتابیس برای چک کردن تکراری نبودن یوزرنیم وارد شده توسط کاربر(ورودی در تابع) هنگام ثبت نام
+    public static boolean testUsreNames(String userName) throws SQLException {
+        makeConnection();
+        String sql = "select userName from user";
+        ResultSet rs = getStatement().executeQuery(sql);
+        boolean test = true;
+        while (rs.next()){
+            if(rs.getString("userName").equals(userName)){
+                test = false;
+                break;
+            }
+        }
+        closeConnection();
+    return test;
+    }
     // گرفتن اطلاعات کاربر از دیتابیس یوزر
     public static User getItemUserDB(String userID) throws SQLException {
         makeConnection();

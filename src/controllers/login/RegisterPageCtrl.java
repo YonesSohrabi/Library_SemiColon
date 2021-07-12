@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import model.User;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.scene.control.Label;
@@ -46,7 +47,8 @@ public class  RegisterPageCtrl implements Initializable {
     User librarian1 = new User();
 
     //انجام ثبت نام
-    public void press_Registration_btn(ActionEvent actionEvent) {
+    public void press_Registration_btn(ActionEvent actionEvent) throws SQLException {
+
         //چک کردن خالی نبودن فیلد های مورد نیاز برای ثبت نام
         if (txt_Field_FirstName.getText().compareTo("") == 0 || txt_Field_LastName.getText().compareTo("") == 0 ||
                 txt_Field_Password_R.getText().compareTo("") == 0 ||
@@ -56,6 +58,8 @@ public class  RegisterPageCtrl implements Initializable {
         //چک کردن برابر بودن پسوورد و تاییدیه ی پسوورد
         else if (!(txt_Field_Password_R.getText().equals(txt_Field_ConfirmPassword.getText()))) {
             labelalrtRgis.setText("Enter confirmPassword correctly");
+        }else if(Database.testUsreNames(txt_Field_UserName_R.getText()) == false){
+            labelalrtRgis.setText("This UserName is not available");
         } else {
             //ست کردن یک نمونه از کلاس user با اطلاعات ثبت شده توسط کاربر
             librarian1.setFirstName(txt_Field_FirstName.getText());
