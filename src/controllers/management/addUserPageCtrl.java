@@ -45,11 +45,14 @@ public class addUserPageCtrl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        usrIDTXT.setText(String.valueOf(userIdRandom()));
+        usrIDTXT.setText(String.valueOf(userIdRandom()));// انتخاب یک آیدی رندم برای یوزر
+
+        //  ایونت مربوط به بستن صفحه اضافه کردن کاربر
         exitBTN.setOnAction(e -> {
             closeBTN();
         });
 
+        // ایونت مربوط به دکه اضافه کردن کاربر
         addBTN.setOnAction(e -> {
             try {
                 addUserToDB();
@@ -59,12 +62,14 @@ public class addUserPageCtrl implements Initializable {
         });
     }
 
+    // متد انتخاب عدد 4 رقمی رندم برای آیدی کاربر
     private int userIdRandom() {
         Random rand = new Random();
         int userID = rand.nextInt((9999 - 1000) + 1) + 1000;
         return userID;
     }
 
+    // متد اضافه کردم کاربر به برنامه و دیتابیس
     private void addUserToDB() throws SQLException {
         User user = new User();
         user.setID(usrIDTXT.getText());
@@ -73,6 +78,7 @@ public class addUserPageCtrl implements Initializable {
         user.setLastName(usrLNameTXT.getText());
         user.setCodeMeli(usrCodeMeliTXT.getText());
         user.setPassword(passwordTXT.getText());
+        // اعتبار سنجی فیلدا
         if (
                 !(usrFNameTXT.getText().equals("") ||
                         usrLNameTXT.getText().equals("") ||
@@ -82,10 +88,11 @@ public class addUserPageCtrl implements Initializable {
             Database.createUser(user);
             closeBTN();
         } else {
-            addUserErrLBL.setVisible(true);
+            addUserErrLBL.setVisible(true); // نمایش خطای مربوط به اعتبار سنجی
         }
     }
 
+    // متد بستن صفحه
     public void closeBTN() {
         ((Stage) exitBTN.getScene().getWindow()).close();
         mngUserCtrl.addUserPage = null;
