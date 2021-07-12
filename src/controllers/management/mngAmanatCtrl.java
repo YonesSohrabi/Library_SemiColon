@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -33,13 +32,10 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
     private JFXRadioButton ktbIDRB;
 
     @FXML
-    private ToggleGroup jostejoRadio;
-
-    @FXML
     private JFXRadioButton usrIDRB;
 
     @FXML
-    private JFXRadioButton amtVazeiatRB;
+    private JFXRadioButton dateRB;
 
     @FXML
     private JFXRadioButton allAmanatRB;
@@ -63,13 +59,36 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
     private JFXButton usrIDSearchBTN;
 
     @FXML
-    private Pane amtVazeiatPane;
+    private Pane amtDatePane;
+
+    @FXML
+    private JFXRadioButton searchMohlatRB;
+
+    @FXML
+    private JFXRadioButton searchTwoDateRB;
+
+    @FXML
+    private Pane searchMohlatPane;
 
     @FXML
     private JFXTextField amtMohlatTXT;
 
     @FXML
     private JFXButton amtMohlatSearchBTN;
+
+    @FXML
+    private Pane searchDatePane;
+
+    @FXML
+    private JFXTextField amtAzDateTXT;
+
+    @FXML
+    private JFXButton amtDateSearchBTN;
+
+    @FXML
+    private JFXTextField amtTaDateTXT;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -147,6 +166,13 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        dateRB.setOnAction(e -> {
+            if (dateRB.isSelected()){
+                hidePaneJostejo();
+                amtDatePane.setVisible(true);
+            }
+        });
+
         ktbIDSearchBTN.setOnAction(e -> {
             try {
                 searchAmanat(ktbIDTXT.getText(),"ktbID");
@@ -154,6 +180,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
                 throwables.printStackTrace();
             }
         });
+
 
         usrIDRB.setOnAction(e -> {
             if (usrIDRB.isSelected()){
@@ -178,12 +205,42 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
                 throwables.printStackTrace();
             }
         });
+
+        searchMohlatRB.setOnAction(e -> {
+            if (searchMohlatRB.isSelected()){
+                searchMohlatPane.setVisible(true);
+                searchDatePane.setVisible(false);
+            }
+        });
+
+        amtMohlatSearchBTN.setOnAction(e -> {
+            try {
+                searchAmanat(amtMohlatTXT.getText(),"mohlat");
+            } catch (SQLException | ParseException | IOException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+
+        searchTwoDateRB.setOnAction(e -> {
+            if (searchTwoDateRB.isSelected()){
+                searchDatePane.setVisible(true);
+                searchMohlatPane.setVisible(false);
+            }
+        });
+
+        amtDateSearchBTN.setOnAction(e -> {
+            try {
+                searchAmanat(amtAzDateTXT.getText(),amtTaDateTXT.getText(),"twoDate");
+            } catch (SQLException | ParseException | IOException throwables) {
+                throwables.printStackTrace();
+            }
+        });
     }
 
     private void hidePaneJostejo() {
         ktbIDPane.setVisible(false);
         usrIDPane.setVisible(false);
-        amtVazeiatPane.setVisible(false);
+        amtDatePane.setVisible(false);
     }
 
 
@@ -194,6 +251,10 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
 
     public void searchAmanat(String text,String lable) throws SQLException, IOException, ParseException {
         List<Amanat> amanats = new ArrayList<>(Database.readAmanatsDB(text,lable));
+        showAmanat(amanats);
+    }
+    public void searchAmanat(String dateGet,String dateRtrn,String lable) throws SQLException, IOException, ParseException {
+        List<Amanat> amanats = new ArrayList<>(Database.readAmanatsDB(dateGet,dateRtrn,lable));
         showAmanat(amanats);
     }
 

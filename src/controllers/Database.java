@@ -42,8 +42,21 @@ public class Database {
     //اتصال به دیتابیس
     public static void makeConnection() throws SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "1380Ys1388?");
             statement = connection.createStatement();
+            String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL , `usrLName` varchar(80) NOT NULL , `userName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT ,`status` varchar(10) default '1' , PRIMARY KEY (`usrID`) ,UNIQUE (`userName`))";
+            getStatement().execute(crtbl);
+            crtbl = "CREATE TABLE  IF NOT EXISTS `book` ( `ktbID` INT NOT NULL , `ktbEhdaKonande` varchar(80) NOT NULL , `ktbName` varchar(80) NOT NULL ,  `ktbNevisandeh` varchar(80) NOT NULL ,  `ktbTedad` int NOT NULL ,  `ktbVazeiat` varchar(10) NOT NULL , `amtTarakoneshID` varchar(11) , `ktbEhdaDate` TEXT NOT NULL , `ktbAmntGirande` TEXT , `status` varchar(10) default '1'  , PRIMARY KEY (`ktbID`))";
+            getStatement().execute(crtbl);
+            crtbl = "CREATE TABLE  IF NOT EXISTS admin ( admID INT NOT NULL auto_increment , admUserName varchar(80) NOT NULL ," +
+                    " admPass varchar(80) NOT NULL , admFName varchar(80) NOT NULL , admLName varchar(80) NOT NULL ," +
+                    "admCodeMeli varchar(11), PRIMARY KEY (admID))";
+            getStatement().execute(crtbl);
+            crtbl = "CREATE TABLE  IF NOT EXISTS amanat ( amtID INT NOT NULL auto_increment , ktbID varchar(11) NOT NULL ," +
+                    " usrID varchar(11) NOT NULL , amtDateGet varchar(11) NOT NULL , amtDateRtrn varchar(11) NOT NULL ," +
+                    "amtDarkhastUsr varchar(11) ,amtEmkanTamdid varchar(11), PRIMARY KEY (amtID) )";
+            getStatement().execute(crtbl);
+
         } catch (SQLException e) {
             System.out.println(e);
             e.printStackTrace();
@@ -265,9 +278,9 @@ public class Database {
         String[] dates = fr.format(date).split("/");
         Roozh roozh = new Roozh();
         roozh.gregorianToPersian(Integer.parseInt(dates[0]),Integer.parseInt(dates[1]),Integer.parseInt(dates[2]));
-        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
                 book.getKtbID(), book.getKtbName(), book.getKtbNevisande(), book.getKtbEhdaKonandeh(),
-                Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(), book.getAmtTarakoneshID(),roozh,"","1",book.getStatus());
+                Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(), book.getAmtTarakoneshID(),roozh,"","1");
         try {
             getStatement().execute(sql);
         } catch (SQLException e) {
@@ -355,7 +368,7 @@ public class Database {
         Roozh roozh = new Roozh();
         roozh.gregorianToPersian(Integer.parseInt(dates[0]),Integer.parseInt(dates[1]),Integer.parseInt(dates[2]));
         makeConnection();
-        sql = String.format("UPDATE amanat SET amtDateRtrn = '%s', amtDarkhastUsr = '%s' WHERE ktbID = '%s'",roozh,"عودت",id);
+        sql = String.format("UPDATE amanat SET amtDateRtrn = '%s', amtDarkhastUsr = '%s',amtEmkanTamdid = '%s' WHERE ktbID = '%s'",roozh,"عودت","0",id);
         getStatement().executeUpdate(sql);
         closeConnection();
     }
@@ -507,7 +520,9 @@ public class Database {
         String sql;
         if (lable.equals("ktbID")) {
             sql = String.format("SELECT * FROM amanat WHERE ktbID = '%s'", text);
-        } else {
+        }else if (lable.equals("mohlat")){
+            sql = String.format("SELECT * FROM amanat WHERE amtDateRtrn = '%s'", text);
+        }else {
             sql = String.format("SELECT * FROM amanat WHERE usrID = '%s'", text);
         }
         ResultSet resultSet = Database.getStatement().executeQuery(sql);
@@ -529,7 +544,51 @@ public class Database {
         Database.closeConnection();
         return amanatList;
     }
-    //گرفتن نام کتاب مورد نظر از جدول book دیتابیس با استفاده از آی دی کتاب
+
+    public static List<Amanat> readAmanatsDB(String dateGet,String dateRtrn, String lable) throws SQLException, ParseException {
+        List<Amanat> amanatList = new ArrayList<>();
+
+        SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
+        String[] dateGetArr = dateGet.split("/");
+        String[] dateRtrnArr = dateRtrn.split("/");
+        Roozh miladiGet = new Roozh();
+        miladiGet.persianToGregorian(Integer.parseInt(dateGetArr[0]),Integer.parseInt(dateGetArr[1]),Integer.parseInt(dateGetArr[2]));
+        Roozh miladiRtrn = new Roozh();
+        miladiRtrn.persianToGregorian(Integer.parseInt(dateRtrnArr[0]),Integer.parseInt(dateRtrnArr[1]),Integer.parseInt(dateRtrnArr[2]));
+
+        Date get = new Date(miladiGet.getYear(),miladiGet.getMonth(),miladiGet.getDay());
+        Date rtrn = new Date(miladiRtrn.getYear(),miladiRtrn.getMonth(),miladiRtrn.getDay());
+        Database.makeConnection();
+        String sql = String.format("SELECT * FROM amanat");
+
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        Amanat amanat;
+        while (resultSet.next()) {
+            amanat = new Amanat();
+            amanat.setAmtID(resultSet.getString("amtID"));
+            amanat.setKtbID(resultSet.getString("ktbID"));
+            amanat.setUsrID(resultSet.getString("usrID"));
+            amanat.setAmtDateGet(resultSet.getString("amtDateGet"));
+            amanat.setAmtDateRtrn(resultSet.getString("amtDateRtrn"));
+            amanat.setAmtDarkhastUsr(resultSet.getString("amtDarkhastUsr"));
+            amanat.setAmtEmkanTamdid(resultSet.getString("amtEmkanTamdid"));
+            amanat.setKtbName(getKtbName(resultSet.getString("ktbID")));
+            amanat.setUsrName(getUsrName(resultSet.getString("usrID")));
+            String[] dateArr = amanat.getAmtDateRtrn().split("/");
+            Roozh dateAmanatRtrn = new Roozh();
+            dateAmanatRtrn.persianToGregorian(Integer.parseInt(dateArr[0]),Integer.parseInt(dateArr[1]),Integer.parseInt(dateArr[2]));
+
+            Date amanatRtrn = new Date(dateAmanatRtrn.getYear(),dateAmanatRtrn.getMonth(),dateAmanatRtrn.getDay());
+            if (amanatRtrn.after(get) && amanatRtrn.before(rtrn)){
+                amanatList.add(amanat);
+            }
+
+        }
+
+        Database.closeConnection();
+        return amanatList;
+    }
+
     public static String getKtbName(String ktbID) throws SQLException {
         makeConnection();
         String sqlKtb = String.format("SELECT ktbName FROM book WHERE ktbID = '%s' ", ktbID);
@@ -750,9 +809,15 @@ public class Database {
         return str;
     }
 
-    public static String counter(String tableName) throws SQLException {
+    public static String counter(String tableName,String lable) throws SQLException {
         makeConnection();
-        String sql = String.format("SELECT COUNT(*) FROM %s ", tableName);
+        String sql ;
+        if(lable.equals("amanat")){
+            sql = String.format("SELECT COUNT(*) FROM %s ", tableName);
+        }else {
+            sql = String.format("SELECT COUNT(*) FROM %s WHERE %s = '1' ", tableName,"status");
+        }
+
         ResultSet resultSet = getStatement().executeQuery(sql);
         resultSet.next();
         String num = resultSet.getString(1);
