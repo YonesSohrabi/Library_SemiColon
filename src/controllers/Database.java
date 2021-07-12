@@ -343,7 +343,7 @@ public class Database {
         Roozh roozh = new Roozh();
         roozh.gregorianToPersian(Integer.parseInt(dates[0]),Integer.parseInt(dates[1]),Integer.parseInt(dates[2]));
         makeConnection();
-        sql = String.format("UPDATE amanat SET amtDateRtrn = '%s', amtDarkhastUsr = '%s' WHERE ktbID = '%s'",roozh,"عودت",id);
+        sql = String.format("UPDATE amanat SET amtDateRtrn = '%s', amtDarkhastUsr = '%s',amtEmkanTamdid = '%s' WHERE ktbID = '%s'",roozh,"عودت","0",id);
         getStatement().executeUpdate(sql);
         closeConnection();
     }
@@ -699,9 +699,15 @@ public class Database {
         return str;
     }
 
-    public static String counter(String tableName) throws SQLException {
+    public static String counter(String tableName,String lable) throws SQLException {
         makeConnection();
-        String sql = String.format("SELECT COUNT(*) FROM %s ", tableName);
+        String sql ;
+        if(lable.equals("amanat")){
+            sql = String.format("SELECT COUNT(*) FROM %s ", tableName);
+        }else {
+            sql = String.format("SELECT COUNT(*) FROM %s WHERE %s = '1' ", tableName,"status");
+        }
+
         ResultSet resultSet = getStatement().executeQuery(sql);
         resultSet.next();
         String num = resultSet.getString(1);

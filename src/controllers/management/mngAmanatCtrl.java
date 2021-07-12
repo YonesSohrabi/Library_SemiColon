@@ -33,13 +33,10 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
     private JFXRadioButton ktbIDRB;
 
     @FXML
-    private ToggleGroup jostejoRadio;
-
-    @FXML
     private JFXRadioButton usrIDRB;
 
     @FXML
-    private JFXRadioButton amtVazeiatRB;
+    private JFXRadioButton dateRB;
 
     @FXML
     private JFXRadioButton allAmanatRB;
@@ -63,13 +60,36 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
     private JFXButton usrIDSearchBTN;
 
     @FXML
-    private Pane amtVazeiatPane;
+    private Pane amtDatePane;
+
+    @FXML
+    private JFXRadioButton searchMohlatRB;
+
+    @FXML
+    private JFXRadioButton searchTwoDateRB;
+
+    @FXML
+    private Pane searchMohlatPane;
 
     @FXML
     private JFXTextField amtMohlatTXT;
 
     @FXML
     private JFXButton amtMohlatSearchBTN;
+
+    @FXML
+    private Pane searchDatePane;
+
+    @FXML
+    private JFXTextField amtAzDateTXT;
+
+    @FXML
+    private JFXButton amtDateSearchBTN;
+
+    @FXML
+    private JFXTextField amtTaDateTXT;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -147,6 +167,13 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        dateRB.setOnAction(e -> {
+            if (dateRB.isSelected()){
+                hidePaneJostejo();
+                amtDatePane.setVisible(true);
+            }
+        });
+
         ktbIDSearchBTN.setOnAction(e -> {
             try {
                 searchAmanat(ktbIDTXT.getText(),"ktbID");
@@ -154,6 +181,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
                 throwables.printStackTrace();
             }
         });
+
 
         usrIDRB.setOnAction(e -> {
             if (usrIDRB.isSelected()){
@@ -178,12 +206,26 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
                 throwables.printStackTrace();
             }
         });
+
+        searchMohlatRB.setOnAction(e -> {
+            if (searchMohlatRB.isSelected()){
+                searchMohlatPane.setVisible(true);
+                searchDatePane.setVisible(false);
+            }
+        });
+
+        searchTwoDateRB.setOnAction(e -> {
+            if (searchTwoDateRB.isSelected()){
+                searchDatePane.setVisible(true);
+                searchMohlatPane.setVisible(false);
+            }
+        });
     }
 
     private void hidePaneJostejo() {
         ktbIDPane.setVisible(false);
         usrIDPane.setVisible(false);
-        amtVazeiatPane.setVisible(false);
+        amtDatePane.setVisible(false);
     }
 
 

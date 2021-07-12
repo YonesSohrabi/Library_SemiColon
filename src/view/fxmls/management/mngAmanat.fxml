@@ -95,7 +95,7 @@
                                  </toggleGroup>
                               </JFXRadioButton>
                               <JFXRadioButton fx:id="usrIDRB" nodeOrientation="RIGHT_TO_LEFT" text="آیدی تحویل گیرنده" toggleGroup="$jostejoRadio" />
-                              <JFXRadioButton fx:id="amtVazeiatRB" layoutX="284.0" layoutY="22.0" nodeOrientation="RIGHT_TO_LEFT" text="مهلت" toggleGroup="$jostejoRadio" />
+                              <JFXRadioButton fx:id="dateRB" layoutX="284.0" layoutY="22.0" nodeOrientation="RIGHT_TO_LEFT" text="تاریخ" toggleGroup="$jostejoRadio" />
                               <JFXRadioButton fx:id="allAmanatRB" nodeOrientation="RIGHT_TO_LEFT" text="نمایش همه" toggleGroup="$jostejoRadio" />
                            </children>
                         </HBox>
@@ -119,7 +119,7 @@
                                     </Pane>
                                     <Pane fx:id="usrIDPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                                        <children>
-                                          <JFXTextField fx:id="usrIDTXT" focusColor="#c606a6" labelFloat="true" layoutX="289.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="201.0" promptText="شماره کتاب" />
+                                          <JFXTextField fx:id="usrIDTXT" focusColor="#c606a6" labelFloat="true" layoutX="289.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="201.0" promptText="آیدی تحویل گیرنده" />
                                           <JFXButton fx:id="usrIDSearchBTN" layoutX="207.0" layoutY="19.0" ripplerFill="BLACK" text="جستجو">
                                              <graphic>
                                                 <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
@@ -131,18 +131,47 @@
                                           </JFXButton>
                                        </children>
                                     </Pane>
-                                    <Pane fx:id="amtVazeiatPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                    <Pane fx:id="amtDatePane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                                        <children>
-                                          <JFXTextField fx:id="amtMohlatTXT" focusColor="#c606a6" labelFloat="true" layoutX="289.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="201.0" promptText="مهلت امانت" />
-                                          <JFXButton fx:id="amtMohlatSearchBTN" layoutX="207.0" layoutY="19.0" ripplerFill="BLACK" text="جستجو">
-                                             <graphic>
-                                                <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../../images/search-icon.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </JFXButton>
+                                          <Pane fx:id="searchBoxRB" layoutX="521.0" prefHeight="70.0" prefWidth="167.0">
+                                             <children>
+                                                <JFXRadioButton fx:id="searchMohlatRB" layoutX="59.0" layoutY="6.0" nodeOrientation="RIGHT_TO_LEFT" text="بر اساس مهلت">
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="jostejoDateRadio" />
+                                                   </toggleGroup>
+                                                </JFXRadioButton>
+                                                <JFXRadioButton fx:id="searchTwoDateRB" layoutX="7.0" layoutY="35.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="17.0" prefWidth="154.0" text="بر اساس تاریخ بین دو بازه" toggleGroup="$jostejoDateRadio" />
+                                             </children>
+                                          </Pane>
+                                          <Pane fx:id="searchMohlatPane" prefHeight="70.0" prefWidth="511.0" visible="false">
+                                             <children>
+                                                <JFXTextField fx:id="amtMohlatTXT" focusColor="#c606a6" labelFloat="true" layoutX="263.0" layoutY="17.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="201.0" promptText="مهلت امانت" />
+                                                <JFXButton fx:id="amtMohlatSearchBTN" layoutX="180.0" layoutY="21.0" ripplerFill="BLACK" text="جستجو">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../images/search-icon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                             </children>
+                                          </Pane>
+                                          <Pane fx:id="searchDatePane" prefHeight="70.0" prefWidth="511.0" visible="false">
+                                             <children>
+                                                <JFXTextField fx:id="amtAzDateTXT" alignment="CENTER" focusColor="#c606a6" labelFloat="true" layoutX="360.0" layoutY="23.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="141.0" promptText="از تاریخ" />
+                                                <JFXButton fx:id="amtDateSearchBTN" layoutX="108.0" layoutY="23.0" ripplerFill="BLACK" text="جستجو">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../images/search-icon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                                <JFXTextField fx:id="amtTaDateTXT" alignment="CENTER" focusColor="#c606a6" labelFloat="true" layoutX="197.0" layoutY="23.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="141.0" promptText="تا تاریخ " />
+                                             </children>
+                                          </Pane>
                                        </children>
                                     </Pane>
                                  </children>
