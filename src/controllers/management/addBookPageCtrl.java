@@ -43,12 +43,14 @@ public class addBookPageCtrl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        ktbIDTXT.setText(String.valueOf(bookIdRandom()));
+        ktbIDTXT.setText(String.valueOf(bookIdRandom()));// انتخاب آیدی رندم برای کتابی که قراره به کتابخونه اضافه شه
 
+        // بستن صفحه اضافه کردن کتاب
         exitBTN.setOnAction(e -> {
             closeBTN();
         });
 
+        // ایونت اضافه کردن کتاب
         addBTN.setOnAction(e -> {
             try {
                 addBookToDB();
@@ -58,17 +60,20 @@ public class addBookPageCtrl implements Initializable {
         });
     }
 
+    // متد مربوط به ایونت بستن صفحه اضافه کردن کتاب
     public void closeBTN() {
         ((Stage) exitBTN.getScene().getWindow()).close();
         mngBookCtrl.addBookPage = null;
     }
 
+    // متد انتخاب یک عدد رندم 4 رقمی برای آیدی کتاب
     private int bookIdRandom() {
         Random rand = new Random();
         int bookID = rand.nextInt((9999 - 1000) + 1) + 1000;
         return bookID;
     }
 
+    // متد مربوط به ایونت اضافه کردن کتاب به کتاب خانه | ساختن یک شی از کتاب و پرکردن مقادیر آن با مقادیری تکست فیلدا
     private void addBookToDB() throws SQLException {
         Book book = new Book();
         book.setKtbID(ktbIDTXT.getText());
@@ -77,15 +82,17 @@ public class addBookPageCtrl implements Initializable {
         book.setKtbEhdaKonandeh(ktbEhdakonandehTXT.getText());
         book.setKtbTedad(ktbTedadTXT.getText());
         book.setKtbVazeit("موجود");
+
+        // چک کردن اینکه تکست فیلدا خالی نباشن
         if (
                 !(ktbNameTXT.getText().equals("") ||
                         ktbNevisandehTXT.getText().equals("") ||
                         ktbTedadTXT.getText().equals(""))
         ) {
-            Database.createBook(book);
+            Database.createBook(book);// ذخیره اطلاعات در دیتابیس
             closeBTN();
         } else {
-            addBookErrLBL.setVisible(true);
+            addBookErrLBL.setVisible(true); // نمایش پیغام خطا در صورتی ک اعتبار سنجی بالا فالس بشه
         }
     }
 }

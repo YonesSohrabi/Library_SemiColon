@@ -8,11 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Amanat;
-import model.Book;
 import model.User;
 
 import java.net.URL;
@@ -53,9 +51,6 @@ public class detailsAmanatPageCtrl implements Initializable {
     private Text vazeiatDarkhastTXT;
 
     @FXML
-    private HBox btnBox;
-
-    @FXML
     private JFXButton radBTN;
 
     @FXML
@@ -66,19 +61,24 @@ public class detailsAmanatPageCtrl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        amtIDTXT.setText(itemAmanatCtrl.amtID);
-        ktbNameTXT.setText(itemAmanatCtrl.ktbName);
+
+        amtIDTXT.setText(itemAmanatCtrl.amtID);//پرکردن فیلد آیدی امانت
+        ktbNameTXT.setText(itemAmanatCtrl.ktbName);// پرکردن فیلد نام کتاب
+
         try {
             getDataAmanat(amtIDTXT.getText());
         } catch (SQLException | ParseException e) {
             e.printStackTrace();
         }
+
+        // ایونت مربوط به پذیرش درخواست کاربر و تمدید مهلت کتاب
         pazireshBTN.setOnAction(e -> {
 
             try {
-                amtRtrnDateTXT.setText(DateSC.tamdidMohalat(amtRtrnDateTXT.getText(), 10));
+                amtRtrnDateTXT.setText(DateSC.tamdidMohalat(amtRtrnDateTXT.getText(), 10));// تمدید مهلت
+                //  تغییر وضعیت درخواست کاربر - وضعیت 2 یعتی درخواست کاربر توسط مدیریت پذیرش شده
                 Database.updateAmanat(amtIDTXT.getText(), amtRtrnDateTXT.getText(),"2");
-                getDataAmanat(amtIDTXT.getText());
+                getDataAmanat(amtIDTXT.getText());// گرفتن اطلاعات امانت بعد از پذیرش درخواست
             } catch (SQLException | ParseException throwables) {
                 throwables.printStackTrace();
             }
@@ -86,21 +86,28 @@ public class detailsAmanatPageCtrl implements Initializable {
             radBTN.setVisible(false);
         });
 
+        // ایونت مربوط به رد درخواست کاربر برای تمدید مهلت کتاب
         radBTN.setOnAction(e -> {
             try {
+                // آپدیت وضعیت درخواست کاربر و امکان تمدید پس از رد درخواست
                 Database.updateAmanat(amtIDTXT.getText() , 0);
                 getDataAmanat(amtIDTXT.getText());
             } catch (SQLException | ParseException throwables) {
                 throwables.printStackTrace();
             }
+
+            // مخفی کردن دکمه پذیرش و رد درخواست پس از هندل شدن ایونت
             pazireshBTN.setVisible(false);
             radBTN.setVisible(false);
         });
+
+        // ایونت خروج از صفحه جزئیات امانت
         exitBTN.setOnAction(e -> {
             closeBTN();
         });
     }
 
+    // متد گرفتن و نمایش اطلاعاتی که در قسمت جزئیات امانت نمایش داده میشه
     private void getDataAmanat(String amtIDTXT) throws SQLException, ParseException {
 
         Amanat amanat = Database.getItemAmanatDB(amtIDTXT);
@@ -108,12 +115,15 @@ public class detailsAmanatPageCtrl implements Initializable {
         usrIDTXT.setText(amanat.getUsrID());
         amtGetDateTXT.setText(amanat.getAmtDateGet());
         amtRtrnDateTXT.setText(amanat.getAmtDateRtrn());
+        // نمایش متن مربوط به امکان تمدید کتاب در قسمت وضعیت تمدید
         if (amanat.getAmtEmkanTamdid().equals("1")) {
             vazeiatTamdidTXT.setText("امکان تمدید امانت وجود دارد.");
         } else {
             vazeiatTamdidTXT.setText("دیگر امکان تمدید مهلت این امانت وجود ندارد.");
             vazeiatTamdidTXT.setFill(Color.valueOf("#bf1a1a"));
         }
+
+        // نمایش متن مربوط به وضعیت درخواست بر اساس وضعیت امانت
         if (amanat.getAmtDarkhastUsr().equals("0")) {
             vazeiatDarkhastTXT.setText("کاربر فعلا درخواستی مبنی بر تمدید نداشته است .");
         } else if (amanat.getAmtDarkhastUsr().equals("1")) {
@@ -133,7 +143,7 @@ public class detailsAmanatPageCtrl implements Initializable {
         usrCodeMeliTXT.setText(user.getCodeMeli());
 
     }
-
+    
     public void closeBTN() {
         ((Stage) exitBTN.getScene().getWindow()).close();
         itemAmanatCtrl.detailsAmanatPage = null;
