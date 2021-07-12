@@ -77,7 +77,7 @@ public class detailsAmanatPageCtrl implements Initializable {
 
             try {
                 amtRtrnDateTXT.setText(DateSC.tamdidMohalat(amtRtrnDateTXT.getText(), 10));
-                Database.updateAmanat(amtIDTXT.getText(), amtRtrnDateTXT.getText());
+                Database.updateAmanat(amtIDTXT.getText(), amtRtrnDateTXT.getText(),"2");
                 getDataAmanat(amtIDTXT.getText());
             } catch (SQLException | ParseException throwables) {
                 throwables.printStackTrace();

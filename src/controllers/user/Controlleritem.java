@@ -46,7 +46,6 @@ public class Controlleritem implements Initializable {
 
     @FXML
     private Label item_bookID;
-
     //ست کردن اطلاعات کتاب درون item(یک Hbox برای نمایش اطلاعات کتاب های امانت گرفته شده توسط کاربر در صفحه ی home)
     public void setitemBook(Book book) throws SQLException, ParseException {
         item_bookID.setText(String.valueOf(book.getKtbID()));
