@@ -163,10 +163,10 @@ public class mngDashboardCtrl extends mngStage implements Initializable{
         }
 
         try {
-            numKarbaranLBL.setText(counterNum("user"));
-            numHameKetabhaLBL.setText(counterNum("book"));
+            numKarbaranLBL.setText(counterNum("user","user"));
+            numHameKetabhaLBL.setText(counterNum("book","book"));
             numAmanatFeliLBL.setText(counterNum("book","ktbVazeiat","ناموجود","status","1"));
-            numKolAmanatLBL.setText(counterNum("amanat"));
+            numKolAmanatLBL.setText(counterNum("amanat","amanat"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -232,8 +232,8 @@ public class mngDashboardCtrl extends mngStage implements Initializable{
         });
     }
 
-    private String counterNum(String tableName) throws SQLException {
-        return Database.counter(tableName);
+    private String counterNum(String tableName,String lable) throws SQLException {
+        return Database.counter(tableName,lable);
     }
     private String counterNum(String tableName,String feildName,String feildValue,String status,String valueStatus) throws SQLException {
         return Database.counter(tableName,feildName,feildValue,status,valueStatus);
