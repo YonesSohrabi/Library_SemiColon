@@ -27,7 +27,7 @@
       </ImageView>
       <Label fx:id="userNumIdLBL" alignment="CENTER" prefHeight="21.0" prefWidth="82.0" text="10201" textFill="#b7c3d7">
          <HBox.margin>
-            <Insets left="20.0" />
+            <Insets />
          </HBox.margin></Label>
       <Label fx:id="userNameLBL" alignment="CENTER" prefHeight="17.0" prefWidth="103.0" text="یونس" textFill="#b7c3d7">
          <HBox.margin>
@@ -41,9 +41,9 @@
       </Label>
       <Label fx:id="userCodeMeliLBL" alignment="CENTER" prefHeight="21.0" prefWidth="136.0" text="4000348795" textFill="#b7c3d7">
          <HBox.margin>
-            <Insets left="10.0" />
+            <Insets left="15.0" right="-10.0" />
          </HBox.margin></Label>
-      <Pane prefHeight="53.0" prefWidth="125.0">
+      <Pane prefHeight="53.0" prefWidth="105.0">
          <children>
             <Button id="button-item-book" fx:id="editBTN" layoutX="24.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@../../styles/style.css">
                <graphic>
