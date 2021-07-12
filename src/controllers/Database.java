@@ -575,8 +575,11 @@ public class Database {
                 ktbamntgirande, amnttarakoneshid, ktbvaziyat , ktbid);
         getStatement().execute(updateBook);
         closeConnection();
+
         makeConnection();
-        
+        String updateAmanat = String.format("UPDATE amanat SET amtDarkhastUsr = \"عودت\" WHERE amtID = '%s' ", getAmntTarakoneshID(ktbid));
+        getStatement().execute(updateAmanat);
+        closeConnection();
     }
     //گرفتن تاریخ امانت گیری کتابی خاص از جدول amanat دیتابیس با استفاده از آی دی امانت(آی دی امانت بین جدول book و amanat یکسان هستند)
     public static String getAmanatgiriDate(String amnttarakoneshid) throws SQLException {
