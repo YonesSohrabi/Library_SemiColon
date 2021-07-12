@@ -85,7 +85,7 @@
                         </VBox>
                      </content>
                   </ScrollPane>
-                  <VBox layoutX="47.0" layoutY="78.0" prefHeight="117.0" prefWidth="699.0">
+                  <VBox layoutX="47.0" layoutY="59.0" prefHeight="117.0" prefWidth="699.0">
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="59.0" prefWidth="699.0" spacing="20.0">
                            <children>
@@ -187,23 +187,6 @@
                                     </JFXTextField>
                                  </children>
                               </Pane>
-                              <Pane fx:id="searchwith_bookvaziyat_pane" prefHeight="200.0" prefWidth="200.0" visible="false">
-                                 <children>
-                                    <JFXRadioButton alignment="CENTER_LEFT" layoutX="380.0" layoutY="26.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#show_amanatdadeshodebooks" text="امانت داده شده" textAlignment="RIGHT" textFill="WHITE">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="vaziyat_radiobtn" />
-                                       </toggleGroup>
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </JFXRadioButton>
-                                    <JFXRadioButton layoutX="248.0" layoutY="26.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#show_mojod_books" text="در دسترس" textFill="WHITE" toggleGroup="$vaziyat_radiobtn">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </JFXRadioButton>
-                                 </children>
-                              </Pane>
                               <Pane fx:id="searchwith_bookwriter_pane" prefHeight="68.0" prefWidth="699.0" visible="false">
                                  <children>
                                     <JFXTextField fx:id="ktbwritertxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="نام نویسنده" unFocusColor="WHITE">
@@ -238,7 +221,7 @@
                         </StackPane>
                      </children>
                   </VBox>
-                  <ImageView fitHeight="84.0" fitWidth="85.0" layoutX="8.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="117.0" fitWidth="154.0" layoutX="8.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/Logo2.png" />
                      </image>

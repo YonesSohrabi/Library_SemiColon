@@ -1,5 +1,6 @@
 package controllers.user;
 
+import com.jfoenix.controls.JFXTextField;
 import controllers.Database;
 import controllers.login.LoginPageCtrl;
 import controllers.switchSenceCtrl;
@@ -13,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -46,6 +48,29 @@ public class HomePageCtrl implements Initializable {
     @FXML
     private Label lbl_fullname;
 
+    @FXML
+    private Pane searchwith_bookname_pane;
+
+    @FXML
+    private JFXTextField ktbNametxt_search;
+
+    @FXML
+    private Pane searchwith_bookid_pane;
+
+    @FXML
+    private JFXTextField ktbIDtxt_search;
+
+    @FXML
+    private Pane searchwith_bookvaziyat_pane;
+
+    @FXML
+    private JFXTextField ktbwritertxt_search;
+
+    @FXML
+    private Pane searchwith_bookwriter_pane;
+
+
+    String amanatgirande = LoginPageCtrl.get_id();
     //ست کردن اطلاعات نمایش داده شده توسط برنامه با کاربر واردشده
     public void setInfo() {
         User user = new User();
@@ -79,7 +104,6 @@ public class HomePageCtrl implements Initializable {
                 Database.makeConnection();
                 //ساختن تیبل مورد نیاز در دیتابیس
                 Database.create_book_table();
-                String amanatgirande = LoginPageCtrl.get_id();
                 String mysql = "SELECT * FROM book where ktbAmntGirande = " + "\"" + amanatgirande + "\" and status = '1'";
                 showBooksHomepage(Database.createBookList(mysql));
             } catch (SQLException e) {
@@ -149,36 +173,77 @@ public class HomePageCtrl implements Initializable {
         }
     }
 
-    public void btn_search_clicked(ActionEvent actionEvent) {
-    }
-
-    public void searchwithbookvaziyat(ActionEvent actionEvent) {
-    }
 
     public void searchwithbookid(ActionEvent actionEvent) {
+        searchwith_bookwriter_pane.setVisible(false);
+        searchwith_bookname_pane.setVisible(false);
+        searchwith_bookid_pane.setVisible(true);
     }
 
     public void searchwithbookwriter(ActionEvent actionEvent) {
+        searchwith_bookid_pane.setVisible(false);
+        searchwith_bookname_pane.setVisible(false);
+        searchwith_bookwriter_pane.setVisible(true);
     }
 
     public void searchwithbookname(ActionEvent actionEvent) {
+        searchwith_bookwriter_pane.setVisible(false);
+        searchwith_bookid_pane.setVisible(false);
+        searchwith_bookname_pane.setVisible(true);
     }
 
     public void searchwith_showallbooks(ActionEvent actionEvent) {
+        searchwith_bookwriter_pane.setVisible(false);
+        searchwith_bookid_pane.setVisible(false);
+        searchwith_bookname_pane.setVisible(false);
+        createhomeList();
     }
 
+    //جستجو براساس نام کتاب
     public void search_bookname_btn_action(ActionEvent actionEvent) {
+        String bookname = ktbNametxt_search.getText();
+        try {
+            pnItems.getChildren().clear();
+            Node[] nodes = new Node[1000];
+            Database.makeConnection();
+            String mysql = "SELECT * FROM book where ktbName = "+ "\""+ bookname +"\" and ktbAmntGirande = " +"\"" + amanatgirande + "\" and  status = '1'";
+            showBooksHomepage(Database.createBookList(mysql));
+            Database.getStatement().close();
+            Database.closeConnection();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void search_bookID_btn_actoin(ActionEvent actionEvent) {
+        String bookid = ktbIDtxt_search.getText();
+        try {
+            pnItems.getChildren().clear();
+            Node[] nodes = new Node[1000];
+            Database.makeConnection();
+            String mysql = "SELECT * FROM book where ktbID = "+ "\""+ bookid + "\" and ktbAmntGirande = " + "\"" + amanatgirande + "\" and status = '1'";
+            showBooksHomepage(Database.createBookList(mysql));
+            Database.getStatement().close();
+            Database.closeConnection();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
-    public void show_amanatdadeshodebooks(ActionEvent actionEvent) {
-    }
-
-    public void show_mojod_books(ActionEvent actionEvent) {
-    }
-
+    //جستجو براساس نویسنده ی کتاب
     public void search_writer_btn_action(ActionEvent actionEvent) {
+        String bookwriter = ktbwritertxt_search.getText();
+        try {
+            pnItems.getChildren().clear();
+            Node[] nodes = new Node[1000];
+            Database.makeConnection();
+            String mysql = "SELECT * FROM book where ktbNevisandeh = "+ "\""+ bookwriter +"\" and ktbAmntGirande = " + "\"" + amanatgirande + "\" and status = '1'";
+            System.out.println(mysql);
+            showBooksHomepage(Database.createBookList(mysql));
+            Database.getStatement().close();
+            Database.closeConnection();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 }

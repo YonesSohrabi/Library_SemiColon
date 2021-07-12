@@ -545,6 +545,7 @@ public class Database {
         closeConnection();
         return vaziyat;
     }
+
     //امانت گرفتن کتاب از کتابخانه
     public static void amanatgiri(Amanat amanat) throws SQLException {
         //گرفتن وضعیت کتاب از طریق متد مربوطه
@@ -568,6 +569,7 @@ public class Database {
             alert.errorAlert("کتاب مورد نظر شما درحال حاضر موجود نمیباشد");
         }
     }
+
     //آپدیت کردن فیلدهای مربوط به امانت در جدول book دیتابیس در صورت ایجاد تغییر
     public static void updateBookAmntStatus(String ktbamntgirande , String amnttarakoneshid , String ktbvaziyat , String ktbid) throws SQLException {
         makeConnection();
@@ -581,6 +583,7 @@ public class Database {
         getStatement().execute(updateAmanat);
         closeConnection();
     }
+
     //گرفتن تاریخ امانت گیری کتابی خاص از جدول amanat دیتابیس با استفاده از آی دی امانت(آی دی امانت بین جدول book و amanat یکسان هستند)
     public static String getAmanatgiriDate(String amnttarakoneshid) throws SQLException {
         makeConnection();
@@ -592,6 +595,7 @@ public class Database {
         rs.close();
         return amanatdateget;
     }
+
     //گرفتن مهلت تحویل کتابی خاص از جدول amanat دیتابیس با استفاده از آی دی امانت(آی دی امانت بین جدول book و amanat یکسان هستند)
     public static String getMohlatTahvil(String amnttarakoneshid) throws SQLException, ParseException {
         makeConnection();
@@ -604,6 +608,7 @@ public class Database {
         String mohlat = DateSC.mohlatTahvil(amanatdatereturn);
         return mohlat;
     }
+
     //گرفتن نام کامل کاربری خاص از جدول user با استفاده از آی دی آن کاربر
     public static String getUsrName(String usrID) throws SQLException {
         makeConnection();
@@ -614,6 +619,7 @@ public class Database {
         resultSetUsr.close();
         return usrFullName;
     }
+
     //گرفتن آی دی تراکنشی خاص از جدول book دیتابیس(برای دسترسی به اطلاعات مربوط به امانت این کتاب در جدول amanat دیتابیس از طریق آی دی تراکنش)
     public static String getAmntTarakoneshID(String ktbID) throws SQLException {
         makeConnection();
@@ -627,6 +633,7 @@ public class Database {
         resultSetUsr.close();
         return amntID;
     }
+
     //آپدیت کردن اطلاعات مربوط به امانتی خاص در صورت ایجاد تغییر
     public static void updateAmanat(String amtID, int lable) throws SQLException {
         makeConnection();
@@ -639,6 +646,7 @@ public class Database {
         getStatement().executeUpdate(sql);
         closeConnection();
     }
+
     //گرفتن وضعیت درخواست تمدید کاربر(جهت عدم نمایش دکمه ی تمدید درصورتی که کاربر قبلا درخواست نمدید داده باشد)
     public static String getDarkhastTamdidStatus(String amtID) throws SQLException {
         makeConnection();
@@ -651,6 +659,7 @@ public class Database {
         closeConnection();
         return amntdarkhast;
     }
+
     //گرفتن وضعیت امکان تمدید کاربر(جهت عدم نمایش دکمه ی تمدید درصورتی که کاربر قبلا درخواست نمدید داده باشد)
     public static String getEmkanTamdidStatus(String amtID) throws SQLException {
         makeConnection();
@@ -663,6 +672,7 @@ public class Database {
         closeConnection();
         return amntemkantamdid;
     }
+
     //آپدیت کردن اطلاعات مربوط به امانتی خاص در صورت ایجاد تغییر
     public static void updateAmanat(String amtID, String amtDateRtrn) throws SQLException {
         makeConnection();
@@ -671,6 +681,7 @@ public class Database {
         getStatement().executeUpdate(sql);
         closeConnection();
     }
+
     //گرفتن اطلاعات مربوط به امانت گیری کتابی خاص از طریق آی دی امانت
     public static Amanat getItemAmanatDB(String amtID) throws SQLException, ParseException {
         makeConnection();
