@@ -42,8 +42,21 @@ public class Database {
     //اتصال به دیتابیس
     public static void makeConnection() throws SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "1380Ys1388?");
             statement = connection.createStatement();
+            String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL , `usrLName` varchar(80) NOT NULL , `userName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT ,`status` varchar(10) default '1' , PRIMARY KEY (`usrID`) ,UNIQUE (`userName`))";
+            getStatement().execute(crtbl);
+            crtbl = "CREATE TABLE  IF NOT EXISTS `book` ( `ktbID` INT NOT NULL , `ktbEhdaKonande` varchar(80) NOT NULL , `ktbName` varchar(80) NOT NULL ,  `ktbNevisandeh` varchar(80) NOT NULL ,  `ktbTedad` int NOT NULL ,  `ktbVazeiat` varchar(10) NOT NULL , `amtTarakoneshID` varchar(11) , `ktbEhdaDate` TEXT NOT NULL , `ktbAmntGirande` TEXT , `status` varchar(10) default '1'  , PRIMARY KEY (`ktbID`))";
+            getStatement().execute(crtbl);
+            crtbl = "CREATE TABLE  IF NOT EXISTS admin ( admID INT NOT NULL auto_increment , admUserName varchar(80) NOT NULL ," +
+                    " admPass varchar(80) NOT NULL , admFName varchar(80) NOT NULL , admLName varchar(80) NOT NULL ," +
+                    "admCodeMeli varchar(11), PRIMARY KEY (admID))";
+            getStatement().execute(crtbl);
+            crtbl = "CREATE TABLE  IF NOT EXISTS amanat ( amtID INT NOT NULL auto_increment , ktbID varchar(11) NOT NULL ," +
+                    " usrID varchar(11) NOT NULL , amtDateGet varchar(11) NOT NULL , amtDateRtrn varchar(11) NOT NULL ," +
+                    "amtDarkhastUsr varchar(11) ,amtEmkanTamdid varchar(11), PRIMARY KEY (amtID) )";
+            getStatement().execute(crtbl);
+
         } catch (SQLException e) {
             System.out.println(e);
             e.printStackTrace();
@@ -264,9 +277,9 @@ public class Database {
         String[] dates = fr.format(date).split("/");
         Roozh roozh = new Roozh();
         roozh.gregorianToPersian(Integer.parseInt(dates[0]),Integer.parseInt(dates[1]),Integer.parseInt(dates[2]));
-        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+        String sql = String.format("INSERT INTO book VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
                 book.getKtbID(), book.getKtbName(), book.getKtbNevisande(), book.getKtbEhdaKonandeh(),
-                Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(), book.getAmtTarakoneshID(),roozh,"","1",book.getStatus());
+                Integer.valueOf(book.getKtbTedad()), book.getKtbVazeit(), book.getAmtTarakoneshID(),roozh,"","1");
         try {
             getStatement().execute(sql);
         } catch (SQLException e) {

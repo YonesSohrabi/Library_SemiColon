@@ -8,7 +8,6 @@ import controllers.switchSenceCtrl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Admin;
 
@@ -19,9 +18,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class admLoginPageCtrl implements Initializable {
-
-    @FXML
-    private Pane admLoginPage;
 
     @FXML
     private JFXTextField usrNameAdmTXT;
@@ -49,9 +45,9 @@ public class admLoginPageCtrl implements Initializable {
         // ایونت لاگین برای صفحه لاگین مدیریت
         loginAdmBTN.setOnAction(e -> {
             try {
-                if (!(usrNameAdmTXT.getText().equals("") || passAdmTXT.getText().equals(""))){
-                    if(checkInfoAdmin(usrNameAdmTXT.getText(),passAdmTXT.getText())){
-                        enterToAdminPanel();
+                if (!(usrNameAdmTXT.getText().equals("") || passAdmTXT.getText().equals(""))){// چک کردن خالی نبودن فیلد ها
+                    if(checkInfoAdmin(usrNameAdmTXT.getText(),passAdmTXT.getText())){// چک کردن یوزر نیم و پسورد مدیریت
+                        enterToAdminPanel();// ورود به صفحه مدیریت
                     }else {
                         admLoginErrLBL.setText("Wrong username or password");
                         admLoginErrLBL.setVisible(true);
@@ -91,7 +87,7 @@ public class admLoginPageCtrl implements Initializable {
         Stage stage = (Stage) loginAdmBTN.getScene().getWindow();
         switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
         try {
-            switchSenceCtrl.sceneSwitchManagement("dashboard");
+            switchSenceCtrl.sceneSwitchManagement("dashboard");// ورود به صفحه مدیریت - داشبورد
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
@@ -99,7 +95,7 @@ public class admLoginPageCtrl implements Initializable {
 
     // متد چک کردن اطلاعات وارد شده با اطلاعات موجود در جدول ادمین در دیتابیس
     private boolean checkInfoAdmin(String userName,String password) throws SQLException {
-        List<Admin> admins = Database.getInfoAdmin();
+        List<Admin> admins = Database.getInfoAdmin();// خواندن اطلاعات مدیران از دیتابیس
         boolean isCorrect = false;
         for (Admin adm:admins){
             if (adm.getUserName().equals(userName)){
