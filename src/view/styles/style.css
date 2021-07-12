@@ -171,3 +171,7 @@
 .scroll-pane_admin > .corner {
     -fx-background-color: #fff;
 }
+
+.txtField{
+    -fx-text-fill: wheat;
+}

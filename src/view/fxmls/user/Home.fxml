@@ -129,7 +129,7 @@
                            <children>
                               <Pane fx:id="searchwith_bookname_pane" prefHeight="68.0" prefWidth="699.0" visible="false">
                                  <children>
-                                    <JFXTextField fx:id="ktbNametxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="نام کتاب" unFocusColor="WHITE">
+                                    <JFXTextField fx:id="ktbNametxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="نام کتاب" styleClass="txtField" stylesheets="@../../styles/style.css" unFocusColor="WHITE">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -180,7 +180,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
-                                    <JFXTextField fx:id="ktbIDtxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="آیدی کتاب" unFocusColor="WHITE">
+                                    <JFXTextField fx:id="ktbIDtxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="آیدی کتاب" styleClass="txtField" stylesheets="@../../styles/style.css" unFocusColor="WHITE">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -189,7 +189,7 @@
                               </Pane>
                               <Pane fx:id="searchwith_bookwriter_pane" prefHeight="68.0" prefWidth="699.0" visible="false">
                                  <children>
-                                    <JFXTextField fx:id="ktbwritertxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="نام نویسنده" unFocusColor="WHITE">
+                                    <JFXTextField fx:id="ktbwritertxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="نام نویسنده" styleClass="txtField" stylesheets="@../../styles/style.css" unFocusColor="WHITE">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
