@@ -156,7 +156,7 @@ public class mngDashboardCtrl extends mngStage implements Initializable{
                 amanat1.setText(String.valueOf(amtRecentList.get(0)));
                 break;
             case 0 :
-                odatHBox1.setVisible(true);
+                amtHBox1.setVisible(true);
                 amanat1.setText("موردی برای نمایش وجود ندارد .");
                 break;
 
@@ -223,7 +223,12 @@ public class mngDashboardCtrl extends mngStage implements Initializable{
 
         exitBTN.setOnAction(e -> {
             Stage stage = (Stage) exitBTN.getScene().getWindow();
-            stage.close();
+            switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
+            try {
+                switchSenceCtrl.sceneSwitchLogin("loginPage");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         });
     }
 

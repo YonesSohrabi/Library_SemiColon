@@ -96,11 +96,6 @@ public class Database {
             //مشکل(ارور) در ثبت نام
         } catch (Exception ex) {
             System.out.println(ex);
-            Alert alert2 = new Alert(Alert.AlertType.WARNING);
-            alert2.setTitle("ERROR");
-            alert2.setHeaderText(null);
-            alert2.setContentText("Registration Failed pleaes TryAgain");
-            alert2.showAndWait();
         }
         //ارسال اطلاعات ثبت نام کننده به دیتابیس یوزر
         Random rnd = new Random();
@@ -563,7 +558,7 @@ public class Database {
             resultSet.next();
             int amtID = resultSet.getInt(1);
             closeConnection();
-            updateBookAmntStatus(getUsrName(LoginPageCtrl.get_id()), String.valueOf(amtID), "ناموجود", amanat.getKtbID());
+            updateBookAmntStatus(LoginPageCtrl.get_id(), String.valueOf(amtID), "ناموجود", amanat.getKtbID());
         }
         //در ضورت موجود نبودن کتاب نمایش الرت کتاب موجود نیست
         else if(vaziyat==false){
@@ -658,7 +653,6 @@ public class Database {
         closeConnection();
         return amanat;
     }
-
 
     public static void updateAdmin(Admin admin, String adminID) throws SQLException {
         makeConnection();

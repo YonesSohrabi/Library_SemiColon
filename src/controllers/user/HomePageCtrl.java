@@ -1,6 +1,7 @@
 package controllers.user;
 
 import controllers.Database;
+import controllers.login.LoginPageCtrl;
 import controllers.switchSenceCtrl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -78,7 +79,7 @@ public class HomePageCtrl implements Initializable {
                 Database.makeConnection();
                 //ساختن تیبل مورد نیاز در دیتابیس
                 Database.create_book_table();
-                String amanatgirande = lbl_fullname.getText();
+                String amanatgirande = LoginPageCtrl.get_id();
                 String mysql = "SELECT * FROM book where ktbAmntGirande = " + "\"" + amanatgirande + "\" and status = '1'";
                 showBooksHomepage(Database.createBookList(mysql));
             } catch (SQLException e) {
@@ -149,5 +150,35 @@ public class HomePageCtrl implements Initializable {
     }
 
     public void btn_search_clicked(ActionEvent actionEvent) {
+    }
+
+    public void searchwithbookvaziyat(ActionEvent actionEvent) {
+    }
+
+    public void searchwithbookid(ActionEvent actionEvent) {
+    }
+
+    public void searchwithbookwriter(ActionEvent actionEvent) {
+    }
+
+    public void searchwithbookname(ActionEvent actionEvent) {
+    }
+
+    public void searchwith_showallbooks(ActionEvent actionEvent) {
+    }
+
+    public void search_bookname_btn_action(ActionEvent actionEvent) {
+    }
+
+    public void search_bookID_btn_actoin(ActionEvent actionEvent) {
+    }
+
+    public void show_amanatdadeshodebooks(ActionEvent actionEvent) {
+    }
+
+    public void show_mojod_books(ActionEvent actionEvent) {
+    }
+
+    public void search_writer_btn_action(ActionEvent actionEvent) {
     }
 }

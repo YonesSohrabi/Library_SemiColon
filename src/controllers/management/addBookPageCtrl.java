@@ -80,7 +80,6 @@ public class addBookPageCtrl implements Initializable {
         if (
                 !(ktbNameTXT.getText().equals("") ||
                         ktbNevisandehTXT.getText().equals("") ||
-                        ktbEhdakonandehTXT.getText().equals("") ||
                         ktbTedadTXT.getText().equals(""))
         ) {
             Database.createBook(book);

@@ -157,7 +157,7 @@ public class BookListPageCtrl implements Initializable {
             Database.makeConnection();
             //ساختن تیبل مورد نیاز در دیتابیس
             Database.create_book_table();
-            String mysql = "SELECT * FROM book";
+            String mysql = "SELECT * FROM book where status = '1' ";
             showbooks(Database.createBookList(mysql));
             Database.getStatement().close();
             Database.closeConnection();

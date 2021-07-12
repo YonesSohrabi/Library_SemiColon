@@ -30,7 +30,6 @@
          <children>
             <Pane fx:id="pane_Home" prefHeight="576.0" prefWidth="699.0">
                <children>
-                  <TextField fx:id="search_field" alignment="CENTER_RIGHT" layoutX="45.0" layoutY="26.0" prefHeight="27.0" prefWidth="183.0" promptText="جستجو" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
                   <Label fx:id="lbl_list" layoutX="453.0" layoutY="25.0" text="لیست کتابهای امانت گرفته شده" textFill="#e7e5e5">
                      <font>
                         <Font size="24.0" />
@@ -86,12 +85,164 @@
                         </VBox>
                      </content>
                   </ScrollPane>
-                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="57.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                  <VBox layoutX="47.0" layoutY="78.0" prefHeight="117.0" prefWidth="699.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="59.0" prefWidth="699.0" spacing="20.0">
+                           <children>
+                              <JFXRadioButton fx:id="allBookRB" nodeOrientation="RIGHT_TO_LEFT" onAction="#searchwith_showallbooks" text="نمایش همه" textFill="WHITE">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="jostejoRadio" />
+                                 </toggleGroup>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXRadioButton>
+                              <JFXRadioButton fx:id="IDBookRB" nodeOrientation="RIGHT_TO_LEFT" onAction="#searchwithbookid" text="شماره کتاب" textFill="WHITE" toggleGroup="$jostejoRadio">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXRadioButton>
+                              <JFXRadioButton fx:id="writerBookRB" nodeOrientation="RIGHT_TO_LEFT" onAction="#searchwithbookwriter" text="نام نویسنده" textFill="WHITE" toggleGroup="$jostejoRadio">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXRadioButton>
+                              <JFXRadioButton fx:id="nameBookRB" nodeOrientation="RIGHT_TO_LEFT" onAction="#searchwithbookname" text="نام کتاب" textFill="WHITE" toggleGroup="$jostejoRadio">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXRadioButton>
+                              <Label prefHeight="17.0" prefWidth="135.0" text="جستجو بر اساس :" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <StackPane prefHeight="78.0" prefWidth="699.0">
+                           <children>
+                              <Pane fx:id="searchwith_bookname_pane" prefHeight="68.0" prefWidth="699.0" visible="false">
+                                 <children>
+                                    <JFXTextField fx:id="ktbNametxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="نام کتاب" unFocusColor="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXButton fx:id="search_bookname_btn" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="20.0" onAction="#search_bookname_btn_action" prefHeight="31.0" prefWidth="96.0" text="جستجو" textFill="#f8f8f8">
+                                       <graphic>
+                                          <ImageView fitHeight="22.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/icons8_Search_52px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <opaqueInsets>
+                                          <Insets left="20.0" />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="searchwith_bookid_pane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                 <children>
+                                    <JFXButton fx:id="search_bookID_btn" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="20.0" onAction="#search_bookID_btn_actoin" prefHeight="38.0" prefWidth="110.0" text="جستجو" textFill="#f8f8f8">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="22.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/icons8_Search_52px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <opaqueInsets>
+                                          <Insets left="20.0" />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXTextField fx:id="ktbIDtxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="آیدی کتاب" unFocusColor="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="searchwith_bookvaziyat_pane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                 <children>
+                                    <JFXRadioButton alignment="CENTER_LEFT" layoutX="380.0" layoutY="26.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#show_amanatdadeshodebooks" text="امانت داده شده" textAlignment="RIGHT" textFill="WHITE">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="vaziyat_radiobtn" />
+                                       </toggleGroup>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXRadioButton>
+                                    <JFXRadioButton layoutX="248.0" layoutY="26.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#show_mojod_books" text="در دسترس" textFill="WHITE" toggleGroup="$vaziyat_radiobtn">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXRadioButton>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="searchwith_bookwriter_pane" prefHeight="68.0" prefWidth="699.0" visible="false">
+                                 <children>
+                                    <JFXTextField fx:id="ktbwritertxt_search" focusColor="#c606a6" labelFloat="true" layoutX="316.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="215.0" promptText="نام نویسنده" unFocusColor="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXButton fx:id="search_bookwriter_btn1" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="20.0" onAction="#search_writer_btn_action" prefHeight="31.0" prefWidth="96.0" text="جستجو" textFill="#f8f8f8">
+                                       <graphic>
+                                          <ImageView fitHeight="22.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/icons8_Search_52px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <opaqueInsets>
+                                          <Insets left="20.0" />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
+                  <ImageView fitHeight="84.0" fitWidth="85.0" layoutX="8.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/icons8_Search_52px.png" />
+                        <Image url="@../../images/Logo2.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="btn_search" layoutX="53.0" layoutY="28.0" onAction="#btn_search_clicked" prefHeight="16.0" prefWidth="24.0" text=" " />
                </children>
             </Pane>
          </children>
@@ -133,12 +284,12 @@
             </ImageView>
             <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="198.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/icons8_Person_32px.png" />
+                  <Image url="@../../images/1icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="199.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="27.0" fitWidth="23.0" layoutX="198.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/icons8_Xbox_Menu_32px.png" />
+                  <Image url="@../../images/icons8_book_shelf_50px.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="199.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
