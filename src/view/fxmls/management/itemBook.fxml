@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<HBox fx:id="itemBook" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="53.0" prefWidth="695.0" spacing="40.0" style="-fx-background-color: #17223b; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.itemBookCtrl">
+<HBox fx:id="itemBook" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="53.0" prefWidth="695.0" spacing="20.0" style="-fx-background-color: #17223b; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.management.itemBookCtrl">
 
     <children>
         <ImageView fitHeight="25.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
@@ -26,22 +26,25 @@
                 <Insets left="10.0" />
             </HBox.margin>
         </ImageView>
-        <Label fx:id="bookNumLBL" alignment="CENTER" prefHeight="19.0" prefWidth="80.0" text="10201" textFill="#b7c3d7" />
-        <Label fx:id="bookNameLBL" alignment="CENTER" prefHeight="17.0" prefWidth="110.0" text="کوری" textFill="#b7c3d7">
-            <HBox.margin>
-                <Insets />
-            </HBox.margin>
-        </Label>
-        <Label fx:id="bookAuthorLBL" alignment="CENTER" prefHeight="24.0" prefWidth="150.0" text="ژوزه ساراماگو" textFill="#b7c3d7">
-            <HBox.margin>
-                <Insets />
-            </HBox.margin>
-        </Label>
-      <Label fx:id="bookStatusLBL" alignment="CENTER" prefHeight="21.0" prefWidth="72.0" text="ناموجود" textFill="#b7c3d7">
+        <Label fx:id="bookNumLBL" alignment="CENTER" prefHeight="21.0" prefWidth="104.0" text="10201" textFill="#b7c3d7">
          <HBox.margin>
-            <Insets left="10.0" />
+            <Insets left="-10.0" />
          </HBox.margin></Label>
-      <Pane prefHeight="53.0" prefWidth="128.0">
+        <Label fx:id="bookNameLBL" alignment="CENTER" prefHeight="21.0" prefWidth="147.0" text="کوری" textFill="#b7c3d7">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
+        <Label fx:id="bookAuthorLBL" alignment="CENTER" prefHeight="24.0" prefWidth="169.0" text="ژوزه ساراماگو" textFill="#b7c3d7">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
+      <Label fx:id="bookStatusLBL" alignment="CENTER" prefHeight="21.0" prefWidth="122.0" text="ناموجود" textFill="#b7c3d7">
+         <HBox.margin>
+            <Insets right="-15.0" />
+         </HBox.margin></Label>
+      <Pane prefHeight="53.0" prefWidth="110.0">
          <children>
             <Button id="button-item-book" fx:id="editBTN" layoutX="26.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@../../styles/style.css">
                <graphic>
@@ -62,6 +65,9 @@
                </graphic>
             </Button>
          </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
       </Pane>
     </children>
     <effect>
