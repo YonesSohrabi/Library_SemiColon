@@ -495,7 +495,9 @@ public class Database {
         String sql;
         if (lable.equals("ktbID")) {
             sql = String.format("SELECT * FROM amanat WHERE ktbID = '%s'", text);
-        } else {
+        }else if (lable.equals("mohlat")){
+            sql = String.format("SELECT * FROM amanat WHERE amtDateRtrn = '%s'", text);
+        }else {
             sql = String.format("SELECT * FROM amanat WHERE usrID = '%s'", text);
         }
         ResultSet resultSet = Database.getStatement().executeQuery(sql);
@@ -512,6 +514,50 @@ public class Database {
             amanat.setKtbName(getKtbName(resultSet.getString("ktbID")));
             amanat.setUsrName(getUsrName(resultSet.getString("usrID")));
             amanatList.add(amanat);
+        }
+
+        Database.closeConnection();
+        return amanatList;
+    }
+
+    public static List<Amanat> readAmanatsDB(String dateGet,String dateRtrn, String lable) throws SQLException, ParseException {
+        List<Amanat> amanatList = new ArrayList<>();
+
+        SimpleDateFormat fr = new SimpleDateFormat("yyyy/MM/dd");
+        String[] dateGetArr = dateGet.split("/");
+        String[] dateRtrnArr = dateRtrn.split("/");
+        Roozh miladiGet = new Roozh();
+        miladiGet.persianToGregorian(Integer.parseInt(dateGetArr[0]),Integer.parseInt(dateGetArr[1]),Integer.parseInt(dateGetArr[2]));
+        Roozh miladiRtrn = new Roozh();
+        miladiRtrn.persianToGregorian(Integer.parseInt(dateRtrnArr[0]),Integer.parseInt(dateRtrnArr[1]),Integer.parseInt(dateRtrnArr[2]));
+
+        Date get = new Date(miladiGet.getYear(),miladiGet.getMonth(),miladiGet.getDay());
+        Date rtrn = new Date(miladiRtrn.getYear(),miladiRtrn.getMonth(),miladiRtrn.getDay());
+        Database.makeConnection();
+        String sql = String.format("SELECT * FROM amanat");
+
+        ResultSet resultSet = Database.getStatement().executeQuery(sql);
+        Amanat amanat;
+        while (resultSet.next()) {
+            amanat = new Amanat();
+            amanat.setAmtID(resultSet.getString("amtID"));
+            amanat.setKtbID(resultSet.getString("ktbID"));
+            amanat.setUsrID(resultSet.getString("usrID"));
+            amanat.setAmtDateGet(resultSet.getString("amtDateGet"));
+            amanat.setAmtDateRtrn(resultSet.getString("amtDateRtrn"));
+            amanat.setAmtDarkhastUsr(resultSet.getString("amtDarkhastUsr"));
+            amanat.setAmtEmkanTamdid(resultSet.getString("amtEmkanTamdid"));
+            amanat.setKtbName(getKtbName(resultSet.getString("ktbID")));
+            amanat.setUsrName(getUsrName(resultSet.getString("usrID")));
+            String[] dateArr = amanat.getAmtDateRtrn().split("/");
+            Roozh dateAmanatRtrn = new Roozh();
+            dateAmanatRtrn.persianToGregorian(Integer.parseInt(dateArr[0]),Integer.parseInt(dateArr[1]),Integer.parseInt(dateArr[2]));
+
+            Date amanatRtrn = new Date(dateAmanatRtrn.getYear(),dateAmanatRtrn.getMonth(),dateAmanatRtrn.getDay());
+            if (amanatRtrn.after(get) && amanatRtrn.before(rtrn)){
+                amanatList.add(amanat);
+            }
+
         }
 
         Database.closeConnection();

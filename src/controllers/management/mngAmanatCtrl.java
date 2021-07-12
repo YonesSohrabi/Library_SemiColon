@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -214,10 +213,26 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        amtMohlatSearchBTN.setOnAction(e -> {
+            try {
+                searchAmanat(amtMohlatTXT.getText(),"mohlat");
+            } catch (SQLException | ParseException | IOException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+
         searchTwoDateRB.setOnAction(e -> {
             if (searchTwoDateRB.isSelected()){
                 searchDatePane.setVisible(true);
                 searchMohlatPane.setVisible(false);
+            }
+        });
+
+        amtDateSearchBTN.setOnAction(e -> {
+            try {
+                searchAmanat(amtAzDateTXT.getText(),amtTaDateTXT.getText(),"twoDate");
+            } catch (SQLException | ParseException | IOException throwables) {
+                throwables.printStackTrace();
             }
         });
     }
@@ -236,6 +251,10 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
 
     public void searchAmanat(String text,String lable) throws SQLException, IOException, ParseException {
         List<Amanat> amanats = new ArrayList<>(Database.readAmanatsDB(text,lable));
+        showAmanat(amanats);
+    }
+    public void searchAmanat(String dateGet,String dateRtrn,String lable) throws SQLException, IOException, ParseException {
+        List<Amanat> amanats = new ArrayList<>(Database.readAmanatsDB(dateGet,dateRtrn,lable));
         showAmanat(amanats);
     }
 
