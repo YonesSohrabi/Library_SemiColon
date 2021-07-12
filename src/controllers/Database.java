@@ -42,7 +42,7 @@ public class Database {
     //اتصال به دیتابیس
     public static void makeConnection() throws SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "1380Ys1388?");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "1234");
             statement = connection.createStatement();
             String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL , `usrLName` varchar(80) NOT NULL , `userName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT ,`status` varchar(10) default '1' , PRIMARY KEY (`usrID`) ,UNIQUE (`userName`))";
             getStatement().execute(crtbl);
@@ -706,15 +706,6 @@ public class Database {
             sql = String.format("UPDATE amanat SET amtEmkanTamdid = '0', amtDarkhastUsr = '1' WHERE amtID = '%s'", amtID);
         }
         getStatement().executeUpdate(sql);
-        closeConnection();
-    }
-
-    public static void updateAmanat (String date , String vaziyat , String ktbid ) throws SQLException {
-        makeConnection();
-        System.out.println(getAmntTarakoneshID(ktbid));
-        String updateAmanat = String.format("UPDATE amanat SET amtDarkhastUsr = \"%s\" , amtDateRtrn = '%s'  WHERE amtID = '%s' " ,"عودت" , date , getAmntTarakoneshID(ktbid));
-        System.out.println(updateAmanat);
-        getStatement().execute(updateAmanat);
         closeConnection();
     }
 

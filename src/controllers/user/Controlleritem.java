@@ -99,7 +99,7 @@ public class Controlleritem implements Initializable {
                 Roozh roozh = new Roozh();
                 roozh.gregorianToPersian(Integer.parseInt(dates[0]),Integer.parseInt(dates[1]),Integer.parseInt(dates[2]));
 
-                Database.updateAmanat(String.valueOf(roozh), "عودت" , item_bookID.getText());
+                Database.updateAmanat(Database.getAmntTarakoneshID(item_bookID.getText()), String.valueOf(roozh) ,"عودت" );
                 Database.updateBookAmntStatus("" , "" , "موجود" , item_bookID.getText());
                 System.out.println("btn odat bookid " +item_bookID.getText());
             } catch (SQLException throwables) {
