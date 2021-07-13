@@ -56,6 +56,7 @@ public class switchSenceCtrl {
         stage.show();
     }
 
+
     // کنترل صفحات ادمین و ارتباط دادن آن ها به هم
     public void sceneSwitchManagement(String sceneName) throws IOException {
         Parent root = null;

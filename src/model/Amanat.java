@@ -1,13 +1,7 @@
 package model;
 
 import controllers.DateSC;
-
-import controllers.DateSC;
-
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.Date;
 
 public class Amanat {
     private String amtID;
@@ -28,8 +22,6 @@ public class Amanat {
         this.ktbID = ktbID;
         this.usrID = usrID;
         this.amtDateGet = amtDateGet;
-        // this.amtDateRtrn = DateSC.tamdidMohalat(amtDateGet, 10);
-        //this.mohlat = DateSC.mohlatTahvil(this.amtDateRtrn);
     }
 
 

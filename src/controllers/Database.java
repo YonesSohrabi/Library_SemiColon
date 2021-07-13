@@ -1,9 +1,8 @@
 package controllers;
 
 
-import com.mysql.cj.protocol.Resultset;
+
 import controllers.login.LoginPageCtrl;
-import controllers.login.RegisterPageCtrl;
 import javafx.scene.control.Alert;
 import model.Admin;
 import model.Amanat;
