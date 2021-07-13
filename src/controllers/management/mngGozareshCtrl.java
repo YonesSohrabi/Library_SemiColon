@@ -11,6 +11,13 @@ public class mngGozareshCtrl extends mngStage implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        /* شروع ایونت های مربوط به قسمت دکمه های منو برنامه
+        *
+        *
+        به ترتیب
+        داشبورد -کتاب ها - کتابدار - امانت - تنطیمات - خروج
+        *
+         */
         dashboardBTN.setOnAction(e -> {
             Stage stage = (Stage) dashboardBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -72,6 +79,9 @@ public class mngGozareshCtrl extends mngStage implements Initializable {
             }
         });
 
+        /* پایان ایونت های منو
+         *
+         */
 
     }
 }

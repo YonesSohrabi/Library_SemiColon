@@ -34,6 +34,7 @@ public class switchSenceCtrl {
         stage.show();
     }
 
+    // کنترل صفحات مربوط به قسمت یوزر برنامه و ربط دادن آن ها به هم
     public void sceneSwitchUserPage(String sceneName) throws IOException {
         Parent root = null;
         switch (sceneName){

@@ -47,12 +47,20 @@ public class mngSettingCtrl extends mngStage implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // پرکردن اطلاعات مدیریت
         try {
             fillInfoAdmin(admLoginPageCtrl.ID);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        /* شروع ایونت های مربوط به قسمت دکمه های منو برنامه
+        *
+        *
+        به ترتیب
+        داشبورد -کتاب ها - کتابدار - امانت - تنطیمات
+        *
+         */
         dashboardBTN.setOnAction(e -> {
             Stage stage = (Stage) dashboardBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -128,9 +136,14 @@ public class mngSettingCtrl extends mngStage implements Initializable {
             }
         });
 
+        /* پایان ایونت های منو
+         *
+         */
+
     }
 
 
+    // متد پرکردن اطلاعات در صفحه تنظیمات
     private void fillInfoAdmin(String adminID) throws SQLException {
         Admin admin = infoAdmin(adminID);
         admFNameTXT.setText(admin.getFirstName());
@@ -140,6 +153,7 @@ public class mngSettingCtrl extends mngStage implements Initializable {
         admPassTXT.setText(admin.getPassword());
     }
 
+    //مند خوندن اطلاعات مدیریت از دیتابیس
     private Admin infoAdmin(String adminID) throws SQLException {
         List<Admin> admins = new ArrayList<>(Database.getInfoAdmin());
         Admin admin = new Admin();
@@ -152,6 +166,7 @@ public class mngSettingCtrl extends mngStage implements Initializable {
         return admin;
     }
 
+    // متد آپدیت و ویرایش اطلاعات مدیریت
     private void updateInfoAdmin(String adminID) throws SQLException {
         Admin admin = infoAdmin(adminID);
         admin.setFirstName(admFNameTXT.getText());

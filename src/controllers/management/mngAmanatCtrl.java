@@ -235,7 +235,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
-        // سرچ بر اساس امانت های بین دو تاریخ 
+        // سرچ بر اساس امانت های بین دو تاریخ
         searchTwoDateRB.setOnAction(e -> {
             if (searchTwoDateRB.isSelected()){
                 searchDatePane.setVisible(true);

@@ -81,7 +81,7 @@ public class mngDashboardCtrl extends mngStage implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        // لیست 4 کتابی اخیر هم عودت داده شده هم امانت برده شده
         List amtRecentList = null ,odatRecentList = null;
         try {
             amtRecentList = new ArrayList(Database.getAmanatRecent("امانت"));
@@ -90,6 +90,7 @@ public class mngDashboardCtrl extends mngStage implements Initializable{
             e.printStackTrace();
         }
 
+        // نمایش اطلاعاتی از 4 کتاب اخیری که عودت داده شده برا اساس تعدادشون
         switch (odatRecentList.size()){
             case 4:
                 odatHBox1.setVisible(true);
@@ -126,6 +127,7 @@ public class mngDashboardCtrl extends mngStage implements Initializable{
 
         }
 
+        // نمایش اطلاعاتی از 4 کتاب اخیری که امانت داده شده برا اساس تعدادشون
         switch (amtRecentList.size()){
             case 4:
                 amtHBox1.setVisible(true);
@@ -162,15 +164,24 @@ public class mngDashboardCtrl extends mngStage implements Initializable{
 
         }
 
+        //خواندن بعضی اطلاعات از و نمایش آمار آن در فیلد مربوطه در صفحه داشبورد
         try {
-            numKarbaranLBL.setText(counterNum("user","user"));
-            numHameKetabhaLBL.setText(counterNum("book","book"));
-            numAmanatFeliLBL.setText(counterNum("book","ktbVazeiat","ناموجود","status","1"));
-            numKolAmanatLBL.setText(counterNum("amanat","amanat"));
+            numKarbaranLBL.setText(counterNum("user","user"));// تعداد کاربران
+            numHameKetabhaLBL.setText(counterNum("book","book"));// تعداد کتاب ها
+            numAmanatFeliLBL.setText(counterNum("book","ktbVazeiat","ناموجود",
+                    "status","1"));// تعداد کتاب های امانت برده شده ای ک الان برگشت داده نشده
+            numKolAmanatLBL.setText(counterNum("amanat","amanat"));// تعداد همه امانت ها
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        /* شروع ایونت های مربوط به قسمت دکمه های منو برنامه
+        *
+        *
+        به ترتیب
+        کتاب ها - کتابدار - امانت - گزارش - تنطیمات - خروج
+        *
+         */
         booksBTN.setOnAction(e ->{
             Stage stage = (Stage) booksBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -230,6 +241,10 @@ public class mngDashboardCtrl extends mngStage implements Initializable{
                 ioException.printStackTrace();
             }
         });
+
+        /* پایان ایونت های منو
+         *
+         */
     }
 
     private String counterNum(String tableName,String lable) throws SQLException {

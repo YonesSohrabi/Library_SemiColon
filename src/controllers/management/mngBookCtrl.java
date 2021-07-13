@@ -86,6 +86,13 @@ public class mngBookCtrl extends mngStage implements Initializable {
             e.printStackTrace();
         }
 
+        /* شروع ایونت های مربوط به قسمت دکمه های منو برنامه
+        *
+        *
+        به ترتیب
+        داشبورد - کتابدار - امانت - گزارش - تنطیمات - خروج
+        *
+         */
         dashboardBTN.setOnAction(e -> {
             Stage stage = (Stage) dashboardBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -146,6 +153,11 @@ public class mngBookCtrl extends mngStage implements Initializable {
             }
         });
 
+        /* پایان ایونت های منو
+        *
+        */
+
+        // ایونت اضافه کردن کتاب به کتابخانه
         addBookbtn.setOnAction(e -> {
             try {
                 openAddBookPage();
@@ -154,6 +166,7 @@ public class mngBookCtrl extends mngStage implements Initializable {
             }
         });
 
+        // دو تا ایونت مربوط به سرچ بر اساس نام کتاب
         nameBookRB.setOnAction(e -> {
             if (nameBookRB.isSelected()) {
                 hidePaneJostejo();
@@ -168,6 +181,7 @@ public class mngBookCtrl extends mngStage implements Initializable {
             }
         });
 
+        // دو تا ایونت مربوط به سرچ کتاب بر اساس شماره کتاب
         numBookRB.setOnAction(e -> {
             if (numBookRB.isSelected()) {
                 hidePaneJostejo();
@@ -184,6 +198,7 @@ public class mngBookCtrl extends mngStage implements Initializable {
             }
         });
 
+        // سه تا ایونت مربوط به سرچ بر اساس وضعیت کتاب ، به عنوان موجود و ناموجود
         vazeiatBookRB.setOnAction(e -> {
             if (vazeiatBookRB.isSelected()) {
                 hidePaneJostejo();
@@ -211,6 +226,7 @@ public class mngBookCtrl extends mngStage implements Initializable {
             }
         });
 
+        // ایونت مربوط به دکمه نمایش همه کتاب ها
         allBookRB.setOnAction(e -> {
             if (allBookRB.isSelected()) {
                 hidePaneJostejo();
@@ -224,6 +240,8 @@ public class mngBookCtrl extends mngStage implements Initializable {
 
     }
 
+
+    // متد مربوط به باز کردن صفحه اضافه کردن کتاب
     private void openAddBookPage() throws IOException {
         if (addBookPage == null) {
             AnchorPane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/addBookPage.fxml"));
@@ -234,27 +252,32 @@ public class mngBookCtrl extends mngStage implements Initializable {
         }
     }
 
+    // متد مخفی کردن پین های جستجو
     private void hidePaneJostejo() {
         ktbNamePane.setVisible(false);
         ktbNumPane.setVisible(false);
         ktbVazeiatPane.setVisible(false);
     }
 
+    // متد سرچ همه کتاب ها از دیتابیس
     public void searchBook() throws SQLException, IOException {
         List<Book> books = new ArrayList<>(Database.readBooksDB());
         showBook(books);
     }
 
+    // متد سرچ براساس شماره کتاب یا نام کتاب
     public void searchBook(String bookName, String lable) throws SQLException, IOException {
         List<Book> books = new ArrayList<>(Database.readBooksDB(bookName, lable));
         showBook(books);
     }
 
+    // متد سرچ براساس وضعیت موجود بودن یا ناموجود بودن کتاب
     public void searchBook(int vazeiat) throws SQLException, IOException {
         List<Book> books = new ArrayList<>(Database.readBooksDB(vazeiat));
         showBook(books);
     }
 
+    // متدی که کتاب های جستجو شده رو نمایش میده
     public void showBook(List<Book> books) throws IOException {
         itemBookList.getChildren().clear();
         int rows = 0;

@@ -71,6 +71,13 @@ public class mngUserCtrl extends mngStage implements Initializable {
             e.printStackTrace();
         }
 
+        /* شروع ایونت های مربوط به قسمت دکمه های منو برنامه
+        *
+        *
+        به ترتیب
+        داشبورد -کتاب ها -  امانت -گزارش- تنطیمات - خروج
+        *
+         */
         dashboardBTN.setOnAction(e -> {
             Stage stage = (Stage) dashboardBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -131,6 +138,11 @@ public class mngUserCtrl extends mngStage implements Initializable {
             }
         });
 
+        /* پایان ایونت های منو
+         *
+         */
+
+        // ایونت اضافه کردن کاربر
         addUserbtn.setOnAction(e -> {
             try {
                 openAddUserPage();
@@ -139,6 +151,7 @@ public class mngUserCtrl extends mngStage implements Initializable {
             }
         });
 
+        // دو ایونت مربوط به بخش سرچ بر اساس آیدی کاربر
         numUserRB.setOnAction(e -> {
             if(numUserRB.isSelected()){
                 hidePaneJostejo();
@@ -155,6 +168,7 @@ public class mngUserCtrl extends mngStage implements Initializable {
             }
         });
 
+        // دو ایونت مربوط به سرچ بر اساس کدملی کاربر
         codeMeliUserRB.setOnAction(e -> {
             if (codeMeliUserRB.isSelected()){
                 hidePaneJostejo();
@@ -171,6 +185,7 @@ public class mngUserCtrl extends mngStage implements Initializable {
         });
 
 
+        // ایونت مربوط به تمایش همه کاربران
         allUserRB.setOnAction(e -> {
             hidePaneJostejo();
             try {
@@ -181,6 +196,7 @@ public class mngUserCtrl extends mngStage implements Initializable {
         });
     }
 
+    // متد باز کردن صفحه اضافه کردن کاربر
     private void openAddUserPage() throws IOException {
         if (addUserPage == null) {
             AnchorPane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/addUserPage.fxml"));
@@ -191,20 +207,25 @@ public class mngUserCtrl extends mngStage implements Initializable {
         }
     }
 
+    // متد مخفی کردن پین سرچ
     private void hidePaneJostejo() {
         usrNumOzvPane.setVisible(false);
         usrCodeMeliPane.setVisible(false);
     }
 
+    // متد سرچ همه کاربران
     public void searchUser() throws SQLException, IOException {
         List<User> users = new ArrayList<>(Database.readUsersDB());
         showUser(users);
     }
+
+    // متد سرچ براساس کدملی یا آیدی کاربر
     public void searchUser(String text, String lable) throws SQLException, IOException {
         List<User> users = new ArrayList<>(Database.readUsersDB(text,lable));
         showUser(users);
     }
 
+    // متدی که کاربران سرج شده رو نمایش میده
     public void showUser(List<User> users) throws IOException {
         itemUserList.getChildren().clear();
         int rows = 0;
