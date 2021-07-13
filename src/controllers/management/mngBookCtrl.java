@@ -17,7 +17,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Book;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

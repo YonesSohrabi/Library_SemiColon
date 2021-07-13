@@ -7,7 +7,6 @@ import controllers.Database;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
-import model.Book;
 import model.User;
 
 import java.net.URL;

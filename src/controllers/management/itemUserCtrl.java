@@ -8,11 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.Book;
 import model.User;
 
 import java.io.IOException;
@@ -21,9 +19,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class itemUserCtrl implements Initializable {
-
-    @FXML
-    private HBox itemBook;
 
     @FXML
     private Label userNumIdLBL;

@@ -42,15 +42,19 @@ public class editBookPageCtrl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ktbIDTXT.setText(itemBookCtrl.bookID);
+
         try {
-            getDataBook(ktbIDTXT.getText());
+            getDataBook(ktbIDTXT.getText());// پرکردن فیلدای صفحه ادیت کتاب ها
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // ایونت دکمه بستن صفحه
         exitBTN.setOnAction(e -> {
             closeBTN();
         });
 
+        // ایونت ویرایش صفحه
         editBTN.setOnAction(e -> {
             try {
                 updateBookinDB(ktbIDTXT.getText());
@@ -61,6 +65,7 @@ public class editBookPageCtrl implements Initializable {
         });
     }
 
+    // متد گرفتن اطلاعات کتاب
     private void getDataBook(String ktbIDTXT) throws SQLException {
         Book book = Database.getItemBookDB(ktbIDTXT);
         ktbNameTXT.setText(book.getKtbName());
@@ -70,6 +75,7 @@ public class editBookPageCtrl implements Initializable {
         amtIDTXT.setText(book.getAmtTarakoneshID());
     }
 
+    // متدآپدیت اطلاعات کتاب
     private void updateBookinDB(String ktbIDTXT) throws SQLException {
         Book book = Database.getItemBookDB(ktbIDTXT);
         book.setKtbName(ktbNameTXT.getText());
@@ -78,6 +84,8 @@ public class editBookPageCtrl implements Initializable {
         book.setKtbEhdaKonandeh(ktbEhdakonandehTXT.getText());
         Database.updateBook(book,ktbIDTXT);
     }
+
+    // متد مربوط ب ایونت بستن صفحه
     public void closeBTN(){
         ((Stage)exitBTN.getScene().getWindow()).close();
         itemBookCtrl.editBookPage = null;
