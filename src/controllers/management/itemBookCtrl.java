@@ -41,6 +41,7 @@ public class itemBookCtrl implements Initializable {
     static Stage editBookPage = null;
     static String bookID = null;
 
+    // متد پرکردن مقادیر آیتم کتاب
     public void setItemBook(Book book) {
         bookNumLBL.setText(book.getKtbID());
         bookNameLBL.setText(book.getKtbName());
@@ -52,6 +53,8 @@ public class itemBookCtrl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // ایونت مربوط به آیکون باز کردن صفحه ادیت کتاب
         editBTN.setOnAction(e -> {
             try {
                 bookID = bookNumLBL.getText();
@@ -62,10 +65,12 @@ public class itemBookCtrl implements Initializable {
             }
         });
 
+        // ایونت مربوط به آیکون حذف کتاب
         deleteBTN.setOnAction(e -> {
             System.out.println(bookNameLBL.getText());
             try {
-                Database.deleteBook(bookNumLBL.getText());
+                Database.deleteBook(bookNumLBL.getText());// حذف کتاب از دیتابیس
+                // رفرش صفحه پس از حذف کتاب
                 Stage stage = (Stage) deleteBTN.getScene().getWindow();
                 switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
                 switchSenceCtrl.sceneSwitchManagement("book");
@@ -77,6 +82,7 @@ public class itemBookCtrl implements Initializable {
     }
 
 
+    // متد مربوط به ایونت باز کردن صفحه ادیت کتاب
     private void openEditBookPage() throws IOException {
         if (editBookPage == null) {
             Pane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/editBookPage.fxml"));

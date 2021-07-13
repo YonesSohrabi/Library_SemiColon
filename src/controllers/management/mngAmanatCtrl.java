@@ -93,12 +93,14 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // نمایش امانت ها در صفحه مدیریت امانت
         try {
             searchAmanat();
         } catch (SQLException | ParseException | IOException e) {
             e.printStackTrace();
         }
 
+        // ایونت مربوط به دکمه داشبورد در منو
         dashboardBTN.setOnAction(e -> {
             Stage stage = (Stage) dashboardBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -109,6 +111,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        // ایونت مربوط به دکمه کتاب ها در منو
         booksBTN.setOnAction(e -> {
             Stage stage = (Stage) booksBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -119,6 +122,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        // ایونت مربوط به قسمت کتابدار در منوی برنامه
         ketabdarBTN.setOnAction(e -> {
             Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -129,6 +133,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        // ایونت مربوط به دکمه گزارش در منوی برنامه
         gozareshBTN.setOnAction(e -> {
             Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -139,6 +144,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        // دکمه مربوط به صفحه تنظیمات در منوی برنامه
         settingBTN.setOnAction(e -> {
             Stage stage = (Stage) ketabdarBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -149,6 +155,8 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+
+        // ایونت مربوط به دکمه خروج از برنامه
         exitBTN.setOnAction(e -> {
             Stage stage = (Stage) exitBTN.getScene().getWindow();
             switchSenceCtrl switchSenceCtrl = new switchSenceCtrl(stage);
@@ -159,6 +167,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        // ایونت باتن جستجو (شماره کتاب)
         ktbIDRB.setOnAction(e -> {
             if (ktbIDRB.isSelected()){
                 hidePaneJostejo();
@@ -166,6 +175,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        // ایونت باتن جستجو (تاریخ)
         dateRB.setOnAction(e -> {
             if (dateRB.isSelected()){
                 hidePaneJostejo();
@@ -173,15 +183,16 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        // ایونت بخش جستحو
         ktbIDSearchBTN.setOnAction(e -> {
             try {
-                searchAmanat(ktbIDTXT.getText(),"ktbID");
+                searchAmanat(ktbIDTXT.getText(),"ktbID");// سرچ بر اساس شماره کتاب
             } catch (SQLException | ParseException | IOException throwables) {
                 throwables.printStackTrace();
             }
         });
 
-
+        // ایونت باتن جستجو (شماره یوزر)
         usrIDRB.setOnAction(e -> {
             if (usrIDRB.isSelected()){
                 hidePaneJostejo();
@@ -189,6 +200,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        // باتن سرچ بر اساس آیدی یوزر
         usrIDSearchBTN.setOnAction(e -> {
             try {
                 searchAmanat(usrIDTXT.getText(),"usrID");
@@ -197,6 +209,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        // سرچ همه امانت ها
         allAmanatRB.setOnAction(e -> {
             try {
                 hidePaneJostejo();
@@ -206,6 +219,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        // سرچ بر اساس تاریخ مهلت برگشت
         searchMohlatRB.setOnAction(e -> {
             if (searchMohlatRB.isSelected()){
                 searchMohlatPane.setVisible(true);
@@ -221,6 +235,7 @@ public class mngAmanatCtrl extends mngStage implements Initializable {
             }
         });
 
+        // سرچ بر اساس امانت های بین دو تاریخ 
         searchTwoDateRB.setOnAction(e -> {
             if (searchTwoDateRB.isSelected()){
                 searchDatePane.setVisible(true);

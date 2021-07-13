@@ -45,6 +45,7 @@ public class itemUserCtrl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // ایونت مربوط به آیکون ویرایش کاربر
         editBTN.setOnAction(e -> {
             try {
                 userID = userNumIdLBL.getText();
@@ -56,6 +57,7 @@ public class itemUserCtrl implements Initializable {
         });
 
 
+        // ایونت مربوط به آیکون حذف کاربر
         deleteBTN.setOnAction(e -> {
             System.out.println(userNameLBL.getText());
             try {
@@ -70,6 +72,8 @@ public class itemUserCtrl implements Initializable {
 
     }
 
+
+    // ایونت مربوط به باز کردن صفحه ادیت کاربر
     private void openEditUserPage() throws IOException {
         if (editUserPage == null) {
             Pane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/editUserPage.fxml"));
@@ -81,6 +85,7 @@ public class itemUserCtrl implements Initializable {
         }
     }
 
+    // پرکردن مقادیر آیتم کتابدار
     public void setItemUser(User user) {
         userNumIdLBL.setText(user.getID());
         userNameLBL.setText(user.getFirstName());

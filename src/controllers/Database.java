@@ -44,9 +44,14 @@ public class Database {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "1380Ys1388?");
             statement = connection.createStatement();
-            String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL , `usrLName` varchar(80) NOT NULL , `userName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ,`usrCodeMeli` varchar(11) ,`usrBookList` TEXT ,`status` varchar(10) default '1' , PRIMARY KEY (`usrID`) ,UNIQUE (`userName`))";
+            String crtbl = "CREATE TABLE  IF NOT EXISTS user ( `usrID` VARCHAR(11) NOT NULL , `usrFName` varchar(80) NOT NULL ," +
+                    " `usrLName` varchar(80) NOT NULL , `userName` varchar(40) NOT NULL , `usrPass` varchar(45) NOT NULL ," +
+                    "`usrCodeMeli` varchar(11) ,`usrBookList` TEXT ,`status` varchar(10) default '1' , PRIMARY KEY (`usrID`) ,UNIQUE (`userName`))";
             getStatement().execute(crtbl);
-            crtbl = "CREATE TABLE  IF NOT EXISTS `book` ( `ktbID` INT NOT NULL , `ktbEhdaKonande` varchar(80) NOT NULL , `ktbName` varchar(80) NOT NULL ,  `ktbNevisandeh` varchar(80) NOT NULL ,  `ktbTedad` int NOT NULL ,  `ktbVazeiat` varchar(10) NOT NULL , `amtTarakoneshID` varchar(11) , `ktbEhdaDate` TEXT NOT NULL , `ktbAmntGirande` TEXT , `status` varchar(10) default '1'  , PRIMARY KEY (`ktbID`))";
+            crtbl = "CREATE TABLE  IF NOT EXISTS `book` ( `ktbID` INT NOT NULL ,  `ktbName` varchar(80) NOT NULL , " +
+                    " `ktbNevisandeh` varchar(80) NOT NULL ,`ktbEhdaKonande` varchar(80) NOT NULL ,  `ktbTedad` int NOT NULL ," +
+                    "  `ktbVazeiat` varchar(10) NOT NULL , `amtTarakoneshID` varchar(11) , `ktbEhdaDate` TEXT NOT NULL ," +
+                    " `ktbAmntGirande` TEXT , `status` varchar(10) default '1'  , PRIMARY KEY (`ktbID`))";
             getStatement().execute(crtbl);
             crtbl = "CREATE TABLE  IF NOT EXISTS admin ( admID INT NOT NULL auto_increment , admUserName varchar(80) NOT NULL ," +
                     " admPass varchar(80) NOT NULL , admFName varchar(80) NOT NULL , admLName varchar(80) NOT NULL ," +

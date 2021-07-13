@@ -40,17 +40,22 @@ public class editUserPageCtrl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         usrIDTXT.setText(itemUserCtrl.userID);
 
+        // گرفتن اطلاعاتی که در صفحه ویرایش کاربر وجود دارد
         try {
             getDataUser(usrIDTXT.getText());
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // ایونت بستن صفحه ویرایش کاربر
         exitBTN.setOnAction(e -> {
             closeBTN();
         });
 
+        // ایونت ادیت صفحه ویرایش کاربر
         editBTN.setOnAction(e -> {
             try {
                 updateUserinDB(usrIDTXT.getText());
@@ -61,7 +66,7 @@ public class editUserPageCtrl implements Initializable {
         });
     }
 
-
+    // متد گرفتن اطلاعات کاربر و پرکردن تکست فیلدا
     private void getDataUser(String usrIDTXT) throws SQLException {
         User user = Database.getItemUserDB(usrIDTXT);
         usrFNameTXT.setText(user.getFirstName());
@@ -71,6 +76,7 @@ public class editUserPageCtrl implements Initializable {
         usrCodeMeliTXT.setText(user.getCodeMeli());
     }
 
+    // متد آپدیت و ویرایش اطلاعات کاربر در دیتابیس
     private void updateUserinDB(String usrIDTXT) throws SQLException {
         User user = Database.getItemUserDB(usrIDTXT);
         user.setFirstName(usrFNameTXT.getText());
@@ -80,6 +86,7 @@ public class editUserPageCtrl implements Initializable {
         Database.updateUser(user,usrIDTXT);
     }
 
+    // متد بستن صفحه
     public void closeBTN(){
         ((Stage)exitBTN.getScene().getWindow()).close();
         itemUserCtrl.editUserPage = null;

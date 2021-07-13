@@ -18,8 +18,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class itemAmanatCtrl implements Initializable {
-    @FXML
-    private HBox itemBook;
 
     @FXML
     private Label amtIdLBL;
@@ -45,6 +43,8 @@ public class itemAmanatCtrl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // ایونت مربوط به آیکون جزئیات در آیتم امانت | بازکردن صفحه جزئیات امانت
         detailsBTN.setOnAction(e -> {
             amtID = amtIdLBL.getText();
             ktbName = ktbNameLBL.getText();
@@ -56,6 +56,7 @@ public class itemAmanatCtrl implements Initializable {
         });
     }
 
+    // پرکردن مقادیر آیتم امانت
     public void setItemAmanat(Amanat amanat) {
         amtIdLBL.setText(amanat.getAmtID());
         ktbNameLBL.setText(amanat.getKtbName());
@@ -71,6 +72,7 @@ public class itemAmanatCtrl implements Initializable {
 
     }
 
+    // متد باز کردن صفحه جزئیات امانت
     private void openDetailsAmanatPage() throws IOException {
         if (detailsAmanatPage == null) {
             Pane root = FXMLLoader.load(getClass().getResource("../../view/fxmls/management/detailsAmanatPage.fxml"));
